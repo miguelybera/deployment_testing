@@ -37,6 +37,11 @@ const productSchema = new mongoose.Schema({
                 'Category7',
             ]
         }
+    },
+    user: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User',
+        required: true
     }
 })
 

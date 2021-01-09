@@ -9,7 +9,8 @@ exports.newInquiry = catchAsyncErrors( async (req, res, next) => {
         fullName,
         customerEmail,
         companyName,
-        contactNum,
+        contactNumber,
+        position,
         concernType,
         message
     } = req.body;
@@ -18,7 +19,8 @@ exports.newInquiry = catchAsyncErrors( async (req, res, next) => {
         fullName,
         customerEmail,
         companyName,
-        contactNum,
+        contactNumber,
+        position,
         concernType,
         message,
         sentAt: Date.now()

@@ -14,11 +14,15 @@ const inquirySchema = mongoose.Schema({
         type: String,
         required: true
     },
-    contactNum:{
+    contactNumber:{
         type: Number,
         required: true,
         min: [9000000000, 'Phone Number is 10 characters only (format: 9xxxxxxxxx)'],
         max: [9999999999, 'Phone Number is 10 characters only (format: 9xxxxxxxxx)']
+    },
+    position:{
+        type: String,
+        required: true
     },
     concernType:{
         type: String,

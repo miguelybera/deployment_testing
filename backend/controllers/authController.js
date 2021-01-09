@@ -245,11 +245,6 @@ exports.updateUser = catchAsyncErrors(async (req, res, next) => {
         useFindAndModify: false
     })
 
-    //this will check if the user id exists if it doesn't exists and error will show up
-    if(!user){
-        return next(new ErrorHandler(`User is not found with id: ${req.params.id}`))
-    }
-
     res.status(200).json({
         success: true
     })

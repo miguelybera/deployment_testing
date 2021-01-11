@@ -31,7 +31,7 @@ exports.newInquiry = catchAsyncErrors( async (req, res, next) => {
 
     // Send Inquiry to email
     if(concernType === 'Inquiry'){
-         employeeEmail = 'josemiguel.ybera.iics@ust.edu.ph';
+         employeeEmail = 'bonuan.abby@gmail.com';
     }
     if(concernType === 'Appointment'){
          employeeEmail = 'josemiguel.ybera.iics@ust.edu.ph';

@@ -5,7 +5,9 @@ const { registerUser, loginUser, logout, forgotPassword, resetPassword, getUserP
 
 const { isAuthenticatedUser, authorizeRoles } = require('../middlewares/auth');
 
-router.route('/register').post(registerUser);
+// To register a new user superadmin acc must be logged in
+router.route('/superadmin/register').post(isAuthenticatedUser, authorizeRoles('superadmin'),registerUser);
+
 router.route('/login').post(loginUser);
 
 router.route('/password/forgot').post(forgotPassword);
@@ -17,9 +19,10 @@ router.route('/me').get(isAuthenticatedUser, getUserProfile);
 router.route('/password/update').put(isAuthenticatedUser, updatePassword);
 router.route('/me/update').put(isAuthenticatedUser, updateProfile);
 
-router.route('/admin/users').get(isAuthenticatedUser, authorizeRoles('admin'), allUsers);
-router.route('/admin/user/:id').get(isAuthenticatedUser, authorizeRoles('admin'), getUserDetails);
-router.route('/admin/user/:id').put(isAuthenticatedUser, authorizeRoles('admin'), updateUser);
-router.route('/admin/user/:id').delete(isAuthenticatedUser, authorizeRoles('admin'), deleteUser);
+// Superadmin roles
+router.route('/superadmin/admins').get(isAuthenticatedUser, authorizeRoles('superadmin'), allUsers);
+router.route('/superadmin/admin/:id').get(isAuthenticatedUser, authorizeRoles('superadmin'), getUserDetails);
+router.route('/superadmin/admin/:id').put(isAuthenticatedUser, authorizeRoles('superadmin'), updateUser);
+router.route('/superadmin/admin/:id').delete(isAuthenticatedUser, authorizeRoles('superadmin'), deleteUser);
 
 module.exports = router;

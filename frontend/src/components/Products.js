@@ -6,37 +6,50 @@ import MetaData from './layout/MetaData'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProducts } from '../actions/productActions'
 
+import IndivProduct from './product/IndivProduct'
+import Loader from './layout/Loader'
+import { useAlert } from 'react-alert'
+
 const Home = () => {
+
+    const alert = useAlert();
 
     const dispatch = useDispatch();
 
     const { loading, products, error, productsCount } = useSelector(state => state.products);
 
     useEffect(() => {
+        if(error){
+            alert.sucess('Success');
+            return alert.error(error);
+        }
+
         dispatch(getProducts());
-    }, [dispatch]);
+    }, [dispatch, alert, error]);
 
     return (
             <Fragment>
-                <MetaData title={'Our Products'}/>
-                <section id="products" className="product-section">
-                    <div className="our-products">
-                        <div className="row">
-                            <div className="col-12">
-                                <h1 className="products-heading-title">Our Products</h1>
-                            </div>
-                            <div className="col-12">
-                                <h5 id="category-name" className="products-subheading-category-name">Categories</h5>
-                            </div>
-                            {products && products.map( product => (
-                                <div key={product._id} className="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 product-display-container">
-                                    <img className="product-image center" src={product.images[0].url}/>
-                                    <h6 className="product-section-h5">{product.name}</h6>
+                {loading ? <Loader/> : 
+                (
+                    <Fragment>
+                        <MetaData title={'Our Products'}/>
+                        <section id="products" className="product-section">
+                            <div className="our-products">
+                                <div className="row">
+                                    <div className="col-12">
+                                        <h1 className="products-heading-title">Our Products</h1>
+                                    </div>
+                                    <div className="col-12">
+                                        <h5 id="category-name" className="products-subheading-category-name">Categories</h5>
+                                    </div>
+                                    {products && products.map( product => (
+                                        <IndivProduct key={product._id} product={product}/>
+                                    ))}
                                 </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
+                            </div>
+                        </section>
+                    </Fragment>
+                )}
             </Fragment>
     )
 }

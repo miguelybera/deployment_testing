@@ -4,13 +4,13 @@ import '../bootstrap.min.css'
 import '../fonts/font-awesome.min.css'
 import MetaData from './layout/MetaData'
 import { useDispatch, useSelector } from 'react-redux'
-import { getProducts } from '../actions/productActions'
+import { getProducts, clearErrors } from '../actions/productActions'
 
-import IndivProduct from './product/IndivProduct'
+import ProductList from './product/ProductList'
 import Loader from './layout/Loader'
 import { useAlert } from 'react-alert'
 
-const Home = () => {
+const Products = () => {
 
     const alert = useAlert();
 
@@ -20,8 +20,8 @@ const Home = () => {
 
     useEffect(() => {
         if(error){
-            alert.sucess('Success');
-            return alert.error(error);
+            alert.error(error);
+            dispatch(clearErrors())
         }
 
         dispatch(getProducts());
@@ -43,7 +43,7 @@ const Home = () => {
                                         <h5 id="category-name" className="products-subheading-category-name">Categories</h5>
                                     </div>
                                     {products && products.map( product => (
-                                        <IndivProduct key={product._id} product={product}/>
+                                        <ProductList key={product._id} product={product}/>
                                     ))}
                                 </div>
                             </div>
@@ -54,4 +54,4 @@ const Home = () => {
     )
 }
 
-export default Home;
+export default Products;

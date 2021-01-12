@@ -29,7 +29,7 @@ export const getProducts = () => async(dispatch) => {
 }
 
 //clear errors
-export const clearErrors = () => asynch(dispatch) => {
+export const clearErrors = () => async(dispatch) => {
     dispatch({
         type: CLEAR_ERRORS
     })

@@ -25,12 +25,13 @@ const Footer = () => {
                         <div className="col-sm-6 col-md-3 item">
                             <h3>Quick Links</h3>
                             <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="product.html">Products</a></li>
-                                <li><a href="services.html">Services</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
+                                <li><a href="/">Home</a></li>
+                                <li><a href="about-us">About Us</a></li>
+                                <li><a href="our-products">Products</a></li>
+                                <li><a href="our-services">Services</a></li>
+                                <li><a href="contact-us">Contact Us</a></li>
                             </ul>
+                            <button className="btn btn-dark btn-sm text-capitalize text-white-50" type="button">Login to Dashboard</button>
                         </div>
                     </div>
                     <p className="copyright">Agile Technodynamics, Inc © 1997</p>

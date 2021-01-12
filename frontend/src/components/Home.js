@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import '../App.css'
 import '../bootstrap.min.css'
+import '../fonts/font-awesome.min.css'
 
 const Home = () => {
     return (

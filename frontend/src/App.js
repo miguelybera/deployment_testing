@@ -1,7 +1,13 @@
+import Header from './components/layout/Header'
+import Footer from './components/layout/Footer'
+import Home from './components/Home'
+
 function App() {
   return (
     <div className="App">
-      <h1>Agile Technodynamics</h1>
+      <Header/>
+      <Home/>
+      <Footer/>
     </div>
   );
 }

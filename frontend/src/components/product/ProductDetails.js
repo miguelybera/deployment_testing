@@ -30,7 +30,7 @@ const ProductDetails = ( { match }) => {
         <Fragment>
             {loading ? <Loader/> : (
                 <Fragment>
-                    <MetaData title={`${product.name}`}/>
+                    <MetaData title={product.name}/>
                     <section className="individual-product-section">
                         <div className="row individual-products">
                             <div className="col-sm-5 col-md-5 col-lg-5 offset-lg-0">

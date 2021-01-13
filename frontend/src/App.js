@@ -13,7 +13,7 @@ function App() {
         <Header/>
             <Route path="/" component={Home} exact/>
             <Route path={['/our-products', '/our-products/our-products']} component={Products} exact/>
-            <Route path="/our-products/:id" component={ProductDetails} exact/>
+            <Route path="/products/:id" component={ProductDetails} exact/>
         <Footer/>
       </div>
     </Router>

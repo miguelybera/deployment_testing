@@ -43,4 +43,9 @@
     text-align: center;
     padding-bottom: 30px;
   }
-  
+
+  .category-all {
+    text-decoration: none;
+    color: black;
+    
+  }

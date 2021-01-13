@@ -16,19 +16,35 @@ const Products = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const alert = useAlert();
     const dispatch = useDispatch();
-    const { loading, products, error, productsCount, resPerPage } = useSelector(state => state.products);
+    const { loading, products, error, productsCount, resPerPage, filteredProductsCount } = useSelector(state => state.products);
+    const [category, setCategory] = useState('');
 
+    const categories = [
+        'Category1',
+        'Category2',
+        'Category3',
+        'Category4',
+        'Category5',
+        'Category6',
+        'Category7'
+    ]
     useEffect(() => {
         if(error){
             alert.error(error);
             dispatch(clearErrors())
         }
-        dispatch(getProducts(currentPage));
-    }, [dispatch, alert, error, currentPage]);
+        dispatch(getProducts(currentPage, category));
+    }, [dispatch, alert, error, currentPage, category]);
 
     function setCurrentPageNo(pageNumber) {
         setCurrentPage(pageNumber);
     }
+
+    let count = productsCount;
+    if(category) {
+        count = filteredProductsCount
+    }
+
     return (
             <Fragment>
                 {loading ? <Loader/> : 
@@ -42,7 +58,18 @@ const Products = () => {
                                         <h1 className="products-heading-title">Our Products</h1>
                                     </div>
                                     <div className="col-12">
-                                        <h5 id="category-name" className="products-subheading-category-name">Categories</h5>
+                                        <div classNme="mt-5">
+                                            <ul className="pl-0">
+                                                <li className='category-all' style={{listStyleType: 'none', cursor: 'pointer', display: 'inline-block', paddingLeft: '10px', paddingRight: '10px', color: 'black'}}><a href='/our-products'>All</a></li>
+                                                {categories.map( category => (
+                                                    <li style={{listStyleType: 'none', cursor: 'pointer', display: 'inline-block', paddingLeft: '10px', paddingRight: '10px'}}
+                                                        key={category}
+                                                        onClick={() => setCategory(category)}>
+                                                            <a>{category}</a>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
                                     </div>
                                     {products && products.map( product => (
                                         <ProductList key={product._id} product={product}/>
@@ -51,7 +78,7 @@ const Products = () => {
                             </div>
                         </section>
 
-                        {resPerPage < productsCount && (
+                        {resPerPage < count && (
                             <div className="d-flex justify-content-center mt-5">
                                 <Pagination 
                                     activePage={currentPage}

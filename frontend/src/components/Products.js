@@ -12,7 +12,7 @@ import { useAlert } from 'react-alert'
 import Pagination from 'react-js-pagination'
 
 
-const Products = () => {
+const Products = () => { 
     const [currentPage, setCurrentPage] = useState(1);
     const alert = useAlert();
     const dispatch = useDispatch();

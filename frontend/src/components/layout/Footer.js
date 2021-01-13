@@ -30,6 +30,7 @@ const Footer = () => {
                                 <li><a href="our-products">Products</a></li>
                                 <li><a href="our-services">Services</a></li>
                                 <li><a href="contact-us">Contact Us</a></li>
+                                <li>&nbsp;</li>
                             </ul>
                             <button className="btn btn-dark btn-sm text-capitalize text-white-50" type="button">Login to Dashboard</button>
                         </div>

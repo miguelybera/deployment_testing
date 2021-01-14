@@ -60,7 +60,6 @@ const Products = () => {
                                     <div className="col-12">
                                         <div classNme="mt-5">
                                             <ul className="pl-0">
-                                                <li className='category-all' style={{listStyleType: 'none', cursor: 'pointer', display: 'inline-block', paddingLeft: '10px', paddingRight: '10px', color: 'black'}}><a href='/our-products'>All</a></li>
                                                 {categories.map( category => (
                                                     <li style={{listStyleType: 'none', cursor: 'pointer', display: 'inline-block', paddingLeft: '10px', paddingRight: '10px'}}
                                                         key={category}
@@ -69,6 +68,9 @@ const Products = () => {
                                                     </li>
                                                 ))}
                                             </ul>
+                                            {resPerPage > count && (
+                                                <a href='/our-products'>View All Products</a>
+                                            )}
                                         </div>
                                     </div>
                                     {products && products.map( product => (

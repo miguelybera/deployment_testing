@@ -34,10 +34,10 @@ const AboutObjectives = () => {
                             <div className="col-md-8">
                                 <h1>The Objectives</h1>
                                 <hr />
-                                <p className="text-justify">Bring into the consciousness of every clientele the availability of ISO Standard Quality Products from around the world, in their doorsteps.</p>
-                                <p className="text-justify">Provide Construction and Services at competitive price levels without detriment to quality and efficiency.</p>
-                                <p className="text-justify">Enter into contracts for Commercial, Engineering, and Industrial Projects - Civil, Electrical in scope - adopting the latest technology available and tapping local technical expertise and environmental impact for the welfare of Filipino people.</p>
-                                <p className="text-justify">To fully support all government initiative and economic activities in the attainment of the National Goal for Philippines 2008 and onwards.</p>
+                                <p className="text-justify">&bull; Bring into the consciousness of every clientele the availability of ISO Standard Quality Products from around the world, in their doorsteps.</p>
+                                <p className="text-justify">&bull; Provide Construction and Services at competitive price levels without detriment to quality and efficiency.</p>
+                                <p className="text-justify">&bull; Enter into contracts for Commercial, Engineering, and Industrial Projects - Civil, Electrical in scope - adopting the latest technology available and tapping local technical expertise and environmental impact for the welfare of Filipino people.</p>
+                                <p className="text-justify">&bull; To fully support all government initiative and economic activities in the attainment of the National Goal for Philippines 2008 and onwards.</p>
                 <br /><img className="about-us-image" src="#" alt="image of company building and logo"/>
                             </div>
                         </div>

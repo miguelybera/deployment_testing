@@ -1,7 +1,5 @@
 import React, { Fragment, useEffect } from 'react'
 import '../styles.css'
-import '../bootstrap.min.css'
-import '../fonts/font-awesome.min.css'
 import MetaData from './layout/MetaData'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProducts } from '../actions/productActions'

@@ -1,0 +1,112 @@
+.dashboard-section {
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.dashboard-container {
+  width: 500px;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  grid-template-rows: repeat(3, 150px);
+  grid-row-gap: 10px;
+  grid-template-areas: "inbox inbox" "products users";
+  justify-content: center;
+  margin-bottom: 50px;
+  grid-column-gap: 20px;
+  padding-top: 40px;
+}
+
+@media (max-width: 576px) {
+  .dashboard-container {
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(3, 100px);
+    grid-row-gap: 10px;
+    grid-template-areas: "inbox" "products" "users";
+    justify-content: center;
+    margin-bottom: 50px;
+    grid-column-gap: 20px;
+    padding-top: 40px;
+    font-size: 13px;
+  }
+}
+
+.inbox-container {
+  border: 2px solid #B88C9E;
+  background-color: #B88C9E;
+  border-radius: 20px;
+  height: 100%;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  grid-area: inbox;
+  padding: 10px;
+}
+
+.products-container {
+  border: 2px solid #FDCA40;
+  background-color: #FDCA40;
+  border-radius: 20px;
+  height: 100%;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  grid-area: products;
+  padding: 10px;
+}
+
+.users-container {
+  border: 2px solid #549F93;
+  background-color: #549F93;
+  border-radius: 20px;
+  height: 100%;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  grid-area: users;
+  padding: 10px;
+}
+
+.dashboard-container hr {
+  color: blue;
+  width: 90%;
+}
+
+@media (max-width: 576px) {
+  .dashboard-container hr {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .dashboard-container h3 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .dashboard-container h5 {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  .small-width {
+    width: 200px;
+  }
+}
+

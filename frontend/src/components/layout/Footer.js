@@ -32,7 +32,9 @@ const Footer = () => {
                                 <li><a href="contact-us">Contact Us</a></li>
                                 <li>&nbsp;</li>
                             </ul>
-                            <button className="btn btn-dark btn-sm text-capitalize text-white-50" type="button">Login to Dashboard</button>
+                            <a href="/about-company">
+                                <button className="btn btn-dark btn-sm text-capitalize text-white-50" type="button">Login to Dashboard</button>
+                            </a>
                         </div>
                     </div>
                     <p className="copyright">Agile Technodynamics, Inc © 1997</p>

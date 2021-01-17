@@ -10,6 +10,7 @@ import AboutHistory from './components/AboutHistory'
 import AboutMissionVision from './components/AboutMissionVision'
 import AboutObjectives from './components/AboutObjectives'
 import AboutScope from './components/AboutScope'
+import Services from './components/Services'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path={['/about-mission-vision', '/our-products/about-mission-vision']} component={AboutMissionVision} exact/>
             <Route path={['/about-objectives', '/our-products/about-objectives']} component={AboutObjectives} exact/>
             <Route path={['/about-scope-of-activities', '/our-products/about-scope-of-activities']} component={AboutScope} exact/>
+            <Route path={['/our-services', '/our-products/our-services']} component={Services} exact/>
         <Footer/>
       </div>
     </Router>

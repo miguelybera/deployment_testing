@@ -1,6 +1,6 @@
 import React from 'react'
 import { Fragment } from 'react'
-import '../../App.css'
+import '../../styles.css'
 import '../../bootstrap.min.css'
 const Header = () => {
     return (

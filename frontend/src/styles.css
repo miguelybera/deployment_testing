@@ -1,14 +1,10 @@
-.navbar.navbar-dark.navbar-expand-md.fixed-top {
+  .navbar.navbar-dark.navbar-expand-md.fixed-top {
     background-color: #fff!important;
     justify-content: center;
   }
   
   .agile-logo {
     width: 240px;
-  }
-
-  .agile-name {
-    margin-bottom: 100px;
   }
   
   @media (max-width: 769px) {
@@ -64,14 +60,7 @@
     }
   }
   
-  .full-width-height{
-    height: 100%;
-    width: 100%;
-  }
-
   .section1 {
-    height: 100%;
-    width: 100%;
     text-align: center;
     background-position: center;
     background-repeat: no-repeat;
@@ -89,35 +78,13 @@
   }
   
   .welcome h1 {
-    font-size: 40px;
+    font-size: 6vw;
     margin: 20px;
-    padding: 50px 0;
+    padding: 0;
     color: #130d44;
   }
+
   
-  @media (min-width: 321px) {
-    .welcome h1 {
-      font-size: 33px;
-      margin: 10px;
-      padding: 20px 0 50px 0;
-      color: #130d44;
-    }
-  }
-  
-  @media (max-width: 320px) {
-    .welcome h1 {
-      font-size: 27px;
-      margin: 10px;
-      padding: 20px 0 50px 0;
-      color: #130d44;
-    }
-  }
-  
-  @media (min-width: 992px) {
-    .welcome h1 {
-      font-size: 60px;
-    }
-  }
   
   .btn.btn-primary {
     padding: 10px;
@@ -147,36 +114,25 @@
     background-size: cover;
   }
   
-  @media (min-width: 300px) {
+  .welcome-container {
+    padding: 150px 10px;
+    background: linear-gradient(to bottom, rgba(216, 203, 194, 0.8) 0%, rgba(34, 33, 32, 0.8) 100%), url("https://res.cloudinary.com/agiletech3itf/image/upload/v1610472389/welcome-bg_agacxj.png");
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+  }
+
+
+  @media (max-width: 600px){
     .welcome-container {
-      padding: 129px 10px 0 10px;
+      padding: 100px 10px;
       background: linear-gradient(to bottom, rgba(216, 203, 194, 0.8) 0%, rgba(34, 33, 32, 0.8) 100%), url("https://res.cloudinary.com/agiletech3itf/image/upload/v1610472389/welcome-bg_agacxj.png");
       width: 100%;
       height: 100%;
       background-size: cover;
     }
   }
-  
-  @media (min-width: 576px) {
-    .welcome-container {
-      padding: 130px 10px 0 10px;
-      background: linear-gradient(to bottom, rgba(216, 203, 194, 0.8) 0%, rgba(34, 33, 32, 0.8) 100%), url("https://res.cloudinary.com/agiletech3itf/image/upload/v1610472389/welcome-bg_agacxj.png");
-      width: 100%;
-      height: 100%;
-      background-size: cover;
-    }
-  }
-  
-  @media (min-width: 991px) {
-    .welcome-container {
-      padding: 70px 10px 0 10px;
-      background: linear-gradient(to bottom, rgba(216, 203, 194, 0.8) 0%, rgba(34, 33, 32, 0.8) 100%), url("https://res.cloudinary.com/agiletech3itf/image/upload/v1610472389/welcome-bg_agacxj.png");
-      width: 100%;
-      height: 100%;
-      background-size: cover;
-    }
-  }
-  
+
   body {
     padding-top: 65px;
   }
@@ -253,8 +209,9 @@
   .description {
     padding-bottom: 10px;
   }
-  
-  .services-link {
+
+  .product-description {
+    padding: 10px 50px;
   }
   
   .navbar-dark .navbar-toggler {
@@ -306,8 +263,7 @@
       display: none;
     }
   }
-  
-  
+
   .loader {
     display: block;
     margin-left: auto;

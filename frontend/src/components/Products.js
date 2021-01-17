@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react'
-import '../Products.css'
+import '../products.css'
 import '../bootstrap.min.css'
 import '../fonts/font-awesome.min.css'
 import MetaData from './layout/MetaData'
@@ -61,14 +61,15 @@ const Products = () => {
                                         <div classNme="mt-5">
                                             <ul className="pl-0">
                                                 {categories.map( category => (
+                                                    
                                                     <li style={{listStyleType: 'none', cursor: 'pointer', display: 'inline-block', paddingLeft: '10px', paddingRight: '10px'}}
                                                         key={category}
-                                                        onClick={() => setCategory(category)}>
+                                                        onClick={() => {setCurrentPageNo(1); setCategory(category)}}>
                                                             <a>{category}</a>
                                                     </li>
                                                 ))}
                                             </ul>
-                                            {resPerPage > count && (
+                                            {resPerPage >= count && (
                                                 <a href='/our-products'>View All Products</a>
                                             )}
                                         </div>

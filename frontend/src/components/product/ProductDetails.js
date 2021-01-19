@@ -6,6 +6,7 @@ import Loader from '../layout/Loader'
 import { useAlert } from 'react-alert'
 import MetaData from '../layout/MetaData'
 import {Carousel} from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 const ProductDetails = ( { match }) => {
 
@@ -43,7 +44,9 @@ const ProductDetails = ( { match }) => {
                                 </Carousel>
                             </div>
                             <div className="col-sm-7 col-md-7 col-lg-7 offset-lg-0">
-                                <h3 className="individual-product-name">{product.name}</h3><a className="link-back" href="/our-products">Back to Products <i className="fa fa-angle-right"></i>&nbsp;</a>
+                                <h3 className="individual-product-name">{product.name}</h3>
+                                <Link className="link-back" to="/our-products">Back to Products <i className="fa fa-angle-right"></i>&nbsp;
+                                </Link>
                             </div>
                         </div>
                     </section>

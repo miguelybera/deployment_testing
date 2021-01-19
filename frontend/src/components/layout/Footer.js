@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import '../../footer.css'
 import '../../bootstrap.min.css'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
     return (
@@ -25,16 +26,20 @@ const Footer = () => {
                         <div className="col-sm-6 col-md-3 item">
                             <h3>Quick Links</h3>
                             <ul>
-                                <li><a href="/">Home</a></li>
-                                <li><a href="about-company">About Us</a></li>
-                                <li><a href="our-products">Products</a></li>
-                                <li><a href="our-services">Services</a></li>
-                                <li><a href="contact-us">Contact Us</a></li>
+                                <li className="nav-item"><Link className="nav-link" to="/"><strong>Home</strong></Link></li>
+                                <li className="nav-item"><Link className="nav-link" to="/about-company"><strong>About Us</strong></Link></li>
+                                <li className="nav-item"><Link className="nav-link" to="/our-products"><strong>Products</strong></Link></li>
+                                <li className="nav-item"><Link className="nav-link" to="/our-services"><strong>Services</strong></Link></li>
+                                <li className="nav-item"><Link className="nav-link" to="/contact-us"><strong>Contact Us</strong></Link></li>
                                 <li>&nbsp;</li>
                             </ul>
-                            <a href="/about-company">
+                            <Link to="/login">
                                 <button className="btn btn-dark btn-sm text-capitalize text-white-50" type="button">Login to Dashboard</button>
-                            </a>
+                            </Link>
+                            <br/><br/>
+                            <Link to="/register">
+                                <button className="btn btn-dark btn-sm text-capitalize text-white-50" type="button">Register</button>
+                            </Link>
                         </div>
                     </div>
                     <p className="copyright">Agile Technodynamics, Inc © 1997</p>

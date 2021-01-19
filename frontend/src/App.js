@@ -11,6 +11,8 @@ import AboutMissionVision from './components/AboutMissionVision'
 import AboutObjectives from './components/AboutObjectives'
 import AboutScope from './components/AboutScope'
 import Services from './components/Services'
+import Login from './components/user/Login'
+import Register from './components/user/Register'
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
             <Route path={['/about-objectives', '/our-products/about-objectives']} component={AboutObjectives} exact/>
             <Route path={['/about-scope-of-activities', '/our-products/about-scope-of-activities']} component={AboutScope} exact/>
             <Route path={['/our-services', '/our-products/our-services']} component={Services} exact/>
+            <Route path="/login" component={Login} exact/>
+            <Route path="/register" component={Register} exact/>
         <Footer/>
       </div>
     </Router>

@@ -6,21 +6,28 @@ const sendToken = require('../utils/jwtToken');
 const sendEmail = require('../utils/sendEmail');
 
 const crypto = require('crypto');
-const { send } = require('process');
+const cloudinary = require('cloudinary')
 
 // Register a user => /api/v1/register
 
 exports.registerUser = catchAsyncErrors( async(req, res, next) => {
 
-    const { name, email, password} = req.body;
+    const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
+        folder: 'avatars',
+        width: 300,
+        crop: "scale"
+    })
+
+    const { name, email, contactNumber, password } = req.body;
 
     const user = await User.create({
         name,
         email,
         password,
+        contactNumber,
         avatar: {
-            public_id: 'avatars/avatarimage_cqmayb',
-            url: 'https://res.cloudinary.com/agiletech3itf/image/upload/v1610009439/samples/avatars/avatarimage_cqmayb.png'
+            public_id: result.public_id,
+            url: result.secure_url
         }
     })
 
@@ -168,7 +175,8 @@ exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
 exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
     const newUserData = {
         name: req.body.name,
-        email: req.body.email
+        email: req.body.email,
+        contactNumber: req.body.contactNumber
     }
 
     // Update avatar: TODO
@@ -232,6 +240,7 @@ exports.updateUser = catchAsyncErrors(async (req, res, next) => {
     const newUserData = {
         name: req.body.name,
         email: req.body.email,
+        contactNumber: req.body.contactNumber,
         role: req.body.role
     }
 

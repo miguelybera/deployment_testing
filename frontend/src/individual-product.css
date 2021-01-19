@@ -2,7 +2,7 @@
   height: 90%;
   width: 100%;
   margin-left: 80px;
-  padding-top: 50px;
+  padding: 100px 0;
 }
 
 @media (max-width: 768px) {
@@ -10,7 +10,7 @@
     height: 60%;
     width: 100%;
     margin-left: 50px;
-    padding-top: 50px;
+    padding: 50px 0;
   }
 }
 
@@ -52,4 +52,3 @@
   text-align: center;
   padding-bottom: 50px;
 }
-

@@ -2,6 +2,8 @@ import React from 'react'
 import { Fragment } from 'react'
 import '../../styles.css'
 import '../../bootstrap.min.css'
+import { Link } from 'react-router-dom'
+
 const Header = () => {
     return (
         <Fragment>
@@ -16,12 +18,12 @@ const Header = () => {
             </a>
                 <div className="collapse navbar-collapse" id="navcol-1">
                     <ul className="nav navbar-nav flex-grow-1 justify-content-between">
-                        <li className="nav-item"><a className="nav-link" href="#"></a></li>
-                        <li className="nav-item"><a className="nav-link" href="/"><strong>Home</strong></a></li>
-                        <li className="nav-item"><a className="nav-link" href="about-company"><strong>About Us</strong></a></li>
-                        <li className="nav-item"><a className="nav-link" href="our-products"><strong>Products</strong></a></li>
-                        <li className="nav-item"><a className="nav-link" href="our-services"><strong>Services</strong></a></li>
-                        <li className="nav-item"><a className="nav-link" href="contact-us"><strong>Contact Us</strong></a></li>
+                        <li className="nav-item"><Link className="nav-link" to="#"></Link></li>
+                        <li className="nav-item"><Link className="nav-link" to="/"><strong>Home</strong></Link></li>
+                        <li className="nav-item"><Link className="nav-link" to="/about-company"><strong>About Us</strong></Link></li>
+                        <li className="nav-item"><Link className="nav-link" to="/our-products"><strong>Products</strong></Link></li>
+                        <li className="nav-item"><Link className="nav-link" to="/our-services"><strong>Services</strong></Link></li>
+                        <li className="nav-item"><Link className="nav-link" to="/contact-us"><strong>Contact Us</strong></Link></li>
                     </ul> 
                 </div>
             </div>

@@ -1,12 +1,10 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import { useDispatch, useSelector } from  'react-redux'
-import { useAlert } from 'react-alert'
 import MetaData from '../layout/MetaData'
+import { useAlert } from 'react-alert'
+import { useDispatch, useSelector } from  'react-redux'
 import { register, clearErrors } from './../../actions/userActions'
-import './../../forms.css'
-import { set } from 'mongoose'
 
-const Register = ({history}) => {
+const Register = ( { history } ) => {
 
     const [user, setUser] = useState({
         name: '',
@@ -16,9 +14,9 @@ const Register = ({history}) => {
     })
 
     const { name, email, contactNumber, password } = user;
-    const [ avatar, setAvatar ] = useState('');
-    const [ avatarPreview, setAvatarPreview ] = useState('/images/default_avatar.png')
- 
+    const [avatar, setAvatar] = useState('');
+    const [avatarPreview, setAvatarPreview] = useState('images/default_avatar.png');
+
     const alert = useAlert();
     const dispatch = useDispatch();
 
@@ -26,6 +24,9 @@ const Register = ({history}) => {
 
     useEffect(() => {
 
+        if(isAuthenticated) {
+            history.push('/')
+        }
 
         if(error){
 
@@ -37,33 +38,36 @@ const Register = ({history}) => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        
+
         const formData = new FormData();
-        
         formData.set('name', name);
         formData.set('email', email);
-        formData.set('contactNumber', contactNumber);
         formData.set('password', password);
+        formData.set('contactNumber', contactNumber);
         formData.set('avatar', avatar);
-        
+
         dispatch(register(formData));
     }
 
     const onChange = e => {
         if(e.target.name === 'avatar') {
+
             const reader = new FileReader();
 
             reader.onload = () => {
-                if(reader.readyState === 2) {
+                if(reader.readyState === 2){
                     setAvatarPreview(reader.result)
                     setAvatar(reader.result)
                 }
             }
 
-            reader.readAsDataURL(e.target.files[0]);
-        }
-        else {
-            setUser({ ...user, [e.target.name]: e.target.defaultValue})
+            reader.readAsDataURL(e.target.files[0])
+
+        } else {
+            setUser({
+                ...user,
+                [e.target.name]: e.target.value
+            })
         }
     }
 
@@ -81,8 +85,8 @@ const Register = ({history}) => {
                         <input 
                             type="text"
                             className="form-control"
-                            name="user_fullname"
-                            defaultValue={name}
+                            name="name"
+                            value={name}
                             onChange={onChange}
                         />
                     </div>
@@ -91,8 +95,8 @@ const Register = ({history}) => {
                         <input 
                             type="email" 
                             className="form-control" 
-                            name="user_email"
-                            defaultValue={email}
+                            name="email"
+                            value={email}
                             onChange={onChange}
                         />
                     </div>
@@ -101,8 +105,8 @@ const Register = ({history}) => {
                         <input 
                             type="text" 
                             className="form-control" 
-                            name="user_number" 
-                            defaultValue={contactNumber}
+                            name="contactNumber" 
+                            value={contactNumber}
                             onChange={onChange}
                         />
                     </div>
@@ -111,8 +115,8 @@ const Register = ({history}) => {
                         <input 
                             type="password" 
                             className="form-control" 
-                            name="user_password"
-                            defaultValue={password}
+                            name="password"
+                            value={password}
                             onChange={onChange}
                         />
                     </div>
@@ -127,8 +131,8 @@ const Register = ({history}) => {
                         </figure>
                         <input 
                             type="file" 
-                            id="user_avatar" 
-                            name="user_avatar" 
+                            id="avatar" 
+                            name="avatar" 
                             accept="images/*"
                             onChange={onChange}
                         />

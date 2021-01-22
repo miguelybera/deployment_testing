@@ -2,8 +2,22 @@ import React, { Fragment } from 'react'
 import '../../footer.css'
 import '../../bootstrap.min.css'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { useAlert } from 'react-alert'
+import { logout } from './../../actions/userActions'
 
 const Footer = () => {
+
+    const alert = useAlert();
+    const dispatch = useDispatch();
+
+    const { user, loading } = useSelector(state => state.auth)
+
+    const logoutHandler = () => {
+        dispatch(logout());
+
+        alert.success('Logged out successfully')
+    }
     return (
         <Fragment>
             <footer className="footer-dark">
@@ -33,13 +47,43 @@ const Footer = () => {
                                 <li className="nav-item"><Link className="nav-link" to="/contact-us"><strong>Contact Us</strong></Link></li>
                                 <li>&nbsp;</li>
                             </ul>
-                            <Link to="/login">
+                            {user ? (
+                                <div className="ml-4 dropdown d-inline">
+                                <Link
+                                    className="btn dropdown-toggle text-white"
+                                    type="button"
+                                    id="dropDownMenuButton"
+                                    data-toggle="dropdown"
+                                    aria-aria-haspopup="true"
+                                    aria-expanded="false">
+                                        {user && user.name}
+                                    </Link>
+                                    <div className="dropdown-menu" aria-aria-labelledby="dropDownMenuButton">
+                                        <Link className="dropdown-item" to="/">
+                                            Dashboard
+                                        </Link>
+                                        <Link className="dropdown-item" to="/my-profile">
+                                                My Profile
+                                            </Link>
+                                        {user && user.role !== 'admin' ? (
+                                            <Link className="dropdown-item" to="/register">
+                                                Register New Users
+                                            </Link>
+                                        ) : (
+                                            <Link></Link>
+                                        )}
+                                        <Link className="dropdown-item text-danger" to="/" onClick={logoutHandler}>
+                                            Log out
+                                        </Link>
+                                    </div>
+                                </div>
+                                
+                            ) : !loading && <Link to="/login">
                                 <button className="btn btn-dark btn-sm text-capitalize text-white-50" type="button">Login to Dashboard</button>
-                            </Link>
+                            </Link>}
+                            
                             <br/><br/>
-                            <Link to="/register">
-                                <button className="btn btn-dark btn-sm text-capitalize text-white-50" type="button">Register</button>
-                            </Link>
+                            
                         </div>
                     </div>
                     <p className="copyright">Agile Technodynamics, Inc © 1997</p>

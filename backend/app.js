@@ -4,7 +4,6 @@ const app = express();
 const cookieParser = require('cookie-parser');
 const bodyparser = require('body-parser')
 const fileUpload = require('express-fileupload')
-
 const errorMiddleware = require('./middlewares/errors')
 
 app.use(express.json());

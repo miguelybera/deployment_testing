@@ -50,7 +50,7 @@ const Footer = () => {
                             {user ? (
                                 <div className="ml-4 dropdown d-inline">
                                 <Link
-                                    className="btn dropdown-toggle text-white"
+                                    className="btn dropdown-toggle text-white mr-4"
                                     type="button"
                                     id="dropDownMenuButton"
                                     data-toggle="dropdown"
@@ -62,7 +62,7 @@ const Footer = () => {
                                         <Link className="dropdown-item" to="/">
                                             Dashboard
                                         </Link>
-                                        <Link className="dropdown-item" to="/my-profile">
+                                        <Link className="dropdown-item" to="/me">
                                                 My Profile
                                             </Link>
                                         {user && user.role !== 'admin' ? (

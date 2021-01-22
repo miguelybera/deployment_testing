@@ -3,13 +3,15 @@ import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 import { productReducers, productDetailsReducer } from './reducers/productReducers'
-import { authReducer } from './reducers/userReducers'
+import { authReducer, userReducer, forgotPasswordReducer } from './reducers/userReducers'
 
 
 const reducer = combineReducers({
     products: productReducers,
     productDetails: productDetailsReducer,
-    auth: authReducer
+    auth: authReducer,
+    user: userReducer,
+    forgotPassword: forgotPasswordReducer
 })
 
 let initialState = {} //contains all the data we want to put in this state just before loading the application

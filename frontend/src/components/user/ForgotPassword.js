@@ -11,10 +11,9 @@ const ForgotPassword = () => {
     const alert = useAlert();
     const dispatch = useDispatch();
 
-    const { error, message, loading } = useSelector(state => state.forgotPassword);
+    const { error, loading, message } = useSelector(state => state.forgotPassword);
     
     useEffect(() => {
-
         if(error){
             alert.error(error);
             dispatch(clearErrors);
@@ -42,13 +41,12 @@ const ForgotPassword = () => {
         reader.readAsDataURL(e.target.files[0])
     }
 
-
     return (
         <Fragment>
             <MetaData title={'Forgot Password'}/>
             <div className="login-clean">
-                <form method="post" onSubmit={submitHandler}>
-                    <h2 className="sr-only">Login Form</h2>
+                <form onSubmit={submitHandler}>
+                    <h2 className="sr-only">Forgot Password</h2>
                     <div className="div-forgot-password">
                         <h3 className="forgot-password-heading">Forgot password</h3>
                     </div>

@@ -65,7 +65,6 @@ exports.loginUser = catchAsyncErrors( async(req, res, next) => {
 // Forgot Password      => /api/v1/password/forgot
 exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
-
     const user = await User.findOne({ email: req.body.email });
 
     if(!user){
@@ -85,7 +84,6 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
     email, then ignore it.`
 
     try {
-
         await sendEmail({
             email: user.email,
             subject: 'AGILE ACCOUNT Password Recovery',
@@ -104,9 +102,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
         await user.save({ validateBeforeSave: false });
 
         return next(new ErrorHandler(error.message, 500));
-        
     }
-
 })
 
 // Reset Password      => /api/v1/password/reset/:token
@@ -209,9 +205,6 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
         success: true
     })
 })
-
-
-
 
 // Logout user  => /api/v1/logout
 exports.logout = catchAsyncErrors( async( req, res, next) => {

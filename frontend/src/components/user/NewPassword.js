@@ -1,0 +1,82 @@
+import React, { Fragment, useEffect, useState } from 'react'
+import MetaData from '../layout/MetaData'
+import { useAlert } from 'react-alert'
+import { useDispatch, useSelector } from  'react-redux'
+import { resetPassword, clearErrors } from './../../actions/userActions'
+
+const NewPassword = ({ history, match }) => {
+
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+
+    const alert = useAlert();
+    const dispatch = useDispatch();
+
+    const { error, success, loading } = useSelector(state => state.resetPassword);
+    
+    useEffect(() => {
+        if(error){
+            alert.error(error);
+            dispatch(clearErrors);
+
+        }
+
+        if(success){
+            alert.success('Password updated successfully');
+            history.push('/login')
+        }
+
+    }, [dispatch, alert, error, success, history])
+
+    const submitHandler = (e) => {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.set('password', password);
+        formData.set('confirmPassword', confirmPassword);
+
+        dispatch(resetPassword(match.parms.token, formData));
+    }
+
+    return (
+        <Fragment>
+            <MetaData title={'Reset Password'}/>
+            <div className="login-clean">
+                <form method="post" onSubmit={submitHandler}>
+                    <h2 className="sr-only">New Password</h2>
+                    <div className="div-forgot-password">
+                        <h3 className="forgot-password-heading">New Password</h3>
+                    </div>
+                    <div className="form-group">
+                        <h6>Password</h6>
+                        <input 
+                            type="password" 
+                            className="form-control" 
+                            name="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <h6>Confirm Password</h6>
+                        <input 
+                            type="password" 
+                            className="form-control" 
+                            name="confirmPassword"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <button 
+                            className="btn btn-primary btn-block" 
+                            type="submit"
+                        >Set Password</button>
+                    </div>
+                </form>
+            </div>
+        </Fragment>
+    )
+}
+
+export default NewPassword

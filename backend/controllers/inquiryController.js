@@ -1,7 +1,7 @@
 const Inquiry = require('../models/inquiry');
 const ErrorHandler = require('../utils/errorHandler');
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
-const sendEmailInquiry = require('../utils/sendEmail');
+const sendEmailInquiry = require('../utils/sendEmailInquiry');
 
 
 // Create new Inquiry => /api/v1/inquiry/new

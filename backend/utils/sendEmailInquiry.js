@@ -1,6 +1,7 @@
 const nodemailer = require('nodemailer');
 
-const sendEmail = async options => {
+// Inquiry Email
+const sendEmailInquiry = async options => {
 
     const transport = nodemailer.createTransport({
         service: 'gmail',
@@ -9,15 +10,17 @@ const sendEmail = async options => {
           pass: process.env.SMTP_PASSWORD 
         }
       });
-
-      const message ={
+  
+      const newMessage ={
           from: `${process.env.SMTP_FROM_NAME}<${process.env.SMTP_FROM_EMAIL}>`,
           to: options.email,
           subject: options.subject,
-          text: options.message
+          text: options.newMessage
       }
-
-      await transport.sendMail(message)
-}
-
-module.exports = sendEmail;
+  
+      await transport.sendMail(newMessage)
+  
+  
+  }
+  
+  module.exports = sendEmailInquiry;

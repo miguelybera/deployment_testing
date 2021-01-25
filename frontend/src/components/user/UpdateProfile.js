@@ -16,8 +16,8 @@ const UpdateProfile = ({ history }) => {
     const alert = useAlert();
     const dispatch = useDispatch();
 
-    const { user, error } = useSelector(state => state.auth);
-    const { isUpdated, loading } = useSelector(state => state.user);
+    const { user } = useSelector(state => state.auth);
+    const { error, isUpdated, loading } = useSelector(state => state.user);
     
     useEffect(() => {
         if(user) {
@@ -29,7 +29,7 @@ const UpdateProfile = ({ history }) => {
 
         if(error){
             alert.error(error);
-            dispatch(clearErrors);
+            dispatch(clearErrors());
 
         }
 

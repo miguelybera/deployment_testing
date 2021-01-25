@@ -20,7 +20,7 @@ const UpdatePassword = ( { history }) => {
 
         if(error){
             alert.error(error);
-            dispatch(clearErrors);
+            dispatch(clearErrors());
 
         }
 

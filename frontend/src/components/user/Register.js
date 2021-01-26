@@ -10,10 +10,11 @@ const Register = ( { history } ) => {
         name: '',
         email: '',
         contactNumber: '',
-        password: ''
+        password: '',
+        confirmPassword: ''
     })
 
-    const { name, email, contactNumber, password } = user;
+    const { name, email, contactNumber, password, confirmPassword } = user;
     const [avatar, setAvatar] = useState('');
     const [avatarPreview, setAvatarPreview] = useState('images/default_avatar.png');
 
@@ -29,7 +30,6 @@ const Register = ( { history } ) => {
         }
 
         if(error){
-
             alert.error(error);
             dispatch(clearErrors());
 
@@ -43,6 +43,7 @@ const Register = ( { history } ) => {
         formData.set('name', name);
         formData.set('email', email);
         formData.set('password', password);
+        formData.set('confirmPassword', confirmPassword);
         formData.set('contactNumber', contactNumber);
         formData.set('avatar', avatar);
 
@@ -117,6 +118,16 @@ const Register = ( { history } ) => {
                             className="form-control" 
                             name="password"
                             value={password}
+                            onChange={onChange}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <h6>Confirm Password</h6>
+                        <input 
+                            type="password" 
+                            className="form-control" 
+                            name="confirmPassword"
+                            value={confirmPassword}
                             onChange={onChange}
                         />
                     </div>

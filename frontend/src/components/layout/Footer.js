@@ -30,11 +30,11 @@ const Footer = () => {
                         <div className="col-sm-6 col-md-3 item">
                             <h3>Contact Info</h3>
                             <ul>
-                                <li><a href="#"><i className="fa fa-home"></i>&nbsp;2/F Agile Center, 248 Fortune 5, Parada Road, Valenzuela City, Philippines</a></li>
+                                <li><i className="fa fa-home"></i>&nbsp;2/F Agile Center, 248 Fortune 5, Parada Road, Valenzuela City, Philippines</li>
                                 <li></li>
-                                <li><a href="#"><i className="fa fa-phone"></i>&nbsp;(632) 445 - 1418</a></li>
-                                <li><a href="#"><i className="fa fa-mobile-phone"></i>&nbsp;(632) 292 - 4823</a></li>
-                                <li><a href="#"><i className="fa fa-envelope"></i>&nbsp;agilet@ymail.com</a></li>
+                                <li><i className="fa fa-phone"></i>&nbsp;(632) 445 - 1418</li>
+                                <li><i className="fa fa-mobile-phone"></i>&nbsp;(632) 292 - 4823</li>
+                                <li><i className="fa fa-envelope"></i>&nbsp;agilet@ymail.com</li>
                             </ul>
                         </div>
                         <div className="col-sm-6 col-md-3 item">

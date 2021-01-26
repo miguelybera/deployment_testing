@@ -56,7 +56,7 @@ const Login = ( { history }) => {
                             <div className="form-group">
                                 <button className="btn btn-primary btn-block" type="submit">Log In</button>
                             </div>
-                            <Link className="forgot" to="/password/forgot">Forgot your email or password?</Link>
+                            <Link className="forgot" to="/password/forgot">Forgot your password?</Link>
                             <Link className="forgot" to="/register">Register</Link>
                         </form>
                     </div>

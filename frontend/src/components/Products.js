@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react'
-import '../Products.css'
+import '../products.css'
 import '../bootstrap.min.css'
 import '../fonts/font-awesome.min.css'
 import MetaData from './layout/MetaData'

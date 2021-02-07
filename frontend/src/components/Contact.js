@@ -16,12 +16,12 @@ const Contact = ( { history } ) => {
     const [position, setPosition] = useState('');
     const [concernType, setConcernType] = useState('');
     const [customerMessage, setCustomerMessage] = useState('');
+    const [success, setSuccess] = useState('');
 
     const alert = useAlert();
     const dispatch = useDispatch();
 
     const { error } = useSelector(state => state.auth);
-    const success = useSelector(state => state.inquiry); //success = true if state.auth
 
     useEffect(() => {
         console.log(success)
@@ -48,7 +48,7 @@ const Contact = ( { history } ) => {
         formData.set('contactNumber', contactNumber);
         formData.set('concernType', concernType);
         formData.set('customerMessage', customerMessage);
-
+        formData.set('success', success);
         dispatch(inquire(formData));
     }
 
@@ -164,7 +164,7 @@ const Contact = ( { history } ) => {
                             />
                         </div>
                         <div className="submit">
-                            <input type="submit" value="SUBMIT"/>
+                            <input type="submit" value="SUBMIT" onClick={(e) => setSuccess(true)}/>
                         </div>
                     </div>
                 </form>

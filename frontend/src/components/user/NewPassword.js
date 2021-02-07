@@ -3,29 +3,28 @@ import MetaData from '../layout/MetaData'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from  'react-redux'
 import { resetPassword, clearErrors } from './../../actions/userActions'
-import { FORGOT_PASSWORD_SUCCESS } from '../../constants/userConstants'
 
 const NewPassword = ({ history, match }) => {
 
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [success, setSuccess] = useState('');
 
     const alert = useAlert();
     const dispatch = useDispatch();
 
-    //check later
     const error = useSelector(state => state.resetPassword);
-    const success = useSelector(state => state.resetPassword);
     
     useEffect(() => {
+
+        if(success){
+            history.push('/')
+            alert.success('Password updated successfully');
+        }
+
         if(error){
             alert.error(error);
             dispatch(clearErrors());
-        }
-
-        if(success){
-            history.push('/login')
-            alert.success('Password updated successfully');
         }
 
     }, [dispatch, alert, error, success, history])
@@ -73,6 +72,7 @@ const NewPassword = ({ history, match }) => {
                         <button 
                             className="btn btn-primary btn-block" 
                             type="submit"
+                            onClick={(e) => setSuccess(true)}
                         >Update New Password</button>
                     </div>
                 </form>

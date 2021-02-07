@@ -251,6 +251,7 @@ export const inquire = ( inquiryMsg ) => async (dispatch) => {
 
         const { data } = await axios.post('/api/v1/inquiry/new', inquiryMsg, config)
 
+        //maybe here is the problem
         dispatch({
             type: INQUIRY_SUCCESS,
             payload: data.success

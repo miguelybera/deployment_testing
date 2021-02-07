@@ -122,12 +122,23 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
     if (!user){
         return next(new ErrorHandler('Password reset token is invalid or expired', 400))
     }
-    if(req.body.password !== req.body.confirmPassword) {
-        return next(new ErrorHandler('Password does not match', 400))
+
+    if(req.body.password == '' || req.body.confirmPassword == ''){
+        return next(new ErrorHandler('Password cannot be blank', 400))
+    }
+    else{
+        if(req.body.password !== req.body.confirmPassword) {
+            return next(new ErrorHandler('Password does not match', 400))
+        }
     }
 
-    // Setup new password
-    user.password = req.body.password;
+    if(user.password == req.body.password){
+        return next(new ErrorHandler('Password already used', 400))
+    }
+    else{
+        // Setup new password
+        user.password = req.body.password;
+    }
 
     user.resetPasswordToken = undefined;
     user.resetPasswordExpire = undefined;
@@ -164,7 +175,6 @@ exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
 
     sendToken(user, 200, res);
 
-    
 })
 
 //  Update user Profile => /api/v1/me/update

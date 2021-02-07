@@ -11,6 +11,8 @@ import AboutMissionVision from './components/AboutMissionVision'
 import AboutObjectives from './components/AboutObjectives'
 import AboutScope from './components/AboutScope'
 import Services from './components/Services'
+import Contact from './components/Contact'
+
 import Login from './components/user/Login'
 import Register from './components/user/Register'
 import Profile from './components/user/Profile'
@@ -43,6 +45,7 @@ function App() {
             <Route path='/about-objectives' component={AboutObjectives} exact/>
             <Route path='/about-scope-of-activities' component={AboutScope} exact/>
             <Route path='/our-services' component={Services} exact/>
+            <Route path='/contact-us' component={Contact} exact/>
             <ProtectedRoute path="/me" component={Profile} exact/>
             <ProtectedRoute path="/me/edit-profile" component={UpdateProfile} exact/>
             <ProtectedRoute path="/password/update" component={UpdatePassword} exact/>

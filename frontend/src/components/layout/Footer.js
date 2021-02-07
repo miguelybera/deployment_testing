@@ -46,41 +46,20 @@ const Footer = () => {
                                 <li className="nav-item"><Link className="nav-link" to="/our-services"><strong>Services</strong></Link></li>
                                 <li className="nav-item"><Link className="nav-link" to="/contact-us"><strong>Contact Us</strong></Link></li>
                                 <li>&nbsp;</li>
-                            </ul>
-                            {user ? (
-                                <div className="ml-4 dropdown d-inline">
-                                <Link
-                                    className="btn dropdown-toggle text-white mr-4"
-                                    type="button"
-                                    id="dropDownMenuButton"
-                                    data-toggle="dropdown"
-                                    aria-aria-haspopup="true"
-                                    aria-expanded="false">
-                                        {user && user.name}
-                                    </Link>
-                                    <div className="dropdown-menu" aria-aria-labelledby="dropDownMenuButton">
-                                        <Link className="dropdown-item" to="/">
-                                            Dashboard
-                                        </Link>
-                                        <Link className="dropdown-item" to="/me">
-                                                My Profile
-                                            </Link>
-                                        {user && user.role !== 'admin' ? (
-                                            <Link className="dropdown-item" to="/register">
-                                                Register New Users
-                                            </Link>
-                                        ) : (
-                                            <Link></Link>
-                                        )}
-                                        <Link className="dropdown-item text-danger" to="/" onClick={logoutHandler}>
-                                            Log out
+                                <li>
+                                    {user ? (
+                                    <div>
+                                        <Link className="" to="/">
+                                            <button className="btn btn-dark btn-sm text-capitalize text-danger ml-3" type="button"  onClick={logoutHandler}>Log out</button>
                                         </Link>
                                     </div>
-                                </div>
-                                
-                            ) : !loading && <Link to="/login">
-                                <button className="btn btn-dark btn-sm text-capitalize text-white-50" type="button">Login to Dashboard</button>
-                            </Link>}
+                                    
+                                ) : !loading && <Link to="/login">
+                                    <button className="btn btn-dark btn-sm text-capitalize text-white-50 text-danger" type="button">Login to Dashboard</button>
+                                </Link>}
+                                </li>
+                            </ul>
+                            
                             
                             <br/><br/>
                             

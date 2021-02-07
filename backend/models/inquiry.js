@@ -2,7 +2,11 @@ const mongoose = require('mongoose');
 
 const inquirySchema = mongoose.Schema({
 
-    fullName:{
+    firstName:{
+        type: String,
+        required: true
+    },
+    lastName:{
         type: String,
         required: true
     },
@@ -15,10 +19,8 @@ const inquirySchema = mongoose.Schema({
         required: true
     },
     contactNumber:{
-        type: Number,
-        required: true,
-        min: [9000000000, 'Phone Number is 10 characters only (format: 9xxxxxxxxx)'],
-        max: [9999999999, 'Phone Number is 10 characters only (format: 9xxxxxxxxx)']
+        type: String,
+        required: true
     },
     position:{
         type: String,
@@ -35,7 +37,7 @@ const inquirySchema = mongoose.Schema({
             ]
         }
     },
-    message: {
+    customerMessage: {
         type: String,
         required: true
     },

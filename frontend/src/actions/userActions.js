@@ -22,6 +22,9 @@ import {
     NEW_PASSWORD_REQUEST,
     NEW_PASSWORD_SUCCESS,
     NEW_PASSWORD_FAIL,
+    INQUIRY_REQUEST,
+    INQUIRY_SUCCESS,
+    INQUIRY_FAIL,
     LOGOUT_FAIL,
     CLEAR_ERRORS
 } from './../constants/userConstants'
@@ -229,6 +232,34 @@ export const resetPassword = ( token, passwords ) => async (dispatch) => {
         dispatch({
             type: NEW_PASSWORD_FAIL,
             payload: error.response.data.message
+        })
+    }
+}
+
+// Submit inquiry
+export const inquire = ( inquiryMsg ) => async (dispatch) => {
+    try {
+        dispatch ({
+            type: INQUIRY_REQUEST
+        })
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        const { data } = await axios.post('/api/v1/inquiry/new', inquiryMsg, config)
+
+        dispatch({
+            type: INQUIRY_SUCCESS,
+            payload: data.success
+        })
+
+    } catch (error) {
+        dispatch({
+            type: INQUIRY_FAIL,
+            payload: error.response.data.success
         })
     }
 }

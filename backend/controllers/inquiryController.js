@@ -7,23 +7,25 @@ const sendEmailInquiry = require('../utils/sendEmailInquiry');
 // Create new Inquiry => /api/v1/inquiry/new
 exports.newInquiry = catchAsyncErrors( async (req, res, next) => {
     const { 
-        fullName,
+        firstName,
+        lastName,
         customerEmail,
         companyName,
         contactNumber,
         position,
         concernType,
-        message
+        customerMessage
     } = req.body;
 
     const inquiry = await Inquiry.create({
-        fullName,
+        firstName,
+        lastName,
         customerEmail,
         companyName,
         contactNumber,
         position,
         concernType,
-        message,
+        customerMessage,
         sentAt: Date.now()
 
     })
@@ -40,12 +42,12 @@ exports.newInquiry = catchAsyncErrors( async (req, res, next) => {
          employeeEmail = 'josemiguel.ybera.iics@ust.edu.ph';
     }
 
-    const newMessage = `\tFull Name: ${fullName} \n
+    const newMessage = `\tFull Name: ${lastName}, ${firstName} \n
                       Customer Email: ${customerEmail} \n
                       Company Name: ${companyName} \n
                       Contact Number: ${contactNumber} \n
                       Position: ${position} \n
-                      Message: ${message} \n`
+                      Message: ${customerMessage} \n`
         await sendEmailInquiry({
             email: employeeEmail,
             subject: `New Customer Inquiry (Concern Type: ${req.body.concernType})`,

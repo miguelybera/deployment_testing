@@ -256,8 +256,6 @@ exports.updateUser = catchAsyncErrors(async (req, res, next) => {
         role: req.body.role
     }
 
-    
-
     // Update avatar: TODO
 
     const user = await User.findByIdAndUpdate(req.params.id, newUserData , {

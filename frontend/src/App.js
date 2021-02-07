@@ -12,6 +12,7 @@ import AboutObjectives from './components/AboutObjectives'
 import AboutScope from './components/AboutScope'
 import Services from './components/Services'
 import Contact from './components/Contact'
+import ConfirmationPage from './components/ConfirmationPage'
 
 import Login from './components/user/Login'
 import Register from './components/user/Register'
@@ -46,6 +47,7 @@ function App() {
             <Route path='/about-scope-of-activities' component={AboutScope} exact/>
             <Route path='/our-services' component={Services} exact/>
             <Route path='/contact-us' component={Contact} exact/>
+            <Route path='/confirmation' component={ConfirmationPage} exact/>
             <ProtectedRoute path="/me" component={Profile} exact/>
             <ProtectedRoute path="/me/edit-profile" component={UpdateProfile} exact/>
             <ProtectedRoute path="/password/update" component={UpdatePassword} exact/>

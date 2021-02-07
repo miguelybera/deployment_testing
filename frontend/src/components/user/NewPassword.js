@@ -13,6 +13,7 @@ const NewPassword = ({ history, match }) => {
     const alert = useAlert();
     const dispatch = useDispatch();
 
+    //check later
     const error = useSelector(state => state.resetPassword);
     const success = useSelector(state => state.resetPassword);
     

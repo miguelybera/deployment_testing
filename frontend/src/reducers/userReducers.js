@@ -26,6 +26,9 @@ import {
     NEW_PASSWORD_REQUEST,
     NEW_PASSWORD_SUCCESS,
     NEW_PASSWORD_FAIL,
+    INQUIRY_REQUEST,
+    INQUIRY_SUCCESS,
+    INQUIRY_FAIL,
     CLEAR_ERRORS
 } from './../constants/userConstants'
 
@@ -33,6 +36,7 @@ export const authReducer = ( state = { user: {} }, action) => {
     switch(action.type){
         case LOGIN_REQUEST:
         case REGISTER_USER_REQUEST:
+        case INQUIRY_REQUEST:
         case LOAD_USER_REQUEST:
             return {
                 loading: true, 
@@ -49,6 +53,12 @@ export const authReducer = ( state = { user: {} }, action) => {
                 user: action.payload
             }
 
+        case INQUIRY_SUCCESS:
+            return {
+                loading: false,
+                isAuthenticated: false
+            }
+
         case LOGOUT_SUCCESS:
             return {
                 loading: false,
@@ -63,7 +73,8 @@ export const authReducer = ( state = { user: {} }, action) => {
                 user: null,
                 error: action.payload
             }
-        
+
+        case INQUIRY_FAIL:
         case LOGOUT_FAIL:
             return {
                 ...state,

@@ -20,10 +20,11 @@ const Contact = ( { history } ) => {
     const alert = useAlert();
     const dispatch = useDispatch();
 
-    const {error} = useSelector(state => state.auth);
-    const success = useSelector(state => state.auth); //success = true if state.auth
+    const { error } = useSelector(state => state.auth);
+    const success = useSelector(state => state.inquiry); //success = true if state.auth
 
     useEffect(() => {
+        console.log(success)
         if(success) {
             history.push('/confirmation')
         }

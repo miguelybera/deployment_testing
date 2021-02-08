@@ -28,6 +28,7 @@ const Products = () => {
         'Category6',
         'Category7'
     ]
+    
     useEffect(() => {
         if(error){
             alert.error(error);

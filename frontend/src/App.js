@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route } from 'react-router-dom' 
+import { useSelector } from 'react-redux'
 
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
@@ -29,6 +30,8 @@ import ListInquiries from './components/admin/ListInquiries'
 import ListQuotations from './components/admin/ListQuotations'
 import ListOthers from './components/admin/ListOthers'
 import ProductsList from './components/admin/ProductsList'
+import NewProduct from './components/admin/NewProduct'
+import UpdateProduct from './components/admin/UpdateProduct'
 
 import ProtectedRoute from './components/route/ProtectedRoute'
 import { loadUser } from './actions/userActions'
@@ -40,7 +43,9 @@ function App() {
   useEffect(() => {
     store.dispatch(loadUser());
   }, [])
-  
+
+  const { loading, user } = useSelector(state => state.auth);
+
   return (
     <Router>
         <div className="App">
@@ -75,8 +80,12 @@ function App() {
                 <ProtectedRoute path="/admin/inquiries" component={ListInquiries} exact/>
                 <ProtectedRoute path="/admin/quotations" component={ListQuotations} exact/>
                 <ProtectedRoute path="/admin/others" component={ListOthers} exact/>
+                
                 <ProtectedRoute path="/admin/products" isAdmin={true} component={ProductsList} exact/>
-            <Footer/>
+                <ProtectedRoute path="/admin/product/new" isAdmin={true} component={NewProduct} exact/>
+                <ProtectedRoute path="/admin/product/:id" isAdmin={true} component={UpdateProduct} exact/>
+
+                <Footer/>
         </div>
     </Router>
   );

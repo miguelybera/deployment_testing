@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import MetaData from '../layout/MetaData'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from  'react-redux'
-import { updateProfile, loadUser, clearErrors } from '../../actions/userActions'
+import { updateProfile, loadUser, clearErrors } from './../../actions/userActions'
 import { UPDATE_PROFILE_RESET } from '../../constants/userConstants'
 
 const UpdateHome = ( { history } ) => {

@@ -94,7 +94,7 @@ const ListOrders = () => {
                             className='px-3 ml-10'
                             bordered
                             striped
-                            hover
+                             hover
                             entries={5}
                         />
                     )}

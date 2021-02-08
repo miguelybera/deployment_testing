@@ -4,7 +4,7 @@ import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from  'react-redux'
 import { forgotPassword, clearErrors } from './../../actions/userActions'
 
-const ForgotPassword = () => {
+const ForgotPassword = ( { history } ) => {
 
     const [email, setEmail] = useState('');
 
@@ -21,10 +21,11 @@ const ForgotPassword = () => {
         }
 
         if(message){
-            alert.success(message);
+            //alert.success(message);
+            history.push('/email-sent')
         }
 
-    }, [dispatch, alert, error, message])
+    }, [dispatch, alert, error, message, history])
 
     const submitHandler = (e) => {
         e.preventDefault();

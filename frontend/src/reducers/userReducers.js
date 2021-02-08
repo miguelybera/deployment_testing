@@ -29,6 +29,10 @@ import {
     INQUIRY_REQUEST,
     INQUIRY_SUCCESS,
     INQUIRY_FAIL,
+    UPDATE_HOME_REQUEST,
+    UPDATE_HOME_SUCCESS,
+    UPDATE_HOME_FAIL,
+    UPDATE_HOME_RESET,
     CLEAR_ERRORS
 } from './../constants/userConstants'
 
@@ -36,7 +40,6 @@ export const authReducer = ( state = { user: {} }, action) => {
     switch(action.type){
         case LOGIN_REQUEST:
         case REGISTER_USER_REQUEST:
-        case INQUIRY_REQUEST:
         case LOAD_USER_REQUEST:
             return {
                 loading: true, 
@@ -51,12 +54,6 @@ export const authReducer = ( state = { user: {} }, action) => {
                 loading: false,
                 isAuthenticated: true,
                 user: action.payload
-            }
-
-        case INQUIRY_SUCCESS:
-            return {
-                loading: false,
-                isAuthenticated: false
             }
 
         case LOGOUT_SUCCESS:
@@ -74,7 +71,6 @@ export const authReducer = ( state = { user: {} }, action) => {
                 error: action.payload
             }
 
-        case INQUIRY_FAIL:
         case LOGOUT_FAIL:
             return {
                 ...state,
@@ -107,6 +103,7 @@ export const userReducer = (state = {}, action) => {
 
         case UPDATE_PROFILE_REQUEST:
         case UPDATE_PASSWORD_REQUEST:
+        case UPDATE_HOME_REQUEST:
             return {
                 ...state,
                 loading: true
@@ -114,6 +111,7 @@ export const userReducer = (state = {}, action) => {
 
         case UPDATE_PROFILE_SUCCESS:
         case UPDATE_PASSWORD_SUCCESS:
+        case UPDATE_HOME_SUCCESS:
             return {
                 ...state,
                 loading: false,
@@ -122,6 +120,7 @@ export const userReducer = (state = {}, action) => {
 
         case UPDATE_PROFILE_RESET:
         case UPDATE_PASSWORD_RESET:
+        case UPDATE_HOME_RESET:
             return {
                 ...state,
                 isUpdated: false
@@ -129,6 +128,7 @@ export const userReducer = (state = {}, action) => {
             
         case UPDATE_PROFILE_FAIL:
         case UPDATE_PASSWORD_FAIL:
+        case UPDATE_HOME_FAIL:
             return {
                 ...state,
                 loading: false,

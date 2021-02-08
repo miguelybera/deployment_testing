@@ -51,7 +51,7 @@ const Header = () => {
                                         {user && user.name}
                                     </Link>
                                     <div className="dropdown-menu" aria-aria-labelledby="dropDownMenuButton">
-                                        <Link className="dropdown-item" to="/">
+                                        <Link className="dropdown-item" to="/dashboard">
                                             Dashboard
                                         </Link>
                                         <Link className="dropdown-item" to="/me">

@@ -22,9 +22,9 @@ import {
     NEW_PASSWORD_REQUEST,
     NEW_PASSWORD_SUCCESS,
     NEW_PASSWORD_FAIL,
-    INQUIRY_REQUEST,
-    INQUIRY_SUCCESS,
-    INQUIRY_FAIL,
+    UPDATE_HOME_REQUEST,
+    UPDATE_HOME_SUCCESS,
+    UPDATE_HOME_FAIL,
     LOGOUT_FAIL,
     CLEAR_ERRORS
 } from './../constants/userConstants'
@@ -236,31 +236,30 @@ export const resetPassword = ( token, passwords ) => async (dispatch) => {
     }
 }
 
-// Submit inquiry
-export const inquire = ( inquiryMsg ) => async (dispatch) => {
+// Update home page
+export const updateHome = ( homeData ) => async (dispatch) => {
     try {
         dispatch ({
-            type: INQUIRY_REQUEST
+            type: UPDATE_HOME_REQUEST
         })
 
         const config = {
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'multipart/form-data'
             }
         }
 
-        const { data } = await axios.post('/api/v1/inquiry/new', inquiryMsg, config)
+        const { data } = await axios.put('/api/v1/admin/homePage/6020a10c2c9185106868088e', homeData, config)
 
-        //maybe here is the problem
         dispatch({
-            type: INQUIRY_SUCCESS,
+            type: UPDATE_HOME_SUCCESS,
             payload: data.success
         })
 
     } catch (error) {
         dispatch({
-            type: INQUIRY_FAIL,
-            payload: error.response.data.success
+            type: UPDATE_HOME_FAIL,
+            payload: error.response.data.message
         })
     }
 }

@@ -44,7 +44,7 @@ const inquirySchema = mongoose.Schema({
     inquiryStatus: {
         type: String,
         required: true,
-        default: 'Processing'
+        default: 'Unresolved'
     },
     createdAt: {
         type: Date,

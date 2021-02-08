@@ -21,6 +21,14 @@ import UpdateProfile from './components/user/UpdateProfile'
 import UpdatePassword from './components/user/UpdatePassword'
 import ForgotPassword from './components/user/ForgotPassword'
 import NewPassword from './components/user/NewPassword'
+import EmailSent from './components/EmailSent'
+
+import UpdateHome from './components/admin/UpdateHome'
+import Dashboard from './components/admin/Dashboard'
+import ListInquiries from './components/admin/ListInquiries'
+import ListQuotations from './components/admin/ListQuotations'
+import ListOthers from './components/admin/ListOthers'
+import ProductsList from './components/admin/ProductsList'
 
 import ProtectedRoute from './components/route/ProtectedRoute'
 import { loadUser } from './actions/userActions'
@@ -35,28 +43,41 @@ function App() {
   
   return (
     <Router>
-      <div className="App">
-        <Header/>
-            <Route path='/' component={Home} exact/>
-            <Route path='/our-products' component={Products} exact/>
-            <Route path='/our-products/:id' component={ProductDetails} exact/>
-            <Route path='/about-company' component={AboutCompany} exact/>
-            <Route path='/about-history' component={AboutHistory} exact/>
-            <Route path='/about-mission-vision' component={AboutMissionVision} exact/>
-            <Route path='/about-objectives' component={AboutObjectives} exact/>
-            <Route path='/about-scope-of-activities' component={AboutScope} exact/>
-            <Route path='/our-services' component={Services} exact/>
-            <Route path='/contact-us' component={Contact} exact/>
-            <Route path='/confirmation' component={ConfirmationPage} exact/>
-            <ProtectedRoute path="/me" component={Profile} exact/>
-            <ProtectedRoute path="/me/edit-profile" component={UpdateProfile} exact/>
-            <ProtectedRoute path="/password/update" component={UpdatePassword} exact/>
-            <Route path="/password/forgot" component={ForgotPassword} exact/>
-            <Route path="/password/reset/:token" component={NewPassword} exact/>
-            <Route path='/login' component={Login} exact/>
-            <Route path='/register' component={Register} exact/>
-        <Footer/>
-      </div>
+        <div className="App">
+            <Header/>
+                <Route path='/' component={Home} exact/>
+
+                <Route path='/our-products' component={Products} exact/>
+                <Route path='/our-products/:id' component={ProductDetails} exact/>
+
+                <Route path='/about-company' component={AboutCompany} exact/>
+                <Route path='/about-history' component={AboutHistory} exact/>
+                <Route path='/about-mission-vision' component={AboutMissionVision} exact/>
+                <Route path='/about-objectives' component={AboutObjectives} exact/>
+                <Route path='/about-scope-of-activities' component={AboutScope} exact/>
+                <Route path='/our-services' component={Services} exact/>
+                <Route path='/contact-us' component={Contact} exact/>
+                <Route path='/confirmation' component={ConfirmationPage} exact/>
+
+                <ProtectedRoute path="/me" component={Profile} exact/>
+                <ProtectedRoute path="/me/edit-profile" component={UpdateProfile} exact/>
+                <ProtectedRoute path="/password/update" component={UpdatePassword} exact/>
+
+                <Route path="/password/forgot" component={ForgotPassword} exact/>
+                <Route path="/password/reset/:token" component={NewPassword} exact/>
+                <Route path='/email-sent' component={EmailSent} exact/>
+
+                <Route path='/login' component={Login} exact/>
+                <Route path='/register' component={Register} exact/>
+
+                <ProtectedRoute path="/dashboard/update-home" component={UpdateHome} exact/>
+                <ProtectedRoute path="/dashboard" isAdmin={true} component={Dashboard} exact/>
+                <ProtectedRoute path="/admin/inquiries" component={ListInquiries} exact/>
+                <ProtectedRoute path="/admin/quotations" component={ListQuotations} exact/>
+                <ProtectedRoute path="/admin/others" component={ListOthers} exact/>
+                <ProtectedRoute path="/admin/products" isAdmin={true} component={ProductsList} exact/>
+            <Footer/>
+        </div>
     </Router>
   );
 }

@@ -6,7 +6,7 @@ import MetaData from './layout/MetaData'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProducts, clearErrors } from '../actions/productActions'
 
-import ProductList from './product/ProductList'
+import ProductDisplay from './product/ProductDisplay'
 import Loader from './layout/Loader'
 import { useAlert } from 'react-alert'
 import Pagination from 'react-js-pagination'
@@ -75,7 +75,7 @@ const Products = () => {
                                         </div>
                                     </div>
                                     {products && products.map( product => (
-                                        <ProductList key={product._id} product={product}/>
+                                        <ProductDisplay key={product._id} product={product}/>
                                     ))}
                                 </div>
                             </div>

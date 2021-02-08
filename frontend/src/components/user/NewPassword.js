@@ -8,21 +8,18 @@ const NewPassword = ({ history, match }) => {
 
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [success, setSuccess] = useState('');
 
     const alert = useAlert();
     const dispatch = useDispatch();
 
-    const error = useSelector(state => state.resetPassword);
+    const { error, success } = useSelector(state => state.forgotPassword);
     
     useEffect(() => {
-
         if(success){
-            history.push('/')
+            history.push('/me')
             alert.success('Password updated successfully');
         }
-
-        if(error){
+        else{
             alert.error(error);
             dispatch(clearErrors());
         }
@@ -72,7 +69,6 @@ const NewPassword = ({ history, match }) => {
                         <button 
                             className="btn btn-primary btn-block" 
                             type="submit"
-                            onClick={(e) => setSuccess(true)}
                         >Update New Password</button>
                     </div>
                 </form>

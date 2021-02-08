@@ -43,11 +43,11 @@ exports.newInquiry = catchAsyncErrors( async (req, res, next) => {
     }
 
     const newMessage = `\tFull Name: ${lastName}, ${firstName} \n
-                      Customer Email: ${customerEmail} \n
-                      Company Name: ${companyName} \n
-                      Contact Number: ${contactNumber} \n
-                      Position: ${position} \n
-                      Message: ${customerMessage} \n`
+                      \tCustomer Email: ${customerEmail} \n
+                      \tCompany Name: ${companyName} \n
+                      \tContact Number: ${contactNumber} \n
+                      \tPosition: ${position} \n
+                      \tMessage: ${customerMessage} \n`
         await sendEmailInquiry({
             email: employeeEmail,
             subject: `New Customer Inquiry (Concern Type: ${req.body.concernType})`,

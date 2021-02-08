@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import MetaData from './layout/MetaData'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from  'react-redux'
-import { inquire, clearErrors } from './../actions/userActions'
+import { createInquiry, clearErrors } from './../actions/inquiryActions'
 
 import '../contact.css'
 
@@ -16,25 +16,24 @@ const Contact = ( { history } ) => {
     const [position, setPosition] = useState('');
     const [concernType, setConcernType] = useState('');
     const [customerMessage, setCustomerMessage] = useState('');
-    const [success, setSuccess] = useState('');
 
     const alert = useAlert();
     const dispatch = useDispatch();
 
-    const { error } = useSelector(state => state.auth);
+    const { success, error, loading } = useSelector(state => state.newInquiry);
 
     useEffect(() => {
-        console.log(success)
-        if(success) {
+        if(success){
             history.push('/confirmation')
         }
-        
-        if(error){
-            alert.error(error);
+        else
+        {
+            alert.error('Please complete the form');
             dispatch(clearErrors());
-
         }
-    }, [dispatch, alert, error, success, history])
+
+    }, [dispatch, success, error, loading, history])
+
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -48,8 +47,7 @@ const Contact = ( { history } ) => {
         formData.set('contactNumber', contactNumber);
         formData.set('concernType', concernType);
         formData.set('customerMessage', customerMessage);
-        formData.set('success', success);
-        dispatch(inquire(formData));
+        dispatch(createInquiry(formData));
     }
 
     return (
@@ -70,7 +68,7 @@ const Contact = ( { history } ) => {
                                 type="text" 
                                 className="feedback-input" 
                                 placeholder="First Name" 
-                                defaultValue={firstName}
+                                value={firstName}
                                 onChange={(e) => setFirstName(e.target.value)}
                             />
                         </div>
@@ -144,7 +142,8 @@ const Contact = ( { history } ) => {
                                 name="concern" 
                                 className="concern-dropdown" 
                                 value={concernType}
-                                onChange={(e) => setConcernType(e.target.value)}>
+                                onChange={(e) => setConcernType(e.target.value)}
+                            >
                                 <option>         -        </option>
                                 <option value="Inquiry">Inquiry</option>
                                 <option value="Appointment">Appointment</option>
@@ -164,7 +163,11 @@ const Contact = ( { history } ) => {
                             />
                         </div>
                         <div className="submit">
-                            <input type="submit" value="SUBMIT" onClick={(e) => setSuccess(true)}/>
+                            <input 
+                                type="submit" 
+                                value="SUBMIT" 
+                                disabled={ loading ? true : false}
+                            />
                         </div>
                     </div>
                 </form>

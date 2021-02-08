@@ -1,0 +1,24 @@
+{
+    "productDescription":"Suspendisse blandit ornare pellentesque. Sed quis magna nibh. Sed a sem eros. Sed scelerisque felis condimentum, ",
+    "productImage1": [{
+        "public_id":"products/2v-agm-battery_qtplaq",
+        "url":"https://res.cloudinary.com/agiletech3itf/image/upload/v1609921523/samples/products/2v-agm-battery_qtplaq.png"
+    }],
+
+    "productImage2": [{
+        "public_id":"products/2v-hybrid-gel-battery_uygsi4",
+        "url":"https://res.cloudinary.com/agiletech3itf/image/upload/v1609921523/samples/products/2v-hybrid-gel-battery_uygsi4.png"
+    }],
+
+    "titleBackground": [{
+        "public_id":"products/2v-hybrid-gel-battery_uygsi4",
+        "url":"https://res.cloudinary.com/agiletech3itf/image/upload/v1609921523/samples/products/2v-hybrid-gel-battery_uygsi4.png"
+    }],
+
+    "servicesBackground": [{
+        "public_id":"products/2v-hybrid-gel-battery_uygsi4",
+        "url":"https://res.cloudinary.com/agiletech3itf/image/upload/v1609921523/samples/products/2v-hybrid-gel-battery_uygsi4.png"
+    }],
+
+    "servicesDescription":"Suspendisse blandit ornare pellentesque. Sed quis magna nibh. Sed a sem eros. Sed scelerisque felis condimentum, iaculis purus sed, lobortis mi. Donec leo dui, rhoncus nec enim eu,. "
+}

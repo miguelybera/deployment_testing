@@ -23,8 +23,8 @@ const UpdateHome = ( { history } ) => {
     useEffect(() => {
 
         dispatch(getHomeDetails())
-        setProductDescription(home.productDescription)
-        setServicesDescription(home.servicesDescription)
+        //setProductDescription(home.productDescription)
+        //setServicesDescription(home.servicesDescription)
 
         if(error){
             alert.error(error);

@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import '../../sidebar.css'
 import '../../bootstrap.min.css'
+import '../../fonts/font-awesome.min.css'
+import '../../fonts/simple-line-icons.min.css'
 
 const Sidebar = () => {
     return (
@@ -47,11 +49,16 @@ const Sidebar = () => {
                             Products
                         </Link>
                     </li>
-                    <li>
-                        <Link to="/admin/settings">
-                            <i className="glyphicon glyphicon-send"></i>
+                    <li className="active">
+                        <a href ="#settingsSubmenu" data-toggle="collapse" aria-expanded="false">
+                            <i className="glyphicon glyphicon-home"></i>
                             Settings
-                        </Link>
+                        </a>
+                        <ul className="collapse list-unstyled" id="settingsSubmenu">
+                            <li><Link to="/admin/update-home">Update Home</Link></li>
+                            <li><Link to="/admin/update-about">Update About</Link></li>
+                            <li><Link to="/admin/update-services">Update Services</Link></li>
+                        </ul>
                     </li>
                 </ul>
             </nav>

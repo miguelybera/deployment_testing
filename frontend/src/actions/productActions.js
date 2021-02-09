@@ -39,7 +39,7 @@ export const getProducts = (currentPage, category) => async(dispatch) => {
             link = `/api/v1/products?page=${currentPage}&category=${category}`
         }
 
-        const {data} = await axios.get(link)
+        const { data } = await axios.get(link)
 
         dispatch({
             type: ALL_PRODUCTS_SUCCESS,
@@ -61,7 +61,7 @@ export const getProductDetails = (id) => async(dispatch) => {
             type: PRODUCT_DETAILS_REQUEST
         })
 
-        const {data} = await axios.get(`/api/v1/product/${id}`)
+        const { data } = await axios.get(`/api/v1/product/${id}`)
 
         dispatch({
             type: PRODUCT_DETAILS_SUCCESS,
@@ -77,13 +77,14 @@ export const getProductDetails = (id) => async(dispatch) => {
     }
 }
 
+// Get list of products (ADMIN)
 export const getAdminProducts = () => async(dispatch) => {
     try{
         dispatch({
             type: ADMIN_PRODUCTS_REQUEST
         })
 
-        const {data} = await axios.get(`/api/v1/admin/products`)
+        const { data } = await axios.get(`/api/v1/admin/products`)
 
         dispatch({
             type: ADMIN_PRODUCTS_SUCCESS,
@@ -99,7 +100,7 @@ export const getAdminProducts = () => async(dispatch) => {
     }
 }
 
-// Create new product
+// Create new product (ADMIN)
 export const newProduct = (productData) => async(dispatch) => {
     try{
         dispatch({
@@ -111,7 +112,7 @@ export const newProduct = (productData) => async(dispatch) => {
                 'Content-Type': 'multipart/form-data'
             }
         }
-        const {data} = await axios.post(`/api/v1/admin/product/new`, productData, config)
+        const { data } = await axios.post(`/api/v1/admin/product/new`, productData, config)
 
         dispatch({
             type: NEW_PRODUCT_SUCCESS,
@@ -127,14 +128,14 @@ export const newProduct = (productData) => async(dispatch) => {
     }
 }
 
-// Delete product
+// Delete product (ADMIN)
 export const deleteProduct = (id) => async(dispatch) => {
     try{
         dispatch({
             type: DELETE_PRODUCT_REQUEST
         })
 
-        const {data} = await axios.delete(`/api/v1/admin/product/${id}`)
+        const { data } = await axios.delete(`/api/v1/admin/product/${id}`)
 
         dispatch({
             type: DELETE_PRODUCT_SUCCESS,
@@ -150,7 +151,7 @@ export const deleteProduct = (id) => async(dispatch) => {
     }
 }
 
-// Update product
+// Update product (ADMIN)
 export const updateProduct = (id, productData) => async(dispatch) => {
     try{
         dispatch({
@@ -162,7 +163,7 @@ export const updateProduct = (id, productData) => async(dispatch) => {
                 'Content-Type': 'multipart/form-data'
             }
         }
-        const {data} = await axios.post(`/api/v1/admin/product/${id}`, productData, config)
+        const { data } = await axios.put(`/api/v1/admin/product/${id}`, productData, config)
 
         dispatch({
             type: UPDATE_PRODUCT_SUCCESS,

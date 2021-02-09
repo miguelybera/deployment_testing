@@ -58,48 +58,6 @@ export const listInquiry = () => async (dispatch) => {
     }
 }
 
-export const listQuotations = () => async (dispatch) => {
-    try{
-        dispatch({
-            type: LIST_INQUIRY_REQUEST
-        })
-
-        const { data } = await axios.get('/api/v1/admin/quotations')
-
-        dispatch({
-            type: LIST_INQUIRY_SUCCESS,
-            payload: data.inquiries
-        })
-    }
-    catch(error){
-        dispatch({
-            type: LIST_INQUIRY_FAIL,
-            payload: error.response.data.message
-        })
-    }
-}
-
-export const listOthers = () => async (dispatch) => {
-    try{
-        dispatch({
-            type: LIST_INQUIRY_REQUEST
-        })
-
-        const { data } = await axios.get('/api/v1/admin/others')
-
-        dispatch({
-            type: LIST_INQUIRY_SUCCESS,
-            payload: data.inquiries
-        })
-    }
-    catch(error){
-        dispatch({
-            type: LIST_INQUIRY_FAIL,
-            payload: error.response.data.message
-        })
-    }
-}
-
 //clear errors
 export const clearErrors = () => async(dispatch) => {
     dispatch({

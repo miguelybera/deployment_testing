@@ -6,7 +6,7 @@ import Loader from '../layout/Loader'
 import Sidebar from './Sidebar'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { listQuotations, clearErrors } from '../../actions/inquiryActions'
+import { listInquiry, clearErrors } from '../../actions/inquiryActions'
 
 const ListOrders = () => {
 
@@ -16,7 +16,7 @@ const ListOrders = () => {
     const { loading, error, inquiries } = useSelector(state => state.listInquiry)
 
     useEffect(() => {
-        dispatch(listQuotations());
+        dispatch(listInquiry());
 
         if(error){
             alert.error(error)

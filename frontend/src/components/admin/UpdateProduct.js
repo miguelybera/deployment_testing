@@ -112,7 +112,7 @@ const UpdateProduct = ({match, history}) => {
                 <div className="col-12 col-md-10">
                     <Fragment>
                     <div className="login-clean">
-                        <form method="post" onSubmit={submitHandler} encType='multipart/form-data'>
+                        <form method="put" onSubmit={submitHandler} encType='multipart/form-data'>
                             <h2 className="sr-only">Update Product</h2>
                             <div className="div-forgot-password">
                                 <h3 className="forgot-password-heading">Update Product</h3>

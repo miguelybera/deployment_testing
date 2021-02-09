@@ -22,12 +22,9 @@ import {
     NEW_PASSWORD_REQUEST,
     NEW_PASSWORD_SUCCESS,
     NEW_PASSWORD_FAIL,
-    UPDATE_HOME_REQUEST,
-    UPDATE_HOME_SUCCESS,
-    UPDATE_HOME_FAIL,
     LOGOUT_FAIL,
     CLEAR_ERRORS
-} from './../constants/userConstants'
+} from '../constants/userConstants'
 
 // Login
 export const login = ( email, password ) => async (dispatch) => {
@@ -231,34 +228,6 @@ export const resetPassword = ( token, passwords ) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: NEW_PASSWORD_FAIL,
-            payload: error.response.data.message
-        })
-    }
-}
-
-// Update home page
-export const updateHome = ( homeData ) => async (dispatch) => {
-    try {
-        dispatch ({
-            type: UPDATE_HOME_REQUEST
-        })
-
-        const config = {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        }
-
-        const { data } = await axios.put('/api/v1/admin/homePage/6020a10c2c9185106868088e', homeData, config)
-
-        dispatch({
-            type: UPDATE_HOME_SUCCESS,
-            payload: data.success
-        })
-
-    } catch (error) {
-        dispatch({
-            type: UPDATE_HOME_FAIL,
             payload: error.response.data.message
         })
     }

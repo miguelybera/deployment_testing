@@ -3,7 +3,6 @@ const HomePage = require('../models/homePage')
 // Get all homepage details /api/v1/homePage
 exports.getHomePage = async( req, res, next) =>{
 
-
     const homePage = await HomePage.find();
     res.status(200).json({
         success: true,

@@ -1,32 +1,25 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment } from 'react'
 import '../css/styles.css'
 import MetaData from './layout/MetaData'
 import { useSelector, useDispatch } from 'react-redux'
-import { getHomeDetails} from './../actions/websiteActions'
+// import { getHomeDetails} from './../actions/websiteActions'
 
 const Home = () => {
 
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     const { home } = useSelector(state => state.getHome) //get website detials
     
-    const [titleBackground, setTitleBackground] = useState('');
-    const [productDescription, setProductDescription] = useState('');
-    const [productImage1, setProductImage1] = useState('');
-    const [productImage2, setProductImage2] = useState('');
-    const [servicesDescription, setServicesDescription] = useState('');
-    const [servicesBackground, setServicesBackground] = useState('');
-    
-    useEffect(() => {
-        // dispatch(getHomeDetails()); // need to be logged in
+    // useEffect(() => {
+    //     // dispatch(getHomeDetails()); // need to be logged in
 
-        console.log(home.productDescription)
-        console.log(home.servicesBackground)
-        if(home) {
-           setProductDescription(home.productDescription)
-           setServicesDescription(home.servicesDescription) 
-        }
-    }, [dispatch, home])
+    //     console.log(home.productDescription)
+    //     console.log(home.servicesBackground)
+    //     if(home) {
+    //        setProductDescription(home.productDescription)
+    //        setServicesDescription(home.servicesDescription) 
+    //     }
+    // }, [dispatch, home])
 
     return (
             <Fragment>

@@ -21,14 +21,12 @@ const UpdateHome = ( { history } ) => {
     const { loading, error: updateError, isUpdated } = useSelector(state => state.website);
 
     useEffect(() => {
-
         dispatch(getHomeDetails())
 
-
-        console.log('product:' + home.productDescription)
-        console.log('services:' + home.servicesDescription)
-        //setProductDescription(home.productDescription)
-        //setServicesDescription(home.servicesDescription)
+        // console.log('product:' + home.productDescription)
+        // console.log('services:' + home.servicesDescription) //cannot read property of undefined
+        //setProductDescription(home.productDescription) //cannot read property of undefined
+        //setServicesDescription(home.servicesDescription) //cannot read property of undefined
 
         if(error){
             alert.error(error);

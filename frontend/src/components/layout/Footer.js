@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
-import '../../footer.css'
-import '../../bootstrap.min.css'
+import '../../css/footer.css'
+import '../../css/bootstrap.min.css'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useAlert } from 'react-alert'

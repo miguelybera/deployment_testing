@@ -1,6 +1,4 @@
 
-import { STATES } from 'mongoose'
-import { defaultMaxListeners } from 'nodemailer/lib/mailer'
 import {
     UPDATE_HOME_REQUEST,
     UPDATE_HOME_SUCCESS,

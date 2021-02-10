@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route } from 'react-router-dom' 
-import { useSelector } from 'react-redux'
+// import { useSelector } from 'react-redux'
 
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
@@ -44,7 +44,7 @@ function App() {
     store.dispatch(loadUser());
   }, [])
 
-  const { loading, user } = useSelector(state => state.auth);
+  // const { loading, user } = useSelector(state => state.auth);
 
   return (
     <Router>

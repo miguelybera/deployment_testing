@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect} from 'react'
-import '../../individual-product.css'
+import '../../css/individual-product.css'
 import { useDispatch, useSelector } from  'react-redux'
 import { getProductDetails, clearErrors } from '../../actions/productActions'
 import Loader from '../layout/Loader'
@@ -38,7 +38,7 @@ const ProductDetails = ( { match }) => {
                                 <Carousel pause='hover'>
                                     {product.images && product.images.map( image => (
                                         <Carousel.Item key={image.public_id}>
-                                            <img className="product-image" src={image.url} alt={`image of ${product.name}`}/>
+                                            <img className="product-image" src={image.url} alt={`${product.name}`}/>
                                         </Carousel.Item>
                                     ))}
                                 </Carousel>

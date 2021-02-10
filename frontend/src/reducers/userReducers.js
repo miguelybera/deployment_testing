@@ -1,5 +1,3 @@
-import { STATES } from 'mongoose'
-import { defaultMaxListeners } from 'nodemailer/lib/mailer'
 import {
     LOGIN_REQUEST,
     LOGIN_SUCCESS,

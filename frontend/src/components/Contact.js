@@ -4,7 +4,7 @@ import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from  'react-redux'
 import { createInquiry, clearErrors } from './../actions/inquiryActions'
 
-import '../contact.css'
+import '../css/contact.css'
 
 const Contact = ( { history } ) => {
 
@@ -32,7 +32,7 @@ const Contact = ( { history } ) => {
             dispatch(clearErrors());
         }
 
-    }, [dispatch, success, error, loading, history])
+    }, [dispatch, success, error, loading, alert, history])
 
 
     const submitHandler = (e) => {

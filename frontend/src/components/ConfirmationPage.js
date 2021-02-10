@@ -1,7 +1,7 @@
-import React, { Fragment, useEffect } from 'react'
-import '../confirmationpage.css'
-import '../contact.css'
-import '../bootstrap.min.css'
+import React, { Fragment } from 'react'
+import '../css/confirmationpage.css'
+import '../css/contact.css'
+import '../css/bootstrap.min.css'
 import '../fonts/font-awesome.min.css'
 
 import MetaData from './layout/MetaData'

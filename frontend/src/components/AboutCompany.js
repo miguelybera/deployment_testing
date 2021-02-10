@@ -1,10 +1,10 @@
 import React, { Fragment, useEffect } from 'react'
-import '../about.css'
-import '../products.css'
-import '../bootstrap.min.css'
+import '../css/about.css'
+import '../css/products.css'
+import '../css/bootstrap.min.css'
 import '../fonts/font-awesome.min.css'
 import MetaData from './layout/MetaData'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { getProducts } from '../actions/productActions'
 
 const AboutCompany = () => {
@@ -35,7 +35,7 @@ const AboutCompany = () => {
                             <h1>Our Company</h1>
                             <hr />
                             <p className="text-justify">AGILE TECHNODYNAMICS, INC. is a duly registered company with the Securities and Exchange Commission (SEC). The company was organized from the Engineering background of its main incorporator with the aim of consolidating its resources under one roof and to gain expertise for its Construction and Services whose ultimate goal is supreme clientele satisfaction.<br /></p>
-                            <img className="about-us-image" src="#" alt="image of company building and logo"/>
+                            <img className="about-us-image" src="#" alt="company building and logo"/>
                         </div>
                     </div>
                 </div>

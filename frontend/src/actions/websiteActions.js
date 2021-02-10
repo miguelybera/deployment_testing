@@ -13,7 +13,7 @@ import {
 // Get home details
 export const getHomeDetails = () => async(dispatch) => {
 
-    const id = '6020a10c2c9185106868088e';
+    // const id = '6020a10c2c9185106868088e';
 
     try{
         dispatch({

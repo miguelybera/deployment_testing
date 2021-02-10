@@ -1,16 +1,32 @@
-import React, { Fragment, useEffect } from 'react'
-import '../styles.css'
+import React, { Fragment, useEffect, useState } from 'react'
+import '../css/styles.css'
 import MetaData from './layout/MetaData'
-import { useDispatch, useSelector } from 'react-redux'
-import { getProducts } from '../actions/productActions'
+import { useSelector, useDispatch } from 'react-redux'
+import { getHomeDetails} from './../actions/websiteActions'
 
 const Home = () => {
 
     const dispatch = useDispatch();
 
+    const { home } = useSelector(state => state.getHome) //get website detials
+    
+    const [titleBackground, setTitleBackground] = useState('');
+    const [productDescription, setProductDescription] = useState('');
+    const [productImage1, setProductImage1] = useState('');
+    const [productImage2, setProductImage2] = useState('');
+    const [servicesDescription, setServicesDescription] = useState('');
+    const [servicesBackground, setServicesBackground] = useState('');
+    
     useEffect(() => {
-        dispatch(getProducts());
-    }, [dispatch]);
+        // dispatch(getHomeDetails()); // need to be logged in
+
+        console.log(home.productDescription)
+        console.log(home.servicesBackground)
+        if(home) {
+           setProductDescription(home.productDescription)
+           setServicesDescription(home.servicesDescription) 
+        }
+    }, [dispatch, home])
 
     return (
             <Fragment>
@@ -24,7 +40,7 @@ const Home = () => {
                         width: "100%", 
                         height: "100%"}
                     }>
-                    <img className="agile-logo-small" src="https://res.cloudinary.com/agiletech3itf/image/upload/v1610472388/agile-logo_cqnjad.png"/>
+                    <img className="agile-logo-small" src="https://res.cloudinary.com/agiletech3itf/image/upload/v1610472388/agile-logo_cqnjad.png" alt="company logo"/>
                     <h1 className="agile-name font-weight-bold">AGILE TECHNODYNAMICS</h1>
                 </div>
             </section>
@@ -32,9 +48,9 @@ const Home = () => {
                 <div className="col-md-auto description-container">
                     <div>
                         <h1 className="font-weight-bold">Our Products</h1>
-                        <h6 className="product-description">Suspendisse blandit ornare pellentesque. Sed quis magna nibh. Sed a sem eros. Sed scelerisque felis condimentum, iaculis purus sed, lobortis mi. Donec leo dui, rhoncus nec enim eu, vulputate sodales ante. Maecenas convallis iaculis arcu sed bibendum. Vestibulum tincidunt dui velit, eget interdum massa scelerisque nec. Suspendisse commodo fringilla rutrum.&nbsp;</h6>
+                        <h6 className="product-description">{home.productDescription}&nbsp;</h6>
                     </div>
-                    <h6></h6><a href="product.html">See Products&nbsp;<i className="fa fa-angle-right"></i></a>
+                    <a href="product.html">See Products&nbsp;<i className="fa fa-angle-right"></i></a>
                 </div>
                 <div className="col-md-6">
                     <div className="product" style={{background: "url('https://res.cloudinary.com/agiletech3itf/image/upload/v1609921524/samples/products/12v-hybrid-gel-front-access-battery_d7maov.png') center / auto no-repeat"}}></div>
@@ -54,7 +70,7 @@ const Home = () => {
                 <div className="col">
                     <div className="div-our-services">
                         <h1 className="our-services font-weight-bold">Our Services</h1>
-                        <h6 className="description">Suspendisse blandit ornare pellentesque. Sed quis magna nibh. Sed a sem eros. Sed scelerisque felis condimentum, iaculis purus sed, lobortis mi. Donec leo dui, rhoncus nec enim eu, vulputate sodales ante. Maecenas convallis iaculis arcu sed bibendum. Vestibulum tincidunt dui velit, eget interdum massa scelerisque nec. Suspendisse commodo fringilla rutrum.&nbsp;</h6><a className="services-link" href="services.html">See Services&nbsp;<i className="fa fa-angle-right"></i></a>
+                        <h6 className="description">{home.servicesDescription}&nbsp;</h6><a className="services-link" href="services.html">See Services&nbsp;<i className="fa fa-angle-right"></i></a>
                     </div>
                 </div>
             </div>

@@ -5,7 +5,7 @@ import MetaData from '../layout/MetaData'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from  'react-redux'
 import { login, clearErrors } from './../../actions/userActions'
-import './../../forms.css'
+import '../../css/forms.css'
 
 const Login = ( { history }) => {
 
@@ -45,7 +45,7 @@ const Login = ( { history }) => {
                         <form onSubmit={submitHandler}>
                             <h2 className="sr-only">Login Form</h2>
                             <div className="illustration">
-                                <img className="login-logo" src="https://res.cloudinary.com/agiletech3itf/image/upload/v1610472388/agile-logo_cqnjad.png"/>
+                                <img className="login-logo" alt="company logo" src="https://res.cloudinary.com/agiletech3itf/image/upload/v1610472388/agile-logo_cqnjad.png"/>
                             </div>
                             <div className="form-group">
                                 <input className="form-control" type="email" name="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}/>

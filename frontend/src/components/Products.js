@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react'
-import '../products.css'
-import '../bootstrap.min.css'
+import '../css/products.css'
+import '../css/bootstrap.min.css'
 import '../fonts/font-awesome.min.css'
 import MetaData from './layout/MetaData'
 import { useDispatch, useSelector } from 'react-redux'

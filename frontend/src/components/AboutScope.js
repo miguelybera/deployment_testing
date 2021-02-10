@@ -1,10 +1,10 @@
 import React, { Fragment, useEffect } from 'react'
-import '../about.css'
-import '../products.css'
-import '../bootstrap.min.css'
+import '../css/about.css'
+import '../css/products.css'
+import '../css/bootstrap.min.css'
 import '../fonts/font-awesome.min.css'
 import MetaData from './layout/MetaData'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { getProducts } from '../actions/productActions'
 
 const AboutScope = () => {
@@ -36,7 +36,7 @@ const AboutScope = () => {
                                 <hr />
                                 <p class="text-justify">AGILE TECHNODYNAMICS, INC.'s general thrust is to engage in Trading and Contracting primarily within its established line of expertise and professional background of its manpower base then enter into related fields as it improves and expands its capabilities.</p>
                                 <p class="text-justify">AGILE TECHNODYNAMICS, INC. is composed of engineers, architects, technicians, and workers highly qualified and experienced in their fields of endeavors; always ready to face the challenge and undertake activities mandated by the company.</p>
-                <br /><img class="about-us-image" src="#" alt="image of company building and logo"/>
+                <br /><img class="about-us-image" src="#" alt="company building and logo"/>
                             </div>
                         </div>
                     </div>

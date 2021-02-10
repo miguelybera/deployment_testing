@@ -62,7 +62,7 @@ const ListOrders = () => {
          }
 
          inquiries.forEach(inquiry => {
-             if(inquiry.concernType=='Others'){
+             if(inquiry.concernType==='Others'){
                 data.rows.push({
                     id: inquiry._id,
                     firstName: inquiry.firstName,

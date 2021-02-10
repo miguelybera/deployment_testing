@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import '../../sidebar.css'
-import '../../bootstrap.min.css'
+import '../../css/sidebar.css'
+import '../../css/bootstrap.min.css'
 import '../../fonts/font-awesome.min.css'
 import '../../fonts/simple-line-icons.min.css'
 

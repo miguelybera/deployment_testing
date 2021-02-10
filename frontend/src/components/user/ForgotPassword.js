@@ -36,12 +36,6 @@ const ForgotPassword = ( { history } ) => {
         dispatch(forgotPassword(formData));
     }
 
-    const onChange = e => {
-        const reader = new FileReader();
-
-        reader.readAsDataURL(e.target.files[0])
-    }
-
     return (
         <Fragment>
             <MetaData title={'Forgot Password'}/>

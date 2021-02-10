@@ -46,13 +46,6 @@ const UpdatePassword = ( { history }) => {
         dispatch(updatePassword(formData));
     }
 
-    const onChange = e => {
-        const reader = new FileReader();
-
-        reader.readAsDataURL(e.target.files[0])
-    }
-
-
     return (
         <Fragment>
             <MetaData title={'Change Password'}/>

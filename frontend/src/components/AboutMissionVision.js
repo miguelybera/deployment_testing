@@ -1,10 +1,10 @@
 import React, { Fragment, useEffect } from 'react'
-import '../about.css'
-import '../products.css'
-import '../bootstrap.min.css'
+import '../css/about.css'
+import '../css/products.css'
+import '../css/bootstrap.min.css'
 import '../fonts/font-awesome.min.css'
 import MetaData from './layout/MetaData'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { getProducts } from '../actions/productActions'
 
 const AboutMissionVision = () => {
@@ -39,7 +39,7 @@ const AboutMissionVision = () => {
                                 <h1>Our Vision</h1>
                                 <hr />
                                 <p className="text-justify">To supply products and provide Services with the seal and mark of Quality and Performance<br /></p>
-                            <img className="about-us-image" src="#" alt="image of company building and logo"/>
+                            <img className="about-us-image" src="#" alt="company building and logo"/>
                             </div>
                         </div>
                     </div>

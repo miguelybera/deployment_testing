@@ -1,10 +1,10 @@
 import React, { Fragment, useEffect } from 'react'
-import '../about.css'
-import '../products.css'
-import '../bootstrap.min.css'
+import '../css/about.css'
+import '../css/products.css'
+import '../css/bootstrap.min.css'
 import '../fonts/font-awesome.min.css'
 import MetaData from './layout/MetaData'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { getProducts } from '../actions/productActions'
 
 const AboutObjectives = () => {
@@ -38,7 +38,7 @@ const AboutObjectives = () => {
                                 <p className="text-justify">&bull; Provide Construction and Services at competitive price levels without detriment to quality and efficiency.</p>
                                 <p className="text-justify">&bull; Enter into contracts for Commercial, Engineering, and Industrial Projects - Civil, Electrical in scope - adopting the latest technology available and tapping local technical expertise and environmental impact for the welfare of Filipino people.</p>
                                 <p className="text-justify">&bull; To fully support all government initiative and economic activities in the attainment of the National Goal for Philippines 2008 and onwards.</p>
-                <br /><img className="about-us-image" src="#" alt="image of company building and logo"/>
+                            <br /><img className="about-us-image" src="#" alt="company building and logo"/>
                             </div>
                         </div>
                     </div>

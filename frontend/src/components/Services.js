@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
-import '../services.css'
-import '../bootstrap.min.css'
+import '../css/services.css'
+import '../css/bootstrap.min.css'
 import '../fonts/font-awesome.min.css'
 import MetaData from './layout/MetaData'
 

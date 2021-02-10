@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import MetaData from './../layout/MetaData'
 import Loader from '../layout/Loader'
-import '../../profile.css'
+import '../../css/profile.css'
 
 const Profile = () => {
     
@@ -18,7 +18,7 @@ const Profile = () => {
                         <h1>My Profile</h1>
                         <div className="profile-container">
                             <div className="image-container small-width">
-                                <img className="profile-picture" src={user.avatar.url}/>
+                                <img className="profile-picture" alt="user" src={user.avatar.url}/>
                             </div>
                             <div className="info-container small-width">
                                 <h3>Full name</h3>

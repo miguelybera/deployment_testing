@@ -23,6 +23,10 @@ const UpdateHome = ( { history } ) => {
     useEffect(() => {
 
         dispatch(getHomeDetails())
+
+
+        console.log('product:' + home.productDescription)
+        console.log('services:' + home.servicesDescription)
         //setProductDescription(home.productDescription)
         //setServicesDescription(home.servicesDescription)
 

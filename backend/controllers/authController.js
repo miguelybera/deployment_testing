@@ -11,28 +11,35 @@ const cloudinary = require('cloudinary')
 // Register a user => /api/v1/register
 
 exports.registerUser = catchAsyncErrors( async(req, res, next) => {
-
-    const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
-        folder: 'avatars',
-        width: 300,
-        crop: "scale"
-    })
-
     const { name, email, contactNumber, password } = req.body;
 
     if(req.body.password !== req.body.confirmPassword) {
         return next(new ErrorHandler('Password does not match', 400))
     }
+    if(req.body.useDefaultImage == "True"){
 
+        avatar= {
+            public_id: 'avatars/default_avatar_jstgei.png',
+            url: 'https://res.cloudinary.com/agiletech3itf/image/upload/v1611216969/avatars/default_avatar_jstgei.png'
+        }
+    }
+else{
+    const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
+        folder: 'avatars',
+        width: 300,
+        crop: "scale"
+    })
+    avatar = {
+        public_id: result.public_id,
+        url: result.secure_url
+    }
+}
     const user = await User.create({
         name,
         email,
         password,
         contactNumber,
-        avatar: {
-            public_id: result.public_id,
-            url: result.secure_url
-        }
+        avatar
     })
 
     sendToken(user, 200, res)

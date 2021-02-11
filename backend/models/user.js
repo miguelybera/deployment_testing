@@ -31,14 +31,13 @@ const userSchema = new mongoose.Schema({
     avatar: {
         public_id: {
             type: String,
-            required: true,
-            default: 'avatars/default_avatar_jstgei'
+            required: true
         },
         url: {
             type:String,
-            required:true,
-            default: 'https://res.cloudinary.com/agiletech3itf/image/upload/v1611216969/avatars/default_avatar_jstgei.png'
-        }
+            required:true
+        },
+        
     },
     role: {
         type: String,

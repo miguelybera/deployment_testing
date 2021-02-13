@@ -11,16 +11,13 @@ const Home = () => {
     const dispatch = useDispatch();
     const alert = useAlert();
 
-    const { error, homepage } = useSelector(state => state.homeDetails)
+    const { error, homePage } = useSelector(state => state.homeDetails)
 
     useEffect(() => {
 
         dispatch(getHomeDetails())
-
-        console.log('product: ', homepage.productDescription)
-        console.log('services: ', homepage.servicesDescription)
-        console.log('titleBackground: ', homepage.titleBackground)
-
+        console.log(homePage.titleBackground.url)
+        console.log(homePage)
         if(error){
             alert.error(error)
             dispatch(clearErrors())
@@ -34,7 +31,7 @@ const Home = () => {
                 <div
                     className="welcome-container"
                     style={{
-                        background: "linear-gradient(to bottom, rgba(216, 203, 194, 0.8) 0%, rgba(34, 33, 32, 0.8) 100%), url('https://res.cloudinary.com/agiletech3itf/image/upload/v1610472389/welcome-bg_agacxj.png') center / auto no-repeat", 
+                        background: "linear-gradient(to bottom, rgba(216, 203, 194, 0.8) 0%, rgba(34, 33, 32, 0.8) 100%), url('') center / auto no-repeat", 
                         backgroundSize: "cover", 
                         width: "100%", 
                         height: "100%"}
@@ -47,7 +44,7 @@ const Home = () => {
                 <div className="col-md-auto description-container">
                     <div>
                         <h1 className="font-weight-bold">Our Products</h1>
-                        <h6 className="product-description">{homepage.productDescription}&nbsp;</h6>
+                        <h6 className="product-description">{homePage.productDescription}&nbsp;</h6>
                     </div>
                     <a href="product.html">See Products&nbsp;<i className="fa fa-angle-right"></i></a>
                 </div>
@@ -69,7 +66,7 @@ const Home = () => {
                 <div className="col">
                     <div className="div-our-services">
                         <h1 className="our-services font-weight-bold">Our Services</h1>
-                        <h6 className="description">{homepage.servicesDescription}&nbsp;</h6><a className="services-link" href="services.html">See Services&nbsp;<i className="fa fa-angle-right"></i></a>
+                        <h6 className="description">{homePage.servicesDescription}&nbsp;</h6><a className="services-link" href="services.html">See Services&nbsp;<i className="fa fa-angle-right"></i></a>
                     </div>
                 </div>
             </div>

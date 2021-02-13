@@ -1,10 +1,11 @@
 const HomePage = require('../models/homePage')
 
+const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
 
 
-// get homepage details => /api/v1/home
+// get homepage details => /api/v1/homepage
 
-exports.getHomePage = async(req, res,next) =>{
+exports.getHomePage = catchAsyncErrors (async(req, res,next) =>{
     const homePage = await HomePage.findById('60278bf744a2ec0d50d80785');
 
     if(!homePage){
@@ -17,9 +18,9 @@ exports.getHomePage = async(req, res,next) =>{
         success: true,
         homePage
     })
+})
 
-  
-}
+
   // update homepage details => /api/v1/updatehome
   exports.updateHomePage = async(req,res,next)=>{
       let homePage = await HomePage.findById('60278bf744a2ec0d50d80785');

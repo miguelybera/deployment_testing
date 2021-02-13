@@ -17,12 +17,13 @@ export const getHomeDetails = () => async(dispatch) => {
             type: HOME_DETAILS_REQUEST
         })
 
-        const { data } = await axios.get('/api/v1/home')
+        const { data } = await axios.get('/api/v1/homepage')
 
         dispatch({
             type: HOME_DETAILS_SUCCESS,
-            payload: data.homepage
+            payload: data.homePage
         })
+
     }
     catch(error){
         dispatch(

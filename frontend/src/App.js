@@ -32,6 +32,7 @@ import ListOthers from './components/admin/ListOthers';
 import ProductsList from './components/admin/ProductsList';
 import NewProduct from './components/admin/NewProduct';
 import UpdateProduct from './components/admin/UpdateProduct';
+import UpdateInquiry from './components/admin/UpdateInquiry';
 
 import ProtectedRoute from './components/route/ProtectedRoute'
 import { loadUser } from './actions/userActions'
@@ -77,14 +78,15 @@ function App() {
 
                 <ProtectedRoute path="/dashboard/update-home" component={UpdateHome} exact/>
                 <ProtectedRoute path="/dashboard" isAdmin={true} component={Dashboard} exact/>
-                <ProtectedRoute path="/admin/inquiries" component={ListInquiries} exact/>
-                <ProtectedRoute path="/admin/quotations" component={ListQuotations} exact/>
-                <ProtectedRoute path="/admin/others" component={ListOthers} exact/>
+                <ProtectedRoute path="/admin/inquiries" isAdmin={true} component={ListInquiries} exact/>
+                <ProtectedRoute path="/admin/quotations" isAdmin={true} component={ListQuotations} exact/>
+                <ProtectedRoute path="/admin/others" isAdmin={true} component={ListOthers} exact/>
                 
                 <ProtectedRoute path="/admin/products" isAdmin={true} component={ProductsList} exact/>
                 <ProtectedRoute path="/admin/newProduct" isAdmin={true} component={NewProduct} exact/>
                 <ProtectedRoute path="/admin/product/:id" isAdmin={true} component={UpdateProduct} exact/>
-
+                <ProtectedRoute path="/admin/inquiry/:id" isAdmin={true} component={UpdateInquiry} exact/>
+                
                 <Footer/>
         </div>
     </Router>

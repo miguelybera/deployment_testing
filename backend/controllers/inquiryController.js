@@ -95,7 +95,6 @@ exports.updateInquiryStatus = catchAsyncErrors(async(req, res, next)=> {
         inquiryStatus: req.body.inquiryStatus
     }
 
-    
    const inquiry = await Inquiry.findByIdAndUpdate(req.params.id, newInquiryStatus, {
         new: true,
         runValidators: true,

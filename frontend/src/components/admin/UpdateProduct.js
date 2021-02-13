@@ -28,7 +28,7 @@ const UpdateProduct = ({match, history}) => {
     const dispatch = useDispatch();
     const alert = useAlert();
 
-    const { error, product, } = useSelector(state => state.productDetails)
+    const { error, product } = useSelector(state => state.productDetails)
     const { loading, error: updateError, isUpdated } = useSelector(state => state.product);
 
     const productId = match.params.id

@@ -17,6 +17,7 @@ const Register = ( { history } ) => {
     const { name, email, contactNumber, password, confirmPassword } = user;
     const [avatar, setAvatar] = useState('');
     const [avatarPreview, setAvatarPreview] = useState('images/default_avatar.png');
+    const [useDefaultImage, setDefaultImage] = useState('');
 
     const alert = useAlert();
     const dispatch = useDispatch();
@@ -24,7 +25,6 @@ const Register = ( { history } ) => {
     const { isAuthenticated, error, loading } = useSelector(state => state.auth);
 
     useEffect(() => {
-
         if(isAuthenticated) {
             history.push('/')
         }
@@ -46,11 +46,13 @@ const Register = ( { history } ) => {
         formData.set('confirmPassword', confirmPassword);
         formData.set('contactNumber', contactNumber);
         formData.set('avatar', avatar);
+        formData.set('useDefaultImage', useDefaultImage)
 
         dispatch(register(formData));
     }
 
     const onChange = e => {
+        
         if(e.target.name === 'avatar') {
 
             const reader = new FileReader();
@@ -64,7 +66,17 @@ const Register = ( { history } ) => {
 
             reader.readAsDataURL(e.target.files[0])
 
-        } else {
+        } else if(e.target.name === 'useDefaultImage') {
+            let chkbox = document.getElementById('useDefaultImage')
+
+            if(chkbox.checked == true) {
+                setDefaultImage(true)
+            }
+            else{
+                setDefaultImage(false)
+            }
+        }
+        else {
             setUser({
                 ...user,
                 [e.target.name]: e.target.value
@@ -132,6 +144,13 @@ const Register = ( { history } ) => {
                         />
                     </div>
                     <div className="form-group">
+                        <input 
+                            type='checkbox'
+                            id='useDefaultImage'
+                            name='useDefaultImage'
+                            value={useDefaultImage}
+                            onChange={onChange}/>
+                            &nbsp;Use default image
                         <h6>Avatar</h6>
                         <figure className='mr-3 item-rtl'>
                             <img 

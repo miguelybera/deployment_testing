@@ -34,9 +34,11 @@ const Dashboard = () => {
                     </div>
                     <section className="dashboard-section col-8">
                         <h1>Dashboard</h1>
+                        
                         <div className="dashboard-container">
                             {loading ? <Loader/> : (
                                 <Fragment>
+                                <MetaData title={'Admin Dashboard'}/>
                                     <div className="inbox-container small-width">
                                         <h3>Inbox</h3>
                                         <h5>

@@ -55,6 +55,7 @@ export const getProducts = (currentPage, category) => async(dispatch) => {
     }
 }
 
+//Get product details
 export const getProductDetails = (id) => async(dispatch) => {
     try{
         dispatch({

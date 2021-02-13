@@ -1,25 +1,9 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import '../css/styles.css'
 import MetaData from './layout/MetaData'
 import { useSelector, useDispatch } from 'react-redux'
-// import { getHomeDetails} from './../actions/websiteActions'
 
 const Home = () => {
-
-    // const dispatch = useDispatch();
-
-    const { home } = useSelector(state => state.getHome) //get website detials
-    
-    // useEffect(() => {
-    //     // dispatch(getHomeDetails()); // need to be logged in
-
-    //     console.log(home.productDescription)
-    //     console.log(home.servicesBackground)
-    //     if(home) {
-    //        setProductDescription(home.productDescription)
-    //        setServicesDescription(home.servicesDescription) 
-    //     }
-    // }, [dispatch, home])
 
     return (
             <Fragment>
@@ -41,7 +25,7 @@ const Home = () => {
                 <div className="col-md-auto description-container">
                     <div>
                         <h1 className="font-weight-bold">Our Products</h1>
-                        <h6 className="product-description">{home.productDescription}&nbsp;</h6>
+                        <h6 className="product-description">&nbsp;</h6>
                     </div>
                     <a href="product.html">See Products&nbsp;<i className="fa fa-angle-right"></i></a>
                 </div>
@@ -63,7 +47,7 @@ const Home = () => {
                 <div className="col">
                     <div className="div-our-services">
                         <h1 className="our-services font-weight-bold">Our Services</h1>
-                        <h6 className="description">{home.servicesDescription}&nbsp;</h6><a className="services-link" href="services.html">See Services&nbsp;<i className="fa fa-angle-right"></i></a>
+                        <h6 className="description">&nbsp;</h6><a className="services-link" href="services.html">See Services&nbsp;<i className="fa fa-angle-right"></i></a>
                     </div>
                 </div>
             </div>

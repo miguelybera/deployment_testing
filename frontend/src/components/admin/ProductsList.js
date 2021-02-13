@@ -100,7 +100,11 @@ const ProductsList = ( {history} ) => {
                         <h1 className="my-5">
                             All Products
                         </h1>
-
+                        <Link to='/admin/newProduct'>
+                            <button className='btn btn-dark btn-sm text-capitalize'>
+                                Add New Product
+                            </button>
+                        </Link>
                         {loading ? <Loader/> : (
                             <MDBDataTable
                                 data={setProducts()}

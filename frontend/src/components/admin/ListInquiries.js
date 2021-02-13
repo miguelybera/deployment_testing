@@ -7,6 +7,7 @@ import Sidebar from './Sidebar'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { listInquiry, clearErrors } from '../../actions/inquiryActions'
+// import { DELETE_INQUIRY_RESET } from '../../constants/inquiryConstants'
 
 const ListOrders = () => {
 
@@ -14,7 +15,7 @@ const ListOrders = () => {
     const dispatch = useDispatch();
 
     const { loading, error, inquiries } = useSelector(state => state.listInquiry)
-
+    
     useEffect(() => {
         dispatch(listInquiry());
 
@@ -22,6 +23,9 @@ const ListOrders = () => {
             alert.error(error)
             dispatch(clearErrors())
         }
+
+        // if(isDeleted) {}
+
     }, [dispatch, alert, error])
 
     const setInquiries = () => {
@@ -68,7 +72,9 @@ const ListOrders = () => {
                     firstName: inquiry.firstName,
                     lastName: inquiry.lastName,
                     companyName: inquiry.companyName,
-                    inquiryStatus: String(inquiry.inquiryStatus),
+                    inquiryStatus: inquiry.inquiryStatus && String(inquiry.inquiryStatus).includes('Processing')
+                        ? <p style={{ color: 'green' }}>{inquiry.inquiryStatus}</p>
+                        :  <p style={{ color: 'red' }}>{inquiry.inquiryStatus}</p>,
                     actions:   <Link to={`/admin/inquiry/${inquiry._id}`} className='btn btn-primary'>
                                 <i className='fa fa-eye'></i>
                             </Link>

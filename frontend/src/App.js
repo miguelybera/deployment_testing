@@ -28,10 +28,10 @@ import UpdateHome from './components/admin/UpdateHome'
 import Dashboard from './components/admin/Dashboard'
 import ListInquiries from './components/admin/ListInquiries'
 import ListQuotations from './components/admin/ListQuotations'
-import ListOthers from './components/admin/ListOthers'
-import ProductsList from './components/admin/ProductsList'
-import NewProduct from './components/admin/NewProduct'
-import UpdateProduct from './components/admin/UpdateProduct'
+import ListOthers from './components/admin/ListOthers';
+import ProductsList from './components/admin/ProductsList';
+import NewProduct from './components/admin/NewProduct';
+import UpdateProduct from './components/admin/UpdateProduct';
 
 import ProtectedRoute from './components/route/ProtectedRoute'
 import { loadUser } from './actions/userActions'
@@ -82,9 +82,8 @@ function App() {
                 <ProtectedRoute path="/admin/others" component={ListOthers} exact/>
                 
                 <ProtectedRoute path="/admin/products" isAdmin={true} component={ProductsList} exact/>
-                <ProtectedRoute path="/admin/product/new" isAdmin={true} component={NewProduct} exact/>
+                <ProtectedRoute path="/admin/newProduct" isAdmin={true} component={NewProduct} exact/>
                 <ProtectedRoute path="/admin/product/:id" isAdmin={true} component={UpdateProduct} exact/>
-                <ProtectedRoute path="/admin/update-home" isAdmin={true} component={UpdateHome} exact/>
 
                 <Footer/>
         </div>

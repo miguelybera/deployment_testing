@@ -68,7 +68,9 @@ const ListOrders = () => {
                     firstName: inquiry.firstName,
                     lastName: inquiry.lastName,
                     companyName: inquiry.companyName,
-                    inquiryStatus: String(inquiry.inquiryStatus),
+                    inquiryStatus: inquiry.inquiryStatus && String(inquiry.inquiryStatus).includes('Processing')
+                        ? <p style={{ color: 'green' }}>{inquiry.inquiryStatus}</p>
+                        :  <p style={{ color: 'red' }}>{inquiry.inquiryStatus}</p>,
                     actions:   <Link to={`/admin/inquiry/${inquiry._id}`} className='btn btn-primary'>
                                 <i className='fa fa-eye'></i>
                             </Link>

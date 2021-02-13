@@ -20,7 +20,7 @@ export const getHomeDetails = () => async(dispatch) => {
             type: GET_HOME_REQUEST
         })
 
-        const { data } = await axios.get(`/api/v1/homePage`)
+        const { data } = await axios.get(`/api/v1/home`)
 
         dispatch({
             type: GET_HOME_SUCCESS,
@@ -51,7 +51,7 @@ export const updateHome = (homeData) => async(dispatch) => {
                 'Content-Type': 'multipart/form-data'
             }
         }
-        const { data } = await axios.put(`/api/v1/admin/homePage/${id}`, homeData, config)
+        const { data } = await axios.put(`/api/v1/admin/home/${id}`, homeData, config)
 
         dispatch({
             type: UPDATE_HOME_SUCCESS,

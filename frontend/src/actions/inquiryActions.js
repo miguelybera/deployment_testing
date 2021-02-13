@@ -36,7 +36,7 @@ export const createInquiry = ( inquiry ) => async (dispatch, getState) => {
     }
 }
 
-//Get 
+//Get all orders (ADMIN)
 export const listInquiry = () => async (dispatch) => {
     try{
         dispatch({

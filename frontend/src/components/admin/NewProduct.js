@@ -18,6 +18,7 @@ const NewProduct = ( { history } ) => {
     const [imagesPreview, setImagesPreview] = useState([])
 
     const categories = [
+        ' - ',
         'Category1',
         'Category2',
         'Category3',

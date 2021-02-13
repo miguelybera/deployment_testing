@@ -10,7 +10,7 @@ import {
 } from '../constants/websiteConstants'
 
 //get home details
-export const homeDetailsReducer = (state = { home: {} }, action) => {
+export const homeDetailsReducer = (state = { homepage: {} }, action) => {
     switch(action.type){
 
         case HOME_DETAILS_REQUEST:
@@ -22,7 +22,7 @@ export const homeDetailsReducer = (state = { home: {} }, action) => {
         case HOME_DETAILS_SUCCESS:
             return {
                 loading: false,
-                home: action.payload
+                homepage: action.payload
             }
 
         case HOME_DETAILS_FAIL:

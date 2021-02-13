@@ -11,18 +11,15 @@ import { homeDetailsReducer } from './reducers/websiteReducers'
 const reducer = combineReducers({
     products: productReducers,
     productDetails: productDetailsReducer,
+    newProduct: newProductReducer,
+    product: productReducer,
 
     auth: authReducer,
     user: userReducer,
-
     forgotPassword: forgotPasswordReducer,
 
     newInquiry: newInquiryReducer,
     listInquiry: listInquiryReducer,
-
-    newProduct: newProductReducer,
-    product: productReducer,
-
     inquiry: inquiryReducer,
     inquiryDetails: inquiryDetailsReducer,
     

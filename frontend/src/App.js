@@ -52,7 +52,7 @@ function App() {
     <Router>
         <div className="App">
             <Header/>
-                <Route path='/:id' component={Home} exact/>
+                <Route path='/' component={Home} exact/>
 
                 <Route path='/our-products' component={Products} exact/>
                 <Route path='/our-products/:id' component={ProductDetails} exact/>

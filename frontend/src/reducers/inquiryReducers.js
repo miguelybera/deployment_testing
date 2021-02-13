@@ -85,7 +85,7 @@ export const inquiryDetailsReducer = (state = { inquiry: {} }, action) => {
     }
 }
 
-export const listInquiryReducer = (state = {inquiries: []}, action) => {
+export const listInquiryReducer = (state = { inquiries: [] }, action) => {
     switch (action.type) {
 
         case LIST_INQUIRY_REQUEST:

@@ -11,7 +11,7 @@ import {
 } from '../constants/websiteConstants'
 
 // Get home details
-export const getHomeDetails = () => async(dispatch) =>{
+export const getHomeDetails = () => async(dispatch) => {
     try{
         dispatch({
             type: HOME_DETAILS_REQUEST
@@ -21,7 +21,7 @@ export const getHomeDetails = () => async(dispatch) =>{
 
         dispatch({
             type: HOME_DETAILS_SUCCESS,
-            payload: data.home
+            payload: data.homepage
         })
     }
     catch(error){
@@ -33,6 +33,7 @@ export const getHomeDetails = () => async(dispatch) =>{
         )
     }
 }
+
 
 
 //clear errors

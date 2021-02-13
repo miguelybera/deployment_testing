@@ -11,7 +11,7 @@ const Home = ({match}) => {
     const dispatch = useDispatch();
     const alert = useAlert();
 
-    const { error, home = {}} = useSelector(state => state.homeDetails)
+    const { error, home} = useSelector(state => state.homeDetails)
 
     useEffect(() => {
 

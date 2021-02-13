@@ -15,12 +15,12 @@ app.use(fileUpload());
 const products = require('./routes/product');
 const auth = require('./routes/auth');
 const inquiry = require('./routes/inquiry');
-const website = require('./routes/website')
+const homePage = require('./routes/homePage');
 
 app.use('/api/v1/', products)
 app.use('/api/v1/', auth)
 app.use('/api/v1/', inquiry)
-app.use('/api/v1/', website)
+app.use('/api/v1/', homePage)
 
 
 //Middleware to handle errors

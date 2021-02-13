@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { MDBDataTable } from 'mdbreact'
 import MetaData from '../layout/MetaData'
@@ -6,7 +6,7 @@ import Loader from '../layout/Loader'
 import Sidebar from './Sidebar'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { listInquiry, clearErrors } from '../../actions/inquiryActions'
+import { updateInquiry, listInquiry, clearErrors } from '../../actions/inquiryActions'
 
 const ListOrders = () => {
 
@@ -24,6 +24,13 @@ const ListOrders = () => {
         }
     }, [dispatch, alert, error])
 
+    const updateInquiryHandler = (id, inquiryStatus) => { 
+        const formData = new FormData();
+        formData.set('inquiryStatus', inquiryStatus);
+
+        dispatch(updateInquiry(id, formData));
+    }
+    
     const setInquiries = () => {
         const data = { 
             columns: [
@@ -62,18 +69,23 @@ const ListOrders = () => {
          }
 
          inquiries.forEach(inquiry => {
-             if(inquiry.concernType==='Others'){
+             if(inquiry.concernType==='Others'  && inquiry.inquiryStatus !== "Deleted"){
                 data.rows.push({
                     id: inquiry._id,
                     firstName: inquiry.firstName,
                     lastName: inquiry.lastName,
                     companyName: inquiry.companyName,
-                    inquiryStatus: inquiry.inquiryStatus && String(inquiry.inquiryStatus).includes('Processing')
+                    inquiryStatus: inquiry.inquiryStatus && (String(inquiry.inquiryStatus).includes('Processing') || String(inquiry.inquiryStatus).includes('Resolved'))
                         ? <p style={{ color: 'green' }}>{inquiry.inquiryStatus}</p>
                         :  <p style={{ color: 'red' }}>{inquiry.inquiryStatus}</p>,
-                    actions:   <Link to={`/admin/inquiry/${inquiry._id}`} className='btn btn-primary'>
-                                <i className='fa fa-eye'></i>
-                            </Link>
+                    actions:   <Fragment>
+                                <Link to={`/admin/inquiry/${inquiry._id}`} className='btn btn-primary'>
+                                    <i className='fa fa-eye'></i>
+                                </Link>
+                                <button className="btn btn-danger py-1 px-2 ml-2" onClick={() => updateInquiryHandler(inquiry._id, "Deleted")}>
+                                    <i className='fa fa-trash'></i>
+                                </button>
+                            </Fragment>
                  })
              }
          }) 

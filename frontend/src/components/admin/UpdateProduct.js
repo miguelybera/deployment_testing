@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { updateProduct, getProductDetails, clearErrors } from '../../actions/productActions'
 import { UPDATE_PRODUCT_RESET } from '../../constants/productConstants'
 
-const UpdateProduct = ({match, history}) => {
+const UpdateProduct = ( { match, history } ) => {
 
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');

@@ -3,7 +3,13 @@ const HomePage = require('../models/homePage')
 // Get all homepage details /api/v1/home/6020a10c2c9185106868088e
 exports.getHomePage = async( req, res, next) =>{
 
-    const homePage = await HomePage.findById('6020a10c2c9185106868088e');
+    //'6020a10c2c9185106868088e'
+    const homePage = await HomePage.findById(req.params.id);
+
+    if(!homePage){
+        return next(new ErrorHandler('Home Not Found', 404));
+    }
+
     res.status(200).json({
         success: true,
         homePage

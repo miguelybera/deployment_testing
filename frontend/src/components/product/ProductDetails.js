@@ -8,21 +8,20 @@ import MetaData from '../layout/MetaData'
 import {Carousel} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-const ProductDetails = ( { match }) => {
+const ProductDetails = ( { match } ) => {
 
     const dispatch = useDispatch();
-    const { loading, error, product } = useSelector(state => state.productDetails)
     const alert = useAlert();
 
+    const { loading, error, product } = useSelector(state => state.productDetails)
+    
     useEffect(() => {
 
         dispatch(getProductDetails(match.params.id));
 
         if(error){
-
             alert.error(error)
             dispatch(clearErrors())
-
         }
 
     }, [dispatch, alert, error, match.params.id])

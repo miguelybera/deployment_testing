@@ -65,6 +65,7 @@ export const productReducers = ( state = { products: [] }, action) => {
     }
 };
 
+//get single product details
 export const productDetailsReducer = (state = { product: {} }, action ) => {
     switch(action.type) {
         

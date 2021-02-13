@@ -24,15 +24,16 @@ import ForgotPassword from './components/user/ForgotPassword'
 import NewPassword from './components/user/NewPassword'
 import EmailSent from './components/EmailSent'
 
-import UpdateHome from './components/admin/UpdateHome'
 import Dashboard from './components/admin/Dashboard'
 import ListInquiries from './components/admin/ListInquiries'
 import ListQuotations from './components/admin/ListQuotations'
-import ListOthers from './components/admin/ListOthers';
-import ProductsList from './components/admin/ProductsList';
-import NewProduct from './components/admin/NewProduct';
-import UpdateProduct from './components/admin/UpdateProduct';
-import UpdateInquiry from './components/admin/UpdateInquiry';
+import ListOthers from './components/admin/ListOthers'
+import ListArchives from './components/admin/ListArchives'
+import ListTrash from './components/admin/ListTrash'
+import ProductsList from './components/admin/ProductsList'
+import NewProduct from './components/admin/NewProduct'
+import UpdateProduct from './components/admin/UpdateProduct'
+import UpdateInquiry from './components/admin/UpdateInquiry'
 
 import ProtectedRoute from './components/route/ProtectedRoute'
 import { loadUser } from './actions/userActions'
@@ -51,7 +52,7 @@ function App() {
     <Router>
         <div className="App">
             <Header/>
-                <Route path='/' component={Home} exact/>
+                <Route path='/:id' component={Home} exact/>
 
                 <Route path='/our-products' component={Products} exact/>
                 <Route path='/our-products/:id' component={ProductDetails} exact/>
@@ -76,11 +77,12 @@ function App() {
                 <Route path='/login' component={Login} exact/>
                 <Route path='/register' component={Register} exact/>
 
-                <ProtectedRoute path="/dashboard/update-home" component={UpdateHome} exact/>
                 <ProtectedRoute path="/dashboard" isAdmin={true} component={Dashboard} exact/>
                 <ProtectedRoute path="/admin/inquiries" isAdmin={true} component={ListInquiries} exact/>
                 <ProtectedRoute path="/admin/quotations" isAdmin={true} component={ListQuotations} exact/>
                 <ProtectedRoute path="/admin/others" isAdmin={true} component={ListOthers} exact/>
+                <ProtectedRoute path="/admin/archives" isAdmin={true} component={ListArchives} exact/>
+                <ProtectedRoute path="/admin/trash" isAdmin={true} component={ListTrash} exact/>
                 
                 <ProtectedRoute path="/admin/products" isAdmin={true} component={ProductsList} exact/>
                 <ProtectedRoute path="/admin/newProduct" isAdmin={true} component={NewProduct} exact/>

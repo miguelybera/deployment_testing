@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useEffect , useState } from 'react'
 import { Link } from 'react-router-dom'
 import { MDBDataTable } from 'mdbreact'
 import MetaData from '../layout/MetaData'
@@ -8,7 +8,7 @@ import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateInquiry, listInquiry, clearErrors } from '../../actions/inquiryActions'
 
-const ListOrders = () => {
+const ListArchives = () => {
 
     const alert = useAlert();
     const dispatch = useDispatch();
@@ -55,8 +55,8 @@ const ListOrders = () => {
                     sort: 'asc'
                 },
                 {
-                    label: 'Status',
-                    field: 'inquiryStatus',
+                    label: 'Concern Type',
+                    field: 'concernType',
                     sort: 'asc'
                 },
                 {
@@ -69,15 +69,13 @@ const ListOrders = () => {
          }
 
          inquiries.forEach(inquiry => {
-             if(inquiry.concernType==='Appointment' && inquiry.inquiryStatus !== "Deleted"){
+             if(inquiry.inquiryStatus==='Resolved'){
                 data.rows.push({
                     id: inquiry._id,
                     firstName: inquiry.firstName,
                     lastName: inquiry.lastName,
                     companyName: inquiry.companyName,
-                    inquiryStatus: inquiry.inquiryStatus && (String(inquiry.inquiryStatus).includes('Processing') || String(inquiry.inquiryStatus).includes('Resolved'))
-                        ? <p style={{ color: 'green' }}>{inquiry.inquiryStatus}</p>
-                        :  <p style={{ color: 'red' }}>{inquiry.inquiryStatus}</p>,
+                    concernType: String(inquiry.concernType),
                     actions:   <Fragment>
                                 <Link to={`/admin/inquiry/${inquiry._id}`} className='btn btn-primary'>
                                     <i className='fa fa-eye'></i>
@@ -95,21 +93,21 @@ const ListOrders = () => {
 
     return (
         <Fragment>
-            <MetaData title={'Quotations'}/>
+            <MetaData title={'Archives'}/>
             <div className="row">
                 <div className="col-4 col-md-2">
                     <Sidebar/>
                 </div>
                 <div className="col-12 col-md-10">
                     <Fragment>
-                    <h1 className='mt-5'>Inbox - Quotations</h1>
+                    <h1 className='mt-5'>Archives</h1>
                     {loading? <Loader/> : (
                         <MDBDataTable
                             data={setInquiries()}
                             className='px-3 ml-10'
                             bordered
                             striped
-                             hover
+                            hover
                             entries={5}
                         />
                     )}
@@ -120,4 +118,4 @@ const ListOrders = () => {
     )
 }
 
-export default ListOrders
+export default ListArchives

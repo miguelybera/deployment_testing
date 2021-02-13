@@ -7,40 +7,46 @@ import { useDispatch, useSelector } from 'react-redux'
 import { updateInquiry, getInquiryDetails, clearErrors } from '../../actions/inquiryActions'
 import { UPDATE_INQUIRY_RESET } from '../../constants/inquiryConstants'
 
-const UpdateInquiry = ( {match, history} ) => {
+const UpdateInquiry = ( { match, history } ) => {
 
-    const [status, setStatus] = useState('');
+    const [inquiryStatus, setInquiryStatus] = useState('');
     
     const dispatch = useDispatch();
     const alert = useAlert();
 
-    const { inquiry = {} } = useSelector(state => state.inquiryDetails)
-    const { inquiryStatus } = inquiry
-    const { loading, error, isUpdated } = useSelector(state => state.inquiry);
+    const { error, inquiry } = useSelector(state => state.inquiryDetails)
+    const { loading, error: updateError, isUpdated } = useSelector(state => state.inquiry);
 
     const inquiryId = match.params.id
 
     useEffect(() => { 
-        dispatch(getInquiryDetails(inquiryId))
+        if(inquiry && inquiry._id !== inquiryId) {
+            dispatch(getInquiryDetails(inquiryId))
+        }
 
         if(error){
             alert.error(error);
             dispatch(clearErrors());
         }
 
+        if(updateError){
+            alert.error(updateError);
+            dispatch(clearErrors());
+        }
+
         if(isUpdated) {
-            history.push('/admin/dashboard');
+            history.push('/dashboard');
             alert.success('Inquiry updated successfully.')
 
             dispatch({
                 type: UPDATE_INQUIRY_RESET
             })
         }
-    }, [dispatch, error, alert, isUpdated, inquiry, inquiryId, history])
+    }, [dispatch, error, alert, isUpdated, updateError, inquiry, inquiryId, history])
 
     const updateInquiryHandler = (id) => { 
         const formData = new FormData();
-        formData.set('status', setStatus);
+        formData.set('inquiryStatus', inquiryStatus);
 
         dispatch(updateInquiry(id, formData));
     }
@@ -67,10 +73,11 @@ const UpdateInquiry = ( {match, history} ) => {
                                             <select 
                                                 className="status-dropdown"
                                                 name='status'
-                                                value={status}
-                                                onChange={(e) => setStatus(e.target.value)}
+                                                value={inquiryStatus}
+                                                onChange={(e) => setInquiryStatus(e.target.value)}
                                             >
                                                 <optgroup label="This is a group">
+                                                    <option value=""> - </option>
                                                     <option value="Unresolved">Unresolved</option>
                                                     <option value="Resolved">Resolved</option>
                                                 </optgroup>
@@ -98,7 +105,7 @@ const UpdateInquiry = ( {match, history} ) => {
                                 </div>
                                 <div className="m-5">
                                     <h3>Message status:</h3>
-                                    <p className="message-status">{inquiryStatus}</p>
+                                    <p className="message-status">{inquiry.inquiryStatus}</p>
                                 </div>
                             </section>
                         )}

@@ -9,6 +9,9 @@ import {
     UPDATE_INQUIRY_REQUEST,
     UPDATE_INQUIRY_SUCCESS,
     UPDATE_INQUIRY_FAIL,
+    DELETE_INQUIRY_REQUEST,
+    DELETE_INQUIRY_SUCCESS,
+    DELETE_INQUIRY_FAIL,
     INQUIRY_DETAILS_REQUEST,
     INQUIRY_DETAILS_SUCCESS,
     INQUIRY_DETAILS_FAIL,
@@ -111,6 +114,29 @@ export const updateInquiry = ( id, inquiryData ) => async (dispatch, getState) =
             type: UPDATE_INQUIRY_FAIL,
             payload: error.response.data.message
         })
+    }
+}
+
+// Delete inquiry (ADMIN)
+export const deleteInquiry = (id) => async(dispatch) => {
+    try{
+        dispatch({
+            type: DELETE_INQUIRY_REQUEST
+        })
+
+        const { data } = await axios.delete(`/api/v1/admin/inquiry/${id}`)
+
+        dispatch({
+            type: DELETE_INQUIRY_SUCCESS,
+            payload: data.success
+        })
+    }
+    catch(error){
+        dispatch({
+            type: DELETE_INQUIRY_FAIL,
+            payload: error.response.data.message
+            }
+        )
     }
 }
 

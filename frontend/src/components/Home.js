@@ -1,10 +1,30 @@
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import '../css/styles.css'
 import MetaData from './layout/MetaData'
+
+import { useAlert } from 'react-alert'
 import { useSelector, useDispatch } from 'react-redux'
+import { getHomeDetails, clearErrors } from '../actions/websiteActions'
 
-const Home = () => {
+const Home = ({match}) => {
 
+    const dispatch = useDispatch();
+    const alert = useAlert();
+
+    const { error, home = {}} = useSelector(state => state.homeDetails)
+
+    useEffect(() => {
+
+        dispatch(getHomeDetails(match.params.id))
+
+        console.log('product: ', home.productDescription)
+        console.log('services: ', home.servicesDescription)
+        if(error){
+            alert.error(error)
+            dispatch(clearErrors())
+        }
+
+    }, [dispatch, alert, error, match.params.id])
     return (
             <Fragment>
                 <MetaData title={'Home'}/>
@@ -25,7 +45,7 @@ const Home = () => {
                 <div className="col-md-auto description-container">
                     <div>
                         <h1 className="font-weight-bold">Our Products</h1>
-                        <h6 className="product-description">&nbsp;</h6>
+                        <h6 className="product-description">{home.productDescription}&nbsp;</h6>
                     </div>
                     <a href="product.html">See Products&nbsp;<i className="fa fa-angle-right"></i></a>
                 </div>
@@ -47,7 +67,7 @@ const Home = () => {
                 <div className="col">
                     <div className="div-our-services">
                         <h1 className="our-services font-weight-bold">Our Services</h1>
-                        <h6 className="description">&nbsp;</h6><a className="services-link" href="services.html">See Services&nbsp;<i className="fa fa-angle-right"></i></a>
+                        <h6 className="description">{home.servicesDescription}&nbsp;</h6><a className="services-link" href="services.html">See Services&nbsp;<i className="fa fa-angle-right"></i></a>
                     </div>
                 </div>
             </div>

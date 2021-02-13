@@ -12,6 +12,10 @@ import {
     UPDATE_INQUIRY_SUCCESS,
     UPDATE_INQUIRY_RESET,
     UPDATE_INQUIRY_FAIL,
+    DELETE_INQUIRY_REQUEST,
+    DELETE_INQUIRY_SUCCESS,
+    DELETE_INQUIRY_FAIL,
+    DELETE_INQUIRY_RESET,
     CLEAR_ERRORS
 } from '../constants/inquiryConstants'
 
@@ -54,6 +58,7 @@ export const inquiryDetailsReducer = (state = { inquiry: {} }, action) => {
 
         case INQUIRY_DETAILS_REQUEST:
             return {
+                ...state,
                 loading: true
             }
 
@@ -65,7 +70,7 @@ export const inquiryDetailsReducer = (state = { inquiry: {} }, action) => {
 
         case INQUIRY_DETAILS_FAIL:
             return {
-                loading: false,
+                ...state,
                 error: action.payload
             }
         
@@ -116,12 +121,20 @@ export const listInquiryReducer = (state = {inquiries: []}, action) => {
 export const inquiryReducer = (state = {}, action) => {
     switch(action.type){
 
+        case DELETE_INQUIRY_REQUEST:
         case UPDATE_INQUIRY_REQUEST:
             return {
                 ...state,
                 loading: true
             }
-        
+
+        case DELETE_INQUIRY_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                isDeleted: action.payload
+            }
+
         case UPDATE_INQUIRY_SUCCESS:
             return {
                 ...state,
@@ -129,10 +142,17 @@ export const inquiryReducer = (state = {}, action) => {
                 isUpdated: action.payload
             }
 
+        case DELETE_INQUIRY_FAIL:    
         case UPDATE_INQUIRY_FAIL:
             return {
                 ...state,
                 error: action.payload
+            }
+
+        case DELETE_INQUIRY_RESET:
+            return {
+                ...state,
+                isDeleted: false
             }
 
         case UPDATE_INQUIRY_RESET:

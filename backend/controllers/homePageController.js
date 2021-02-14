@@ -19,85 +19,80 @@ exports.getHomePage = catchAsyncErrors (async(req, res,next) =>{
     })
 })
 
-
   // update homepage details => /api/v1/updatehome
   exports.updateHomePage = catchAsyncErrors (async(req,res,next)=>{
-    let homePage = await HomePage.findById('60278bf744a2ec0d50d80785');
+    // if(!homePage){
+    //     return res.status(404).json({
+    //         success: false,
+    //         message: 'homepage not found'
+    //     })
+    // }
 
-    if(!homePage){
-        return res.status(404).json({
-            success: false,
-            message: 'homepage not found'
-        })
+    const newHomeData = { //remove this to update in postman
+        productDescription: req.body.productDescription,
+        servicesDescription: req.body.servicesDescription
     }
 
-    // const newHomeData = { //remove this to update in postman
-    //     productDescription: req.body.productDescription,
-    //     servicesDescription: req.body.servicesDescription
-    // }
+    let homePage = await HomePage.findById('60278bf744a2ec0d50d80785');
 
-    // if(req.body.titleBackground !== '') {
-    //     const titleBackground_id = homePage.titleBackground.public_id;
-        
-    //     const res = await cloudinary.v2.uploader.destroy(titleBackground_id);
+    if(req.body.titleBackground !== '') {
+        const titleBackground_id = homePage.titleBackground.public_id;
+        const res = await cloudinary.v2.uploader.destroy(titleBackground_id);
 
-    //     const result = await cloudinary.v2.uploader.upload(req.body.titleBackground, {
-    //         folder: 'home',
-    //         crop: "scale"
-    //     })
+        const result = await cloudinary.v2.uploader.upload(req.body.titleBackground, {
+            folder: 'homeImages'
+        })
 
-    //     req.body.titleBackground = {
-    //         public_id: result.public_id,
-    //         url: result.secure_url
-    //     }
-    // }
+        newHomeData.titleBackground = {
+            public_id: result.public_id,
+            url: result.secure_url
+        }
+    }
 
-    // if(req.body.servicesBackground !== '') {
-    //     const servicesBackground_id = homePage.servicesBackground.public_id;
-    //     const res = await cloudinary.v2.uploader.destroy(servicesBackground_id);
 
-    //     const result = await cloudinary.v2.uploader.upload(req.body.servicesBackground, {
-    //         folder: 'home',
-    //         crop: "scale"
-    //     })
+    if(req.body.servicesBackground !== '') {
+        const servicesBackground_id = homePage.servicesBackground.public_id;
+        const res = await cloudinary.v2.uploader.destroy(servicesBackground_id);
 
-    //     newHomeData.servicesBackground = {
-    //         public_id: result.public_id,
-    //         url: result.secure_url
-    //     }
-    // }
+        const result = await cloudinary.v2.uploader.upload(req.body.servicesBackground, {
+            folder: 'homeImages'
+        })
 
-    // if(req.body.productImageLeft !== '') {
-    //     const productImageLeft_id = homePage.productImageLeft.public_id;
-    //     const res = await cloudinary.v2.uploader.destroy(productImageLeft_id);
+        newHomeData.servicesBackground = {
+            public_id: result.public_id,
+            url: result.secure_url
+        }
+    }
 
-    //     const result = await cloudinary.v2.uploader.upload(req.body.productImageLeft, {
-    //         folder: 'home',
-    //         crop: "scale"
-    //     })
+    if(req.body.productImageLeft !== '') {
+        const productImageLeft_id = homePage.productImageLeft.public_id;
+        const res = await cloudinary.v2.uploader.destroy(productImageLeft_id);
 
-    //     newHomeData.productImageLeft = {
-    //         public_id: result.public_id,
-    //         url: result.secure_url
-    //     }
-    // }
+        const result = await cloudinary.v2.uploader.upload(req.body.productImageLeft, {
+            folder: 'homeImages'
+        })
 
-    // if(req.body.productImageRight !== '') {
-    //     const productImageRight_id = homePage.productImageRight.public_id;
-    //     const res = await cloudinary.v2.uploader.destroy(productImageRight_id);
+        newHomeData.productImageLeft = {
+            public_id: result.public_id,
+            url: result.secure_url
+        }
+    }
 
-    //     const result = await cloudinary.v2.uploader.upload(req.body.productImageRight, {
-    //         folder: 'home',
-    //         crop: "scale"
-    //     })
+    if(req.body.productImageRight !== '') {
+        const productImageRight_id = homePage.productImageRight.public_id;
+        const res = await cloudinary.v2.uploader.destroy(productImageRight_id);
 
-    //     newHomeData.productImageRight = {
-    //         public_id: result.public_id,
-    //         url: result.secure_url
-    //     }
-    // }
+        const result = await cloudinary.v2.uploader.upload(req.body.productImageRight, {
+            folder: 'homeImages'
+        })
 
-    homePage = await HomePage.findByIdAndUpdate('60278bf744a2ec0d50d80785', req.body, {
+        newHomeData.productImageRight = {
+            public_id: result.public_id,
+            url: result.secure_url
+        }
+    }
+
+    homePage = await HomePage.findByIdAndUpdate('60278bf744a2ec0d50d80785', newHomeData, {
         new: true,
         runValidators: true,
         useFindAndModify: false

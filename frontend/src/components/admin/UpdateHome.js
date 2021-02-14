@@ -38,28 +38,33 @@ const UpdateHome = ({history}) => {
 
     if(homePage.titleBackground){
         var_titleBackground = homePage.titleBackground.url
-    } else {
-        var_titleBackground = "https://res.cloudinary.com/agiletech3itf/image/upload/v1613009941/avatars/y0k3r3kes5wovvrefnvw.jpg"
-    }
+    } 
+    // else {
+    //     var_titleBackground = "https://res.cloudinary.com/agiletech3itf/image/upload/v1613009941/avatars/y0k3r3kes5wovvrefnvw.jpg"
+    // }
 
     if(homePage.servicesBackground){
         var_servicesBackground = homePage.servicesBackground.url
-    } else {
-        var_servicesBackground = "https://res.cloudinary.com/agiletech3itf/image/upload/v1613009941/avatars/y0k3r3kes5wovvrefnvw.jpg"
-    }
+    } 
+    // else {
+    //     var_servicesBackground = "https://res.cloudinary.com/agiletech3itf/image/upload/v1613009941/avatars/y0k3r3kes5wovvrefnvw.jpg"
+    // }
 
     if(homePage.productImageLeft){
         var_productImageLeft = homePage.productImageLeft.url
-    } else {
-        var_productImageLeft = "https://res.cloudinary.com/agiletech3itf/image/upload/v1613009941/avatars/y0k3r3kes5wovvrefnvw.jpg"
-    }
+    } 
+    // else {
+    //     var_productImageLeft = "https://res.cloudinary.com/agiletech3itf/image/upload/v1613009941/avatars/y0k3r3kes5wovvrefnvw.jpg"
+    // }
 
     if(homePage.productImageRight){
         var_productImageRight = homePage.productImageRight.url
-    } else {
-        var_productImageRight = "https://res.cloudinary.com/agiletech3itf/image/upload/v1613009941/avatars/y0k3r3kes5wovvrefnvw.jpg"
-    }
+    } 
+    // else {
+    //     var_productImageRight = "https://res.cloudinary.com/agiletech3itf/image/upload/v1613009941/avatars/y0k3r3kes5wovvrefnvw.jpg"
+    // }
 
+    
     useEffect(() => {
 
         if(homePage){
@@ -69,6 +74,8 @@ const UpdateHome = ({history}) => {
             setServicesBgPreview(var_servicesBackground)
             setProdImgLeftPreview(var_productImageLeft)
             setProdImgRightPreview(var_productImageRight)
+        }else{
+            dispatch(getHomeDetails())
         }
 
         if(error) {
@@ -78,6 +85,8 @@ const UpdateHome = ({history}) => {
 
         if(updateError) {
             alert.error(updateError);
+
+            history.push('/dashboard')
             dispatch(clearErrors())
         }
 

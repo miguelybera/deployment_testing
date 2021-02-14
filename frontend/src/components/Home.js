@@ -41,8 +41,6 @@ const Home = () => {
     }
 
     useEffect(() => {
-
-        console.log(homePage.titleBackground)
         dispatch(getHomeDetails())
         
         if(error){
@@ -50,7 +48,7 @@ const Home = () => {
             dispatch(clearErrors())
         }
 
-    }, [dispatch, alert, error])
+    }, [dispatch, alert, error]) //loop if homePage added as dependency
     return (
             <Fragment>
                 <MetaData title={'Home'}/>

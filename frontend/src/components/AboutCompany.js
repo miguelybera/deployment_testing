@@ -4,16 +4,29 @@ import '../css/products.css'
 import '../css/bootstrap.min.css'
 import '../fonts/font-awesome.min.css'
 import MetaData from './layout/MetaData'
-import { useDispatch } from 'react-redux'
+import Loader from './layout/Loader'
+import { useAlert } from 'react-alert'
+import { useSelector, useDispatch } from 'react-redux'
 import { getProducts } from '../actions/productActions'
+import { getAboutCompanyDetails, clearErrors } from '../actions/websiteActions'
 
 const AboutCompany = () => {
 
     const dispatch = useDispatch();
+    const alert = useAlert();
+
+    const { loading, error, about } = useSelector(state => state.aboutDetails)
 
     useEffect(() => {
         dispatch(getProducts());
-    }, [dispatch]);
+        dispatch(getAboutCompanyDetails());
+
+        if(error){
+            alert.error(error)
+            dispatch(clearErrors())
+        }
+
+    }, [dispatch, error]);
 
     return (
             <Fragment>
@@ -32,10 +45,9 @@ const AboutCompany = () => {
                                 </ul>
                         </div>
                         <div className="col-md-8">
-                            <h1>Our Company</h1>
+                            <h1>{about.title}</h1>
                             <hr />
-                            <p className="text-justify">AGILE TECHNODYNAMICS, INC. is a duly registered company with the Securities and Exchange Commission (SEC). The company was organized from the Engineering background of its main incorporator with the aim of consolidating its resources under one roof and to gain expertise for its Construction and Services whose ultimate goal is supreme clientele satisfaction.<br /></p>
-                            <img className="about-us-image" src="#" alt="company building and logo"/>
+                            <p className="text-justify">{about.description}<br /></p>
                         </div>
                     </div>
                 </div>

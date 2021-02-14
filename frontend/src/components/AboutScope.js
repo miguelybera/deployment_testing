@@ -4,16 +4,29 @@ import '../css/products.css'
 import '../css/bootstrap.min.css'
 import '../fonts/font-awesome.min.css'
 import MetaData from './layout/MetaData'
-import { useDispatch } from 'react-redux'
+import Loader from './layout/Loader'
+import { useAlert } from 'react-alert'
+import { useSelector, useDispatch } from 'react-redux'
 import { getProducts } from '../actions/productActions'
+import { getAboutScopeDetails, clearErrors } from '../actions/websiteActions'
 
 const AboutScope = () => {
 
     const dispatch = useDispatch();
+    const alert = useAlert();
+
+    const { loading, error, about } = useSelector(state => state.aboutDetails)
 
     useEffect(() => {
         dispatch(getProducts());
-    }, [dispatch]);
+        dispatch(getAboutScopeDetails());
+
+        if(error){
+            alert.error(error)
+            dispatch(clearErrors())
+        }
+
+    }, [dispatch, error]);
 
     return (
             <Fragment>
@@ -32,11 +45,10 @@ const AboutScope = () => {
                                 </ul>
                             </div>
                             <div class="col-md-8">
-                                <h1>Scope of Activities</h1>
+                                <h1>{about.title}</h1>
                                 <hr />
-                                <p class="text-justify">AGILE TECHNODYNAMICS, INC.'s general thrust is to engage in Trading and Contracting primarily within its established line of expertise and professional background of its manpower base then enter into related fields as it improves and expands its capabilities.</p>
-                                <p class="text-justify">AGILE TECHNODYNAMICS, INC. is composed of engineers, architects, technicians, and workers highly qualified and experienced in their fields of endeavors; always ready to face the challenge and undertake activities mandated by the company.</p>
-                <br /><img class="about-us-image" src="#" alt="company building and logo"/>
+                                <p class="text-justify">{about.description}</p>
+                                <br />
                             </div>
                         </div>
                     </div>

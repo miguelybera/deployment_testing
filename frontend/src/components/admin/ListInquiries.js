@@ -103,6 +103,7 @@ const ListOrders = ({history}) => {
 
          return data
     }
+    
     return (
         <Fragment>
             <MetaData title={'Inquiries'}/>

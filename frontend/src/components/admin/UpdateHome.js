@@ -26,7 +26,7 @@ const UpdateHome = ({history}) => {
     const dispatch = useDispatch();
 
     const { error, loading, homePage } = useSelector(state => state.homeDetails) 
-    const { loading: updateLoading, error: updateError, isUpdated } = useSelector(state => state.home)
+    const { loading: updateLoading, error: updateError, isUpdated } = useSelector(state => state.website)
 
     let var_titleBackground, var_servicesBackground, var_productImageLeft, var_productImageRight = ""
 

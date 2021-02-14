@@ -3,9 +3,22 @@ import {
     UPDATE_HOME_REQUEST,
     UPDATE_HOME_SUCCESS,
     UPDATE_HOME_FAIL,
+    
     HOME_DETAILS_REQUEST,
     HOME_DETAILS_SUCCESS,
     HOME_DETAILS_FAIL,
+
+    ABOUT_DETAILS_REQUEST,
+    ABOUT_DETAILS_SUCCESS,
+    ABOUT_DETAILS_FAIL,
+
+    UPDATE_ABOUT_REQUEST,
+    UPDATE_ABOUT_SUCCESS,
+    UPDATE_ABOUT_FAIL,
+    
+    ALL_ABOUT_DETAILS_REQUEST,
+    ALL_ABOUT_DETAILS_SUCCESS,
+    ALL_ABOUT_DETAILS_FAIL,
 
     CLEAR_ERRORS
 } from '../constants/websiteConstants'
@@ -57,6 +70,182 @@ export const updateHome = (homeData) => async(dispatch) => {
     catch(error){
         dispatch({
             type: UPDATE_HOME_FAIL,
+            payload: error.response.data.message
+            }
+        )
+    }
+}
+
+// Get about details (COMPANY)
+export const getAboutCompanyDetails = () => async(dispatch) => {
+    try{
+        dispatch({
+            type: ABOUT_DETAILS_REQUEST
+        })
+
+        const { data } = await axios.get('/api/v1/aboutcompany')
+
+        dispatch({
+            type: ABOUT_DETAILS_SUCCESS,
+            payload: data.about
+        })
+
+    }
+    catch(error){
+        dispatch(
+            {
+                type: ABOUT_DETAILS_FAIL,
+                payload: error.response.data.message
+            }
+        )
+    }
+}
+
+// Get about details (OBJECTIVES)
+export const getAboutObjectivesDetails = () => async(dispatch) => {
+    try{
+        dispatch({
+            type: ABOUT_DETAILS_REQUEST
+        })
+
+        const { data } = await axios.get('/api/v1/aboutobjectives')
+
+        dispatch({
+            type: ABOUT_DETAILS_SUCCESS,
+            payload: data.about
+        })
+
+    }
+    catch(error){
+        dispatch(
+            {
+                type: ABOUT_DETAILS_FAIL,
+                payload: error.response.data.message
+            }
+        )
+    }
+}
+
+// Get about details (SCOPE)
+export const getAboutScopeDetails = () => async(dispatch) => {
+    try{
+        dispatch({
+            type: ABOUT_DETAILS_REQUEST
+        })
+
+        const { data } = await axios.get('/api/v1/aboutscope')
+
+        dispatch({
+            type: ABOUT_DETAILS_SUCCESS,
+            payload: data.about
+        })
+
+    }
+    catch(error){
+        dispatch(
+            {
+                type: ABOUT_DETAILS_FAIL,
+                payload: error.response.data.message
+            }
+        )
+    }
+}
+
+// Get about details (HISTORY)
+export const getAboutHistoryDetails = () => async(dispatch) => {
+    try{
+        dispatch({
+            type: ABOUT_DETAILS_REQUEST
+        })
+
+        const { data } = await axios.get('/api/v1/abouthistory')
+
+        dispatch({
+            type: ABOUT_DETAILS_SUCCESS,
+            payload: data.about
+        })
+
+    }
+    catch(error){
+        dispatch(
+            {
+                type: ABOUT_DETAILS_FAIL,
+                payload: error.response.data.message
+            }
+        )
+    }
+}
+
+// Get about details (MISSION VISION)
+export const getAboutDetails = () => async(dispatch) => {
+    try{
+        dispatch({
+            type: ALL_ABOUT_DETAILS_REQUEST
+        })
+
+        const { data } = await axios.get('/api/v1/allaboutus')
+
+        dispatch({
+            type: ALL_ABOUT_DETAILS_SUCCESS,
+            payload: data
+        })
+
+    }
+    catch(error){
+        dispatch(
+            {
+                type: ALL_ABOUT_DETAILS_FAIL,
+                payload: error.response.data.message
+            }
+        )
+    }
+}
+
+//Get single about us detail
+export const getSingleAbout = (id) => async(dispatch) => {
+    try{
+        dispatch({
+            type: ABOUT_DETAILS_REQUEST
+        })
+
+        const { data } = await axios.get(`/api/v1/about/${id}`)
+
+        dispatch({
+            type: ABOUT_DETAILS_SUCCESS,
+            payload: data.about
+        })
+    }
+    catch(error){
+        dispatch({
+            type: ABOUT_DETAILS_FAIL,
+            payload: error.response.data.message
+            }
+        )
+    }
+}
+
+// Update about (ADMIN)
+export const updateAbout = (id, aboutData) => async(dispatch) => {
+    try{
+        dispatch({
+            type: UPDATE_ABOUT_REQUEST
+        })
+
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }
+        const { data } = await axios.put(`/api/v1/admin/about/${id}`, aboutData, config)
+
+        dispatch({
+            type: UPDATE_ABOUT_SUCCESS,
+            payload: data.success
+        })
+    }
+    catch(error){
+        dispatch({
+            type: UPDATE_ABOUT_FAIL,
             payload: error.response.data.message
             }
         )

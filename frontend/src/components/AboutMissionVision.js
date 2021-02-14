@@ -4,16 +4,31 @@ import '../css/products.css'
 import '../css/bootstrap.min.css'
 import '../fonts/font-awesome.min.css'
 import MetaData from './layout/MetaData'
-import { useDispatch } from 'react-redux'
+import Loader from './layout/Loader'
+import { useAlert } from 'react-alert'
+import { useSelector, useDispatch } from 'react-redux'
 import { getProducts } from '../actions/productActions'
+import { getAboutDetails, clearErrors } from '../actions/websiteActions'
+import MissionVision from './MissionVision'
 
 const AboutMissionVision = () => {
 
     const dispatch = useDispatch();
+    const alert = useAlert();
+
+    const { loading, error, abouts } = useSelector(state => state.abouts)
 
     useEffect(() => {
         dispatch(getProducts());
-    }, [dispatch]);
+        dispatch(getAboutDetails());
+
+        console.log(abouts)
+        if(error){
+            alert.error(error)
+            dispatch(clearErrors())
+        }
+
+    }, [dispatch, error]);
 
     return (
             <Fragment>
@@ -32,14 +47,9 @@ const AboutMissionVision = () => {
                                 </ul>
                             </div>
                             <div className="col-md-8">
-                                <h1>Our Mission</h1>
-                                <hr />
-                                <p className="text-justify">To be aligned with the best Product Suppliers and Engineering Services providers in the country.<br /><br /><br /></p>
-                                
-                                <h1>Our Vision</h1>
-                                <hr />
-                                <p className="text-justify">To supply products and provide Services with the seal and mark of Quality and Performance<br /></p>
-                            <img className="about-us-image" src="#" alt="company building and logo"/>
+                                {abouts && abouts.map(about => (
+                                    <MissionVision key={about._id} about={about}/>
+                                ))}
                             </div>
                         </div>
                     </div>

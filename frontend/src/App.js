@@ -16,6 +16,7 @@ import Contact from './components/Contact'
 import ConfirmationPage from './components/ConfirmationPage'
 
 import UpdateHome from './components/admin/UpdateHome'
+import UpdateAbout from './components/admin/UpdateAbout'
 
 import Login from './components/user/Login'
 import Register from './components/user/Register'
@@ -32,6 +33,7 @@ import ListQuotations from './components/admin/ListQuotations'
 import ListOthers from './components/admin/ListOthers'
 import ListArchives from './components/admin/ListArchives'
 import ListTrash from './components/admin/ListTrash'
+import ListAbout from './components/admin/ListAbout'
 import ProductsList from './components/admin/ProductsList'
 import NewProduct from './components/admin/NewProduct'
 import UpdateProduct from './components/admin/UpdateProduct'
@@ -86,6 +88,8 @@ function App() {
                 <ProtectedRoute path="/admin/archives" isAdmin={true} component={ListArchives} exact/>
                 <ProtectedRoute path="/admin/trash" isAdmin={true} component={ListTrash} exact/>
                 
+                <ProtectedRoute path="/admin/about" isAdmin={true} component={ListAbout} exact/>
+                <ProtectedRoute path="/admin/about/:id" isAdmin={true} component={UpdateAbout} exact/>
                 <ProtectedRoute path="/admin/update-home" isAdmin={true} component={UpdateHome} exact/>
                 
                 <ProtectedRoute path="/admin/products" isAdmin={true} component={ProductsList} exact/>

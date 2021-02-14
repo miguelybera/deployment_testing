@@ -56,7 +56,7 @@ const Sidebar = () => {
                         </a>
                         <ul className="collapse list-unstyled" id="settingsSubmenu">
                             <li><Link to="/admin/update-home">Update Home</Link></li>
-                            <li><Link to="/admin/update-about">Update About</Link></li>
+                            <li><Link to="/admin/about">Update About</Link></li>
                             <li><Link to="/admin/update-services">Update Services</Link></li>
                         </ul>
                     </li>

@@ -6,6 +6,16 @@ import {
     HOME_DETAILS_REQUEST,
     HOME_DETAILS_SUCCESS,
     HOME_DETAILS_FAIL,
+    ABOUT_DETAILS_REQUEST,
+    ABOUT_DETAILS_SUCCESS,
+    ABOUT_DETAILS_FAIL,
+    ALL_ABOUT_DETAILS_REQUEST,
+    ALL_ABOUT_DETAILS_SUCCESS,
+    ALL_ABOUT_DETAILS_FAIL,
+    UPDATE_ABOUT_REQUEST,
+    UPDATE_ABOUT_SUCCESS,
+    UPDATE_ABOUT_FAIL,
+    UPDATE_ABOUT_RESET,
     CLEAR_ERRORS
 } from '../constants/websiteConstants'
 
@@ -42,16 +52,84 @@ export const homeDetailsReducer = (state = { homePage: {} }, action) => {
     }
 }
 
-export const homeReducer = (state = {}, action) => {
+//get single about details
+export const aboutDetailsReducer = (state = { about: {} }, action) => {
+    switch(action.type){
+
+        case ABOUT_DETAILS_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+    
+        case ABOUT_DETAILS_SUCCESS:
+            return {
+                loading: false,
+                about: action.payload
+            }
+
+        case ABOUT_DETAILS_FAIL:
+            return {
+                ...state,
+                error: action.payload
+            }
+
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+            
+        default:
+            return state
+    }
+}
+
+//get all about details
+export const allAboutDetailsReducer = (state = { abouts: [] }, action) => {
+    switch(action.type){
+
+        case ALL_ABOUT_DETAILS_REQUEST:
+            return {
+                loading: true,
+                abouts: []
+            }
+    
+        case ALL_ABOUT_DETAILS_SUCCESS:
+            return {
+                loading: false,
+                abouts: action.payload.abouts
+            }
+
+        case ALL_ABOUT_DETAILS_FAIL:
+            return {
+                ...state,
+                error: action.payload
+            }
+
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+            
+        default:
+            return state
+    }
+}
+
+export const websiteUpdateReducer = (state = {}, action) => {
     switch(action.type){
 
         case UPDATE_HOME_REQUEST:
+        case UPDATE_ABOUT_REQUEST:
             return {
                 ...state,
                 loading: true
             }
         
         case UPDATE_HOME_SUCCESS:
+        case UPDATE_ABOUT_SUCCESS:
             return {
                 ...state,
                 loading: false,
@@ -59,12 +137,14 @@ export const homeReducer = (state = {}, action) => {
             }
 
         case UPDATE_HOME_FAIL:
+        case UPDATE_ABOUT_FAIL:
             return {
                 ...state,
                 error: action.payload
             }
 
         case UPDATE_HOME_RESET:
+        case UPDATE_ABOUT_RESET:
             return {
                 ...state,
                 isUpdated: false

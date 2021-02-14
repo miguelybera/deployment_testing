@@ -4,16 +4,29 @@ import '../css/products.css'
 import '../css/bootstrap.min.css'
 import '../fonts/font-awesome.min.css'
 import MetaData from './layout/MetaData'
-import { useDispatch } from 'react-redux'
+import Loader from './layout/Loader'
+import { useAlert } from 'react-alert'
+import { useSelector, useDispatch } from 'react-redux'
 import { getProducts } from '../actions/productActions'
+import { getAboutObjectivesDetails, clearErrors } from '../actions/websiteActions'
 
 const AboutObjectives = () => {
 
     const dispatch = useDispatch();
+    const alert = useAlert();
+
+    const { loading, error, about } = useSelector(state => state.aboutDetails)
 
     useEffect(() => {
         dispatch(getProducts());
-    }, [dispatch]);
+        dispatch(getAboutObjectivesDetails());
+
+        if(error){
+            alert.error(error)
+            dispatch(clearErrors())
+        }
+
+    }, [dispatch, error]);
 
     return (
             <Fragment>
@@ -32,13 +45,10 @@ const AboutObjectives = () => {
                                 </ul>
                             </div>
                             <div className="col-md-8">
-                                <h1>The Objectives</h1>
+                                <h1>{about.title}</h1>
                                 <hr />
-                                <p className="text-justify">&bull; Bring into the consciousness of every clientele the availability of ISO Standard Quality Products from around the world, in their doorsteps.</p>
-                                <p className="text-justify">&bull; Provide Construction and Services at competitive price levels without detriment to quality and efficiency.</p>
-                                <p className="text-justify">&bull; Enter into contracts for Commercial, Engineering, and Industrial Projects - Civil, Electrical in scope - adopting the latest technology available and tapping local technical expertise and environmental impact for the welfare of Filipino people.</p>
-                                <p className="text-justify">&bull; To fully support all government initiative and economic activities in the attainment of the National Goal for Philippines 2008 and onwards.</p>
-                            <br /><img className="about-us-image" src="#" alt="company building and logo"/>
+                                <p className="text-justify">{about.description}</p>
+                            <br />
                             </div>
                         </div>
                     </div>

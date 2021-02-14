@@ -170,9 +170,7 @@ const UpdateHome = ({history}) => {
     return (
         <Fragment>
             <MetaData title={'Update Home'}/>
-            <div className="">
-                {loading ? <Loader/> : (
-                    <Fragment>
+                <Fragment>
                     <div className="login-clean">
                         <form method="put" onSubmit={submitHandler} encType='multipart/form-data'  style={{width: '90%'}}>
                             <h2 className="sr-only">Update Homepage</h2>
@@ -282,8 +280,6 @@ const UpdateHome = ({history}) => {
                         </form>
                     </div>
                 </Fragment>
-                )}
-            </div>
         </Fragment>
     )
 }

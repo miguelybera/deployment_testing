@@ -22,8 +22,9 @@ exports.getHomePage = catchAsyncErrors (async(req, res,next) =>{
 
 
   // update homepage details => /api/v1/updatehome
-  exports.updateHomePage = async(req,res,next)=>{
+  exports.updateHomePage = catchAsyncErrors (async(req,res,next)=>{
       let homePage = await HomePage.findById('60278bf744a2ec0d50d80785');
+      
       if(!homePage){
         return res.status(404).json({
             success: false,
@@ -41,4 +42,4 @@ exports.getHomePage = catchAsyncErrors (async(req, res,next) =>{
         success: true,
         homePage 
     })
-  }
+  })

@@ -14,30 +14,21 @@ const Home = () => {
     const { loading, error, homePage } = useSelector(state => state.homeDetails)
 
     let titleBackground, servicesBackground, productImageLeft, productImageRight = ""
-
     
     if(homePage.titleBackground){
         titleBackground = homePage.titleBackground.url
-    } else {
-        titleBackground = "https://res.cloudinary.com/agiletech3itf/image/upload/v1613009941/avatars/y0k3r3kes5wovvrefnvw.jpg"
-    }
+    } 
 
     if(homePage.servicesBackground){
         servicesBackground = homePage.servicesBackground.url
-    } else {
-        servicesBackground = "https://res.cloudinary.com/agiletech3itf/image/upload/v1613009941/avatars/y0k3r3kes5wovvrefnvw.jpg"
-    }
+    } 
 
     if(homePage.productImageLeft){
         productImageLeft = homePage.productImageLeft.url
-    } else {
-        productImageLeft = "https://res.cloudinary.com/agiletech3itf/image/upload/v1613009941/avatars/y0k3r3kes5wovvrefnvw.jpg"
-    }
+    } 
 
     if(homePage.productImageRight){
         productImageRight = homePage.productImageRight.url
-    } else {
-        productImageRight = "https://res.cloudinary.com/agiletech3itf/image/upload/v1613009941/avatars/y0k3r3kes5wovvrefnvw.jpg"
     }
 
     useEffect(() => {

@@ -22,50 +22,33 @@ const UpdateHome = ({history}) => {
     const [prodImgLeftPreview, setProdImgLeftPreview] = useState('')
     const [prodImgRightPreview, setProdImgRightPreview] = useState('')
     
-    //old images
-    const [oldTitleBg, setOldTitleBg] = useState('')
-    const [oldServicesBg, setOldServicesBg] = useState('')
-    const [oldProdImageLeft, setOldProdImageLeft] = useState('')
-    const [oldProdImageRight, setOldProdImageRight] = useState('')
-    
     const alert = useAlert();
     const dispatch = useDispatch();
 
-    const { error, homePage } = useSelector(state => state.homeDetails) 
-    const { loading, error: updateError, isUpdated } = useSelector(state => state.home)
+    const { error, loading, homePage } = useSelector(state => state.homeDetails) 
+    const { loading: updateLoading, error: updateError, isUpdated } = useSelector(state => state.home)
 
     let var_titleBackground, var_servicesBackground, var_productImageLeft, var_productImageRight = ""
 
     if(homePage.titleBackground){
         var_titleBackground = homePage.titleBackground.url
     } 
-    // else {
-    //     var_titleBackground = "https://res.cloudinary.com/agiletech3itf/image/upload/v1613009941/avatars/y0k3r3kes5wovvrefnvw.jpg"
-    // }
 
     if(homePage.servicesBackground){
         var_servicesBackground = homePage.servicesBackground.url
     } 
-    // else {
-    //     var_servicesBackground = "https://res.cloudinary.com/agiletech3itf/image/upload/v1613009941/avatars/y0k3r3kes5wovvrefnvw.jpg"
-    // }
 
     if(homePage.productImageLeft){
         var_productImageLeft = homePage.productImageLeft.url
     } 
-    // else {
-    //     var_productImageLeft = "https://res.cloudinary.com/agiletech3itf/image/upload/v1613009941/avatars/y0k3r3kes5wovvrefnvw.jpg"
-    // }
 
     if(homePage.productImageRight){
         var_productImageRight = homePage.productImageRight.url
-    } 
-    // else {
-    //     var_productImageRight = "https://res.cloudinary.com/agiletech3itf/image/upload/v1613009941/avatars/y0k3r3kes5wovvrefnvw.jpg"
-    // }
-
+    }
     
     useEffect(() => {
+
+        dispatch(getHomeDetails())
 
         if(homePage){
             setProductDescription(homePage.productDescription)
@@ -74,8 +57,6 @@ const UpdateHome = ({history}) => {
             setServicesBgPreview(var_servicesBackground)
             setProdImgLeftPreview(var_productImageLeft)
             setProdImgRightPreview(var_productImageRight)
-        }else{
-            dispatch(getHomeDetails())
         }
 
         if(error) {
@@ -99,7 +80,7 @@ const UpdateHome = ({history}) => {
             })
         }
 
-    }, [dispatch, alert, error, history, updateError, isUpdated, homePage])
+    }, [dispatch, alert, error, history, updateError, isUpdated])
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -170,116 +151,119 @@ const UpdateHome = ({history}) => {
     return (
         <Fragment>
             <MetaData title={'Update Home'}/>
-                <Fragment>
-                    <div className="login-clean">
-                        <form method="put" onSubmit={submitHandler} encType='multipart/form-data'  style={{width: '90%'}}>
-                            <h2 className="sr-only">Update Homepage</h2>
-                            <div className="div-forgot-password">
-                                <h3 className="forgot-password-heading">Update Homepage </h3>
-                            </div>
-                            <div className="form-group">
-                                <h6>Main Background</h6>
-                                <figure className='mr-3 item-rtl'>
-                                    <img 
-                                        src={titleBgPreview}
-                                        className='small-avatar'
-                                        alt='Main Background Preview'
+                {loading ? <Loader/> : (
+                    <Fragment>
+                        <div className="login-clean">
+                            <form method="put" onSubmit={submitHandler} encType='multipart/form-data'  style={{width: '90%'}}>
+                                <h2 className="sr-only">Update Homepage</h2>
+                                <div className="div-forgot-password">
+                                    <h3 className="forgot-password-heading">Update Homepage </h3>
+                                </div>
+                                <div className="form-group">
+                                    <h6>Main Background</h6>
+                                    <figure className='mr-3 item-rtl'>
+                                        <img 
+                                            src={titleBgPreview}
+                                            className='small-avatar'
+                                            alt='Main Background Preview'
+                                        />
+                                    </figure>
+                                    <input 
+                                        type="file" 
+                                        id="titleBackground" 
+                                        name="titleBackground" 
+                                        accept="images/*"
+                                        onChange={changeTitleBg}
                                     />
-                                </figure>
-                                <input 
-                                    type="file" 
-                                    id="titleBackground" 
-                                    name="titleBackground" 
-                                    accept="images/*"
-                                    onChange={changeTitleBg}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <h6>Product Description</h6>
-                                <input 
-                                    type="text" 
-                                    className="form-control" 
-                                    id="productDescription" 
-                                    name="productDescription" 
-                                    value={productDescription}
-                                    onChange={(e) => setProductDescription(e.target.value)}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <h6>Product Image (Left)</h6>
-                                <figure className='mr-3 item-rtl'>
-                                    <img 
-                                        src={prodImgLeftPreview}
-                                        className='small-avatar'
-                                        alt='Product Image Left Preview'
+                                </div>
+                                <div className="form-group">
+                                    <h6>Product Description</h6>
+                                    <input 
+                                        type="text" 
+                                        className="form-control" 
+                                        id="productDescription" 
+                                        name="productDescription" 
+                                        placeholder={productDescription}
+                                        value={productDescription}
+                                        onChange={(e) => setProductDescription(e.target.value)}
                                     />
-                                </figure>
-                                <input 
-                                    type="file" 
-                                    id="productImageLeft" 
-                                    name="productImageLeft" 
-                                    accept="images/*"
-                                    onChange={changeProdImgLeft}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <h6>Product Image (Right)</h6>
-                                <figure className='mr-3 item-rtl'>
-                                    <img 
-                                        src={prodImgRightPreview}
-                                        className='small-avatar'
-                                        alt='Avatar Preview'
+                                </div>
+                                <div className="form-group">
+                                    <h6>Product Image (Left)</h6>
+                                    <figure className='mr-3 item-rtl'>
+                                        <img 
+                                            src={prodImgLeftPreview}
+                                            className='small-avatar'
+                                            alt='Product Image Left Preview'
+                                        />
+                                    </figure>
+                                    <input 
+                                        type="file" 
+                                        id="productImageLeft" 
+                                        name="productImageLeft" 
+                                        accept="images/*"
+                                        onChange={changeProdImgLeft}
                                     />
-                                </figure>
-                                <input 
-                                    type="file" 
-                                    id="productImageRight" 
-                                    name="productImageRight" 
-                                    accept="images/*"
-                                    onChange={changeProdImgRight}
-                                />
-                            </div>
-                            
-                            <div className="form-group">
-                                <h6>Services Description</h6>
-                                <input 
-                                    type="text" 
-                                    className="form-control" 
-                                    id="servicesDescription" 
-                                    name="servicesDescription" 
-                                    value={servicesDescription}
-                                    onChange={(e) => setServicesDescription(e.target.value)}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <h6>Services Background</h6>
-                                <figure className='mr-3 item-rtl'>
-                                    <img 
-                                        src={servicesBgPreview}
-                                        className='small-avatar'
-                                        alt='Avatar Preview'
+                                </div>
+                                <div className="form-group">
+                                    <h6>Product Image (Right)</h6>
+                                    <figure className='mr-3 item-rtl'>
+                                        <img 
+                                            src={prodImgRightPreview}
+                                            className='small-avatar'
+                                            alt='Avatar Preview'
+                                        />
+                                    </figure>
+                                    <input 
+                                        type="file" 
+                                        id="productImageRight" 
+                                        name="productImageRight" 
+                                        accept="images/*"
+                                        onChange={changeProdImgRight}
                                     />
-                                </figure>
-                                <input 
-                                    type="file" 
-                                    id="servicesBackground" 
-                                    name="servicesBackground" 
-                                    accept="images/*"
-                                    onChange={changeServicesBg}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <button 
-                                    className="btn btn-primary btn-block" 
-                                    type="submit"
-                                    disabled={loading ? true : false}
-                                >
-                                    Update Home
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </Fragment>
+                                </div>
+                                
+                                <div className="form-group">
+                                    <h6>Services Description</h6>
+                                    <input 
+                                        type="text" 
+                                        className="form-control" 
+                                        id="servicesDescription" 
+                                        name="servicesDescription" 
+                                        value={servicesDescription}
+                                        onChange={(e) => setServicesDescription(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <h6>Services Background</h6>
+                                    <figure className='mr-3 item-rtl'>
+                                        <img 
+                                            src={servicesBgPreview}
+                                            className='small-avatar'
+                                            alt='Avatar Preview'
+                                        />
+                                    </figure>
+                                    <input 
+                                        type="file" 
+                                        id="servicesBackground" 
+                                        name="servicesBackground" 
+                                        accept="images/*"
+                                        onChange={changeServicesBg}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <button 
+                                        className="btn btn-primary btn-block" 
+                                        type="submit"
+                                        disabled={updateLoading ? true : false}
+                                    >
+                                        Update Home
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </Fragment>
+                )}
         </Fragment>
     )
 }

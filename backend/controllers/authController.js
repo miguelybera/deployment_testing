@@ -192,7 +192,6 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
         contactNumber: req.body.contactNumber
     }
 
-    // Update avatar: TODO
     if(req.body.avatar !== '') {
         const user = await User.findById(req.user.id);
 

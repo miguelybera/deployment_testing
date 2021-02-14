@@ -42,6 +42,7 @@ const Home = () => {
 
     useEffect(() => {
 
+        console.log(homePage.titleBackground)
         dispatch(getHomeDetails())
         
         if(error){

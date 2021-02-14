@@ -5,7 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import { productReducers, productReducer, productDetailsReducer, newProductReducer } from './reducers/productReducers'
 import { authReducer, userReducer, forgotPasswordReducer } from './reducers/userReducers'
 import { newInquiryReducer, listInquiryReducer, inquiryDetailsReducer, inquiryReducer } from './reducers/inquiryReducers'
-import { homeDetailsReducer } from './reducers/websiteReducers'
+import { homeDetailsReducer, homeReducer } from './reducers/websiteReducers'
 
 
 const reducer = combineReducers({
@@ -23,7 +23,8 @@ const reducer = combineReducers({
     inquiry: inquiryReducer,
     inquiryDetails: inquiryDetailsReducer,
     
-    homeDetails: homeDetailsReducer
+    homeDetails: homeDetailsReducer,
+    home: homeReducer
 })
 
 let initialState = {} //contains all the data we want to put in this state just before loading the application

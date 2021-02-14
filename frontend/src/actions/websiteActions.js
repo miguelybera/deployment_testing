@@ -35,7 +35,33 @@ export const getHomeDetails = () => async(dispatch) => {
     }
 }
 
+// Update home (ADMIN)
+export const updateHome = (homeData) => async(dispatch) => {
+    try{
+        dispatch({
+            type: UPDATE_HOME_REQUEST
+        })
 
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }
+        const { data } = await axios.put(`/api/v1/admin/updatehome`, homeData, config)
+
+        dispatch({
+            type: UPDATE_HOME_SUCCESS,
+            payload: data.success
+        })
+    }
+    catch(error){
+        dispatch({
+            type: UPDATE_HOME_FAIL,
+            payload: error.response.data.message
+            }
+        )
+    }
+}
 
 //clear errors
 export const clearErrors = () => async(dispatch) => {

@@ -7,13 +7,15 @@ import Sidebar from './Sidebar'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateInquiry, listInquiry, clearErrors } from '../../actions/inquiryActions'
+import { UPDATE_INQUIRY_RESET } from '../../constants/inquiryConstants'
 
-const ListArchives = () => {
+const ListArchives = ({history}) => {
 
     const alert = useAlert();
     const dispatch = useDispatch();
 
     const { loading, error, inquiries } = useSelector(state => state.listInquiry)
+    const { isUpdated } = useSelector(state => state.inquiry)
 
     useEffect(() => {
         dispatch(listInquiry());
@@ -22,7 +24,16 @@ const ListArchives = () => {
             alert.error(error)
             dispatch(clearErrors())
         }
-    }, [dispatch, alert, error])
+        
+        if(isUpdated){
+            alert.success('Inquiry status has been updated successfully.');
+            history.push('/admin/archives')
+
+            dispatch({
+                type: UPDATE_INQUIRY_RESET
+            })
+        }
+    }, [dispatch, alert, error, isUpdated, history])
 
     const updateInquiryHandler = (id, inquiryStatus) => { 
         const formData = new FormData();
@@ -77,9 +88,12 @@ const ListArchives = () => {
                     companyName: inquiry.companyName,
                     concernType: String(inquiry.concernType),
                     actions:   <Fragment>
-                                <Link to={`/admin/inquiry/${inquiry._id}`} className='btn btn-primary'>
+                                <Link to={`/admin/inquiry/${inquiry._id}`} className='btn btn-primary py-1 px-2 ml-2'>
                                     <i className='fa fa-eye'></i>
                                 </Link>
+                                <button className="btn btn-secondary py-1 px-2 ml-2" onClick={() => updateInquiryHandler(inquiry._id, "Unresolved")}>
+                                    <i className='fa fa-undo'></i>
+                                </button>
                                 <button className="btn btn-danger py-1 px-2 ml-2" onClick={() => updateInquiryHandler(inquiry._id, "Deleted")}>
                                     <i className='fa fa-trash'></i>
                                 </button>

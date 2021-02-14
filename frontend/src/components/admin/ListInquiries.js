@@ -7,15 +7,16 @@ import Sidebar from './Sidebar'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateInquiry, listInquiry, clearErrors } from '../../actions/inquiryActions'
-// import { DELETE_INQUIRY_RESET } from '../../constants/inquiryConstants'
+import { UPDATE_INQUIRY_RESET } from '../../constants/inquiryConstants'
 
-const ListOrders = () => {
+const ListOrders = ({history}) => {
 
     const alert = useAlert();
     const dispatch = useDispatch();
 
     const { loading, error, inquiries } = useSelector(state => state.listInquiry)
-    
+    const { isUpdated } = useSelector(state => state.inquiry)
+
     useEffect(() => {
         dispatch(listInquiry());
 
@@ -24,9 +25,15 @@ const ListOrders = () => {
             dispatch(clearErrors())
         }
 
-        // if(isDeleted) {}
+        if(isUpdated){
+            alert.success('Inquiry has been moved to trash successfully.');
+            history.push('/admin/quotations')
 
-    }, [dispatch, alert, error])
+            dispatch({
+                type: UPDATE_INQUIRY_RESET
+            })
+        }
+    }, [dispatch, alert, error, isUpdated, history])
 
     const updateInquiryHandler = (id, inquiryStatus) => { 
         const formData = new FormData();
@@ -73,7 +80,7 @@ const ListOrders = () => {
          }
 
          inquiries.forEach(inquiry => {
-             if(inquiry.concernType==='Inquiry' && inquiry.inquiryStatus !== "Deleted"){
+             if(inquiry.concernType==='Inquiry' && (inquiry.inquiryStatus !== "Deleted" && inquiry.inquiryStatus !== "Resolved")){
                 data.rows.push({
                     id: inquiry._id,
                     firstName: inquiry.firstName,
@@ -83,7 +90,7 @@ const ListOrders = () => {
                         ? <p style={{ color: 'green' }}>{inquiry.inquiryStatus}</p>
                         :  <p style={{ color: 'red' }}>{inquiry.inquiryStatus}</p>,
                     actions:   <Fragment>
-                                <Link to={`/admin/inquiry/${inquiry._id}`} className='btn btn-primary'>
+                                <Link to={`/admin/inquiry/${inquiry._id}`} className='btn btn-primary py-1 px-2 ml-2'>
                                     <i className='fa fa-eye'></i>
                                 </Link>
                                 <button className="btn btn-danger py-1 px-2 ml-2" onClick={() => updateInquiryHandler(inquiry._id, "Deleted")}>

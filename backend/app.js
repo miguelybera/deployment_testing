@@ -16,11 +16,13 @@ const products = require('./routes/product');
 const auth = require('./routes/auth');
 const inquiry = require('./routes/inquiry');
 const homePage = require('./routes/homePage');
+const about = require('./routes/about');
 
 app.use('/api/v1/', products)
 app.use('/api/v1/', auth)
 app.use('/api/v1/', inquiry)
 app.use('/api/v1/', homePage)
+app.use('/api/v1/', about)
 
 
 //Middleware to handle errors

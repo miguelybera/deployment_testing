@@ -14,10 +14,10 @@ const Register = ( { history } ) => {
         confirmPassword: ''
     })
 
-    const { name, email, contactNumber, password, confirmPassword } = user;
+    const { name, email, contactNumber, password, confirmPassword, } = user;
     const [avatar, setAvatar] = useState('');
     const [avatarPreview, setAvatarPreview] = useState('images/default_avatar.png');
-    const [useDefaultImage, setDefaultImage] = useState('');
+    const [useDefaultImage, setUseDefaultImage] = useState('')
 
     const alert = useAlert();
     const dispatch = useDispatch();
@@ -25,6 +25,9 @@ const Register = ( { history } ) => {
     const { isAuthenticated, error, loading } = useSelector(state => state.auth);
 
     useEffect(() => {
+
+        console.log(useDefaultImage)
+
         if(isAuthenticated) {
             history.push('/')
         }
@@ -53,34 +56,36 @@ const Register = ( { history } ) => {
 
     const onChange = e => {
         
-        if(e.target.name === 'avatar') {
-
-            const reader = new FileReader();
-
-            reader.onload = () => {
-                if(reader.readyState === 2){
-                    setAvatarPreview(reader.result)
-                    setAvatar(reader.result)
-                }
-            }
-
-            reader.readAsDataURL(e.target.files[0])
-
-        } else if(e.target.name === 'useDefaultImage') {
+        if(e.target.name === 'useDefaultImage') {
             let chkbox = document.getElementById('useDefaultImage')
 
             if(chkbox.checked == true) {
-                setDefaultImage(true)
+                setUseDefaultImage("True")
             }
             else{
-                setDefaultImage(false)
+                setUseDefaultImage("False")
             }
-        }
-        else {
-            setUser({
-                ...user,
-                [e.target.name]: e.target.value
-            })
+        } else {
+            if(e.target.name === 'avatar') {
+
+                const reader = new FileReader();
+    
+                reader.onload = () => {
+                    if(reader.readyState === 2){
+                        setAvatarPreview(reader.result)
+                        setAvatar(reader.result)
+                    }
+                }
+    
+                reader.readAsDataURL(e.target.files[0])
+    
+            }
+            else {
+                setUser({
+                    ...user,
+                    [e.target.name]: e.target.value
+                })
+            }
         }
     }
 
@@ -165,6 +170,7 @@ const Register = ( { history } ) => {
                             name="avatar" 
                             accept="images/*"
                             onChange={onChange}
+                            disabled={useDefaultImage ? true : false}
                         />
                     </div>
                     <div className="form-group">

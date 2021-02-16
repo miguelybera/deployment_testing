@@ -76,7 +76,7 @@ const UpdateInquiry = ( { match, history } ) => {
                                                 value={inquiryStatus}
                                                 onChange={(e) => setInquiryStatus(e.target.value)}
                                             >
-                                                <optgroup label="This is a group">
+                                                <optgroup>
                                                     <option value=""> - </option>
                                                     <option value="Unresolved">Unresolved</option>
                                                     <option value="Resolved">Resolved</option>
@@ -95,12 +95,12 @@ const UpdateInquiry = ( { match, history } ) => {
                                 <div className="m-5 concern-div"></div>
                                 <div className="m-5 concern-info-container">
                                     <h3>Message Information</h3>
-                                    <p><strong>Name / Position:</strong>{inquiry.firstName} {inquiry.lastName} / {inquiry.position} </p>
-                                    <p><strong>Company Name:</strong>{inquiry.companyName}</p>
+                                    <p><strong>Name / Position: </strong>{inquiry.firstName} {inquiry.lastName} / {inquiry.position} </p>
+                                    <p><strong>Company Name: </strong>{inquiry.companyName}</p>
                                     <p><strong>Email: </strong>{inquiry.customerEmail}</p>
                                     <p><strong>Contact No.:</strong>{inquiry.contactNumber}</p>
-                                    <p><strong>Concern Type:</strong>{inquiry.concernType}</p>
-                                    <p><strong>Message:</strong></p>
+                                    <p><strong>Concern Type: </strong>{inquiry.concernType}</p>
+                                    <p><strong>Message: </strong></p>
                                     <p>{inquiry.customerMessage}</p>
                                 </div>
                                 <div className="m-5">

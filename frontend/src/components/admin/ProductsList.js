@@ -112,7 +112,6 @@ const ProductsList = ( {history} ) => {
                                 bordered
                                 striped
                                 hover
-                                scrollX
                                 entries={5}
                             />
                         )}

@@ -2,6 +2,7 @@ const Inquiry = require('../models/inquiry');
 const ErrorHandler = require('../utils/errorHandler');
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
 const sendEmailInquiry = require('../utils/sendEmailInquiry');
+const sendEmailToSender = require('../utils/sendEmailToSender');
 
 
 // Create new Inquiry => /api/v1/inquiry/new
@@ -42,16 +43,25 @@ exports.newInquiry = catchAsyncErrors( async (req, res, next) => {
          employeeEmail = 'josemiguel.ybera.iics@ust.edu.ph';
     }
 
-    const newMessage = `\tFull Name: ${lastName}, ${firstName} \n
-                      \tCustomer Email: ${customerEmail} \n
-                      \tCompany Name: ${companyName} \n
-                      \tContact Number: ${contactNumber} \n
-                      \tPosition: ${position} \n
-                      \tMessage: ${customerMessage} \n`
+    const newMessage = `Message: \n
+                        Full Name: ${lastName}, ${firstName}\n
+                        Customer Email: ${customerEmail}\n
+                        Company Name: ${companyName}\n
+                        Contact Number: ${contactNumber}\n
+                        Position: ${position}\n
+                        Concern: ${concernType}\n
+                        Message: ${customerMessage}\n`
+    const messageToSender = `Your message has been sent to our company with the details:\n
+                            ${newMessage}`
         await sendEmailInquiry({
             email: employeeEmail,
             subject: `New Customer Inquiry (Concern Type: ${req.body.concernType})`,
             newMessage
+        })
+        await sendEmailToSender({
+            email: customerEmail,
+            subject: `Message Sent to AGILE`,
+            messageToSender
         })
 
     res.status(200).json({

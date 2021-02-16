@@ -27,7 +27,7 @@ const ListAbout = ({history}) => {
         
         if(isUpdated){
             alert.success('About Us information has been updated successfully.');
-            history.push('/admin/archives')
+            history.push('/admin/about')
 
             dispatch({
                 type: UPDATE_ABOUT_RESET
@@ -38,11 +38,6 @@ const ListAbout = ({history}) => {
     const setAboutData = () => {
         const data = { 
             columns: [
-                {
-                    label: 'About ID',
-                    field: 'id',
-                    sort: 'asc'
-                },
                 {
                     label: 'Title',
                     field: 'title',
@@ -64,7 +59,6 @@ const ListAbout = ({history}) => {
 
          abouts.forEach(about => {
             data.rows.push({
-                id: about._id,
                 title: about.title,
                 description: about.description,
                 actions:   <Fragment>

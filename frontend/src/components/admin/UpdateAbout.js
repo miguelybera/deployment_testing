@@ -41,7 +41,7 @@ const UpdateAbout = ({ match, history }) => {
 
         if(isUpdated) {
             history.push('/admin/about');
-            alert.success('Product updated successfully.')
+            alert.success('Information updated successfully.')
 
             dispatch({
                 type: UPDATE_ABOUT_RESET

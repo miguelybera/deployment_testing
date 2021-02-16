@@ -53,34 +53,30 @@ const ListTrash = ( { history} ) => {
         const data = { 
             columns: [
                 {
-                    label: 'Inquiry ID',
-                    field: 'id',
-                    sort: 'asc'
+                    label: 'Date / Time',
+                    field: 'createdAt',
+                    sort: 'desc'
                 },
                 {
                     label: 'Last Name',
-                    field: 'lastName',
-                    sort: 'asc'
+                    field: 'lastName'
                 },
                 {
                     label: 'First Name',
-                    field: 'firstName',
-                    sort: 'asc'
+                    field: 'firstName'
                 },
                 {
                     label: 'Company Name',
-                    field: 'companyName',
-                    sort: 'asc'
+                    field: 'companyName'
                 },
+                
                 {
-                    label: 'Concern Type',
-                    field: 'concernType',
-                    sort: 'asc'
+                    label: 'Status',
+                    field: 'inquiryStatus'
                 },
                 {
                     label: 'Actions',
-                    field: 'actions',
-                    sort: 'asc'
+                    field: 'actions'
                 }
             ],
             rows: []
@@ -89,7 +85,7 @@ const ListTrash = ( { history} ) => {
          inquiries.forEach(inquiry => {
              if(inquiry.inquiryStatus==='Deleted'){
                 data.rows.push({
-                    id: inquiry._id,
+                    createdAt: inquiry.createdAt,
                     firstName: inquiry.firstName,
                     lastName: inquiry.lastName,
                     companyName: inquiry.companyName,

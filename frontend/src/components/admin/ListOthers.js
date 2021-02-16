@@ -46,40 +46,30 @@ const ListOrders = ({history}) => {
         const data = { 
             columns: [
                 {
-                    label: 'Created At',
+                    label: 'Date / Time',
                     field: 'createdAt',
-                    sort: 'asc'
-                },
-                {
-                    label: 'Inquiry ID',
-                    field: 'id',
-                    sort: 'asc'
+                    sort: 'desc'
                 },
                 {
                     label: 'Last Name',
-                    field: 'lastName',
-                    sort: 'asc'
+                    field: 'lastName'
                 },
                 {
                     label: 'First Name',
-                    field: 'firstName',
-                    sort: 'asc'
+                    field: 'firstName'
                 },
                 {
                     label: 'Company Name',
-                    field: 'companyName',
-                    sort: 'asc'
+                    field: 'companyName'
                 },
                 
                 {
                     label: 'Status',
-                    field: 'inquiryStatus',
-                    sort: 'asc'
+                    field: 'inquiryStatus'
                 },
                 {
                     label: 'Actions',
-                    field: 'actions',
-                    sort: 'asc'
+                    field: 'actions'
                 }
             ],
             rows: []
@@ -89,7 +79,6 @@ const ListOrders = ({history}) => {
              if(inquiry.concernType==='Others'  && (inquiry.inquiryStatus !== "Deleted" && inquiry.inquiryStatus !== "Resolved")){
                 data.rows.push({
                     createdAt: inquiry.createdAt,
-                    id: inquiry._id,
                     firstName: inquiry.firstName,
                     lastName: inquiry.lastName,
                     companyName: inquiry.companyName,

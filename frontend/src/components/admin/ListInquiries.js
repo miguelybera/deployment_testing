@@ -8,6 +8,9 @@ import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateInquiry, listInquiry, clearErrors } from '../../actions/inquiryActions'
 import { UPDATE_INQUIRY_RESET } from '../../constants/inquiryConstants'
+// import "mdbreact/dist/css/mdb.css";
+// import "@fortawesome/fontawesome-free/css/all.min.css";
+// import "bootstrap-css-only/css/bootstrap.min.css";
 
 const ListOrders = ({history}) => {
 
@@ -46,40 +49,30 @@ const ListOrders = ({history}) => {
         const data = { 
             columns: [
                 {
-                    label: 'Created At',
+                    label: 'Date / Time',
                     field: 'createdAt',
-                    sort: 'asc'
-                },
-                {
-                    label: 'Inquiry ID',
-                    field: 'id',
-                    sort: 'asc'
+                    sort: 'desc'
                 },
                 {
                     label: 'Last Name',
-                    field: 'lastName',
-                    sort: 'asc'
+                    field: 'lastName'
                 },
                 {
                     label: 'First Name',
-                    field: 'firstName',
-                    sort: 'asc'
+                    field: 'firstName'
                 },
                 {
                     label: 'Company Name',
-                    field: 'companyName',
-                    sort: 'asc'
+                    field: 'companyName'
                 },
                 
                 {
                     label: 'Status',
-                    field: 'inquiryStatus',
-                    sort: 'asc'
+                    field: 'inquiryStatus'
                 },
                 {
                     label: 'Actions',
-                    field: 'actions',
-                    sort: 'asc'
+                    field: 'actions'
                 }
             ],
             rows: []
@@ -89,11 +82,9 @@ const ListOrders = ({history}) => {
              if(inquiry.concernType==='Inquiry' && (inquiry.inquiryStatus !== "Deleted" && inquiry.inquiryStatus !== "Resolved")){
                 data.rows.push({
                     createdAt: inquiry.createdAt,
-                    id: inquiry._id,
                     firstName: inquiry.firstName,
                     lastName: inquiry.lastName,
                     companyName: inquiry.companyName,
-                    
                     inquiryStatus: inquiry.inquiryStatus && (String(inquiry.inquiryStatus).includes('Processing') || String(inquiry.inquiryStatus).includes('Resolved'))
                         ? <p style={{ color: 'green' }}>{inquiry.inquiryStatus}</p>
                         :  <p style={{ color: 'red' }}>{inquiry.inquiryStatus}</p>,

@@ -18,6 +18,15 @@ exports.newInquiry = catchAsyncErrors( async (req, res, next) => {
         customerMessage
     } = req.body;
 
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const yyyy = today.getFullYear(); 
+    const hrs = String(today.getHours()).padStart(2,'0');
+    const minutes = String(today.getMinutes()).padStart(2,'0');
+    const todayDate = mm + '/' + dd + '/' + yyyy;
+    const todayTime = hrs +':'+ minutes;
+
     const inquiry = await Inquiry.create({
         firstName,
         lastName,
@@ -27,8 +36,7 @@ exports.newInquiry = catchAsyncErrors( async (req, res, next) => {
         position,
         concernType,
         customerMessage,
-        sentAt: Date.now()
-
+        createdAt : todayDate + ' ' + todayTime
     })
     let employeeEmail = ''
 
@@ -42,7 +50,9 @@ exports.newInquiry = catchAsyncErrors( async (req, res, next) => {
     if(concernType === 'Others'){
          employeeEmail = 'josemiguel.ybera.iics@ust.edu.ph';
     }
-
+    
+    
+    
     const newMessage = `Message: \n
                         Full Name: ${lastName}, ${firstName}\n
                         Customer Email: ${customerEmail}\n
@@ -50,7 +60,9 @@ exports.newInquiry = catchAsyncErrors( async (req, res, next) => {
                         Contact Number: ${contactNumber}\n
                         Position: ${position}\n
                         Concern: ${concernType}\n
-                        Message: ${customerMessage}\n`
+                        Message: ${customerMessage}\n
+                        Date Sent: ${todayDate}\n
+                        Time Sent: ${todayTime}`
     const messageToSender = `Your message has been sent to our company with the details:\n
                             ${newMessage}`
         await sendEmailInquiry({

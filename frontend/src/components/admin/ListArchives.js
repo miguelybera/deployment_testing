@@ -46,6 +46,11 @@ const ListArchives = ({history}) => {
         const data = { 
             columns: [
                 {
+                    label: 'Created At',
+                    field: 'createdAt',
+                    sort: 'asc'
+                },
+                {
                     label: 'Inquiry ID',
                     field: 'id',
                     sort: 'asc'
@@ -82,6 +87,7 @@ const ListArchives = ({history}) => {
          inquiries.forEach(inquiry => {
              if(inquiry.inquiryStatus==='Resolved'){
                 data.rows.push({
+                    createdAt: inquiry.createdAt,
                     id: inquiry._id,
                     firstName: inquiry.firstName,
                     lastName: inquiry.lastName,

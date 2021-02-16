@@ -3,7 +3,7 @@ import MetaData from './layout/MetaData'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from  'react-redux'
 import { createInquiry, clearErrors } from './../actions/inquiryActions'
-
+import { INQUIRY_RESET } from './../constants/inquiryConstants'
 import '../css/contact.css'
 
 const Contact = ( { history } ) => {
@@ -22,13 +22,20 @@ const Contact = ( { history } ) => {
 
     const { success, error, loading } = useSelector(state => state.newInquiry);
 
+    var errorCount = 0;
+    var loopCount = 0; 
+
     useEffect(() => {
         if(success){
             history.push('/confirmation')
-        }
-        else
-        {
-            alert.error('Please complete the form');
+
+            dispatch({
+                type: INQUIRY_RESET
+            })
+        } 
+
+        if(error){ //in reducer, error: true instead of error: action.payload
+            alert.error('Please complete the form.');
             dispatch(clearErrors());
         }
 
@@ -47,6 +54,7 @@ const Contact = ( { history } ) => {
         formData.set('contactNumber', contactNumber);
         formData.set('concernType', concernType);
         formData.set('customerMessage', customerMessage);
+
         dispatch(createInquiry(formData));
     }
 

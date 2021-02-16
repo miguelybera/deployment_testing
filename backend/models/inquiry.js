@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const validator = require('validator');
 
 const inquirySchema = mongoose.Schema({
 
@@ -12,7 +13,8 @@ const inquirySchema = mongoose.Schema({
     },
     customerEmail:{
         type: String,
-        required: true
+        required: true,
+        validate: [validator.isEmail, 'Please enter valid email address']
     },
     companyName:{
         type: String,
@@ -20,7 +22,9 @@ const inquirySchema = mongoose.Schema({
     },
     contactNumber:{
         type: String,
-        required: true
+        required: true,
+        minlength: [11, 'Your number cannot be lower than 11 characters'],
+        maxlength: [13, 'Your number cannot exceed 13 characters']
     },
     position:{
         type: String,

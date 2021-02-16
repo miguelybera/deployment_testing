@@ -4,7 +4,6 @@ import '../css/products.css'
 import '../css/bootstrap.min.css'
 import '../fonts/font-awesome.min.css'
 import MetaData from './layout/MetaData'
-import Loader from './layout/Loader'
 import { useAlert } from 'react-alert'
 import { useSelector, useDispatch } from 'react-redux'
 import { getProducts } from '../actions/productActions'
@@ -15,7 +14,7 @@ const AboutCompany = () => {
     const dispatch = useDispatch();
     const alert = useAlert();
 
-    const { loading, error, about } = useSelector(state => state.aboutDetails)
+    const { error, about } = useSelector(state => state.aboutDetails)
 
     useEffect(() => {
         dispatch(getProducts());
@@ -26,7 +25,7 @@ const AboutCompany = () => {
             dispatch(clearErrors())
         }
 
-    }, [dispatch, error]);
+    }, [dispatch, error, alert]);
 
     return (
             <Fragment>

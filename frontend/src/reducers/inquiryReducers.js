@@ -2,6 +2,7 @@ import {
     INQUIRY_REQUEST,
     INQUIRY_SUCCESS,
     INQUIRY_FAIL,
+    INQUIRY_RESET,
     LIST_INQUIRY_REQUEST,
     LIST_INQUIRY_SUCCESS,
     LIST_INQUIRY_FAIL,
@@ -24,28 +25,34 @@ export const newInquiryReducer = (state = {}, action) => {
         
         case INQUIRY_REQUEST:
             return {
-                ...state,
-                loading: true,
-                //error: undefined
+                loading: true
             }
 
         case INQUIRY_SUCCESS:
             return {
+                ...state,
                 loading: false,
                 success: action.payload
             }
 
         case INQUIRY_FAIL:
             return {
+                ...state,
                 loading: false,
-                error: action.payload
+                error: true,
+                success: false
+            }
+
+        case INQUIRY_RESET:
+            return {
+                ...state,
+                success: false
             }
 
         case CLEAR_ERRORS:
             return {
                 ...state,
                 error: null
-                //error: undefined
             }
         
         default:

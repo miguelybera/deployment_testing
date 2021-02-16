@@ -27,6 +27,7 @@ import {
     CLEAR_ERRORS
 } from '../constants/userConstants'
 
+
 export const authReducer = ( state = { user: {} }, action) => {
     switch(action.type){
         case LOGIN_REQUEST:
@@ -44,7 +45,8 @@ export const authReducer = ( state = { user: {} }, action) => {
                 ...state,
                 loading: false,
                 isAuthenticated: true,
-                user: action.payload
+                user: action.payload,
+                success: action.payload
             }
 
         case LOGOUT_SUCCESS:

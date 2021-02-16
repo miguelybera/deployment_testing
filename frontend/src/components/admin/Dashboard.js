@@ -54,9 +54,9 @@ const Dashboard = () => {
                                         <hr/><Link to="/admin/products">View details&nbsp;<i className="fa fa-angle-right"></i></Link>
                                     </div>
                                     <div className="users-container small-width">
-                                        <h3>Users</h3>
+                                        <h3>Register Account</h3>
                                         <h5>3</h5>
-                                        <hr/><Link to="/admin/users">View details&nbsp;<i className="fa fa-angle-right"></i></Link>
+                                        <hr/><Link to="/admin/register">View details&nbsp;<i className="fa fa-angle-right"></i></Link>
                                     </div>
                                 </Fragment>
                             )}

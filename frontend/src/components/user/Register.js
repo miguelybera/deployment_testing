@@ -22,12 +22,9 @@ const Register = ( { history } ) => {
     const alert = useAlert();
     const dispatch = useDispatch();
 
-    const { isAuthenticated, error, loading } = useSelector(state => state.auth);
+    const { isAuthenticated, error, loading, success } = useSelector(state => state.auth);
 
     useEffect(() => {
-
-        console.log(useDefaultImage)
-
         if(isAuthenticated) {
             history.push('/')
         }
@@ -35,9 +32,12 @@ const Register = ( { history } ) => {
         if(error){
             alert.error(error);
             dispatch(clearErrors());
-
         }
-    }, [dispatch, alert, isAuthenticated, error, history])
+
+        if(success){
+            alert.success('Account has been created successfully.')
+        }
+    }, [dispatch, alert, isAuthenticated, error, success, history])
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -59,7 +59,7 @@ const Register = ( { history } ) => {
         if(e.target.name === 'useDefaultImage') {
             let chkbox = document.getElementById('useDefaultImage')
 
-            if(chkbox.checked == true) {
+            if(chkbox.checked == true) { //if changed to ===, register would not work
                 setUseDefaultImage("True")
             }
             else{
@@ -119,12 +119,13 @@ const Register = ( { history } ) => {
                         />
                     </div>
                     <div className="form-group">
-                        <h6>Contact Number</h6>
+                        <h6>Contact Number (format: xxxx-xxx-xxxx)</h6>
                         <input 
-                            type="text" 
+                            type="tel" 
                             className="form-control" 
                             name="contactNumber" 
                             value={contactNumber}
+                            pattern="^\d{4}-\d{3}-\d{4}$"
                             onChange={onChange}
                         />
                     </div>

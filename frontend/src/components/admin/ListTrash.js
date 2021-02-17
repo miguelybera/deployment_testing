@@ -17,6 +17,8 @@ const ListTrash = ( { history} ) => {
     const { loading, error, inquiries } = useSelector(state => state.listInquiry)
     const { deleteError, isUpdated, isDeleted } = useSelector(state => state.inquiry)
 
+    let deleteAll = false
+
     useEffect(() => {
         dispatch(listInquiry());
 
@@ -39,7 +41,7 @@ const ListTrash = ( { history} ) => {
             })
         }
 
-        if(isDeleted){
+        if(isDeleted && deleteAll){
             alert.success('Inquiry has been deleted successfully.');
             history.push('/admin/trash')
 
@@ -122,6 +124,25 @@ const ListTrash = ( { history} ) => {
         }
     }
 
+    const emptyTrash = () => {
+        deleteAll = true 
+
+        let deletedInquiryCount = 0
+
+        inquiries.forEach(inquiry => {
+
+            if(inquiry.inquiryStatus === 'Deleted') {
+                deletedInquiryCount += 1
+                dispatch(deleteInquiry(inquiry._id))
+                deletedInquiryCount -= 1
+            }
+        })
+
+        if(deletedInquiryCount == 0){
+            alert.success('Trash has been emptied.'); //this is working
+        }
+    }
+
     return (
         <Fragment>
             <MetaData title={'Trash'}/>
@@ -131,7 +152,10 @@ const ListTrash = ( { history} ) => {
                 </div>
                 <div className="col-12 col-md-10">
                     <Fragment>
-                    <h1 className='mt-5'>Archives</h1>
+                    <h1 className='mt-5'>Trash</h1>
+                    <button className='btn btn-dark btn-sm text-capitalize' onClick={emptyTrash}>
+                        Empty Tash
+                    </button>
                     {loading? <Loader/> : (
                         <MDBDataTable
                             data={setInquiries()}

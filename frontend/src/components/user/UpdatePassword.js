@@ -49,7 +49,7 @@ const UpdatePassword = ( { history }) => {
     return (
         <Fragment>
             <MetaData title={'Change Password'}/>
-            <div className="login-clean">
+            <div className="login-clean" style={{paddingTop: '65px'}}>
                 <form method="post" onSubmit={submitHandler}>
                     <h2 className="sr-only">New Password</h2>
                     <div className="div-forgot-password">

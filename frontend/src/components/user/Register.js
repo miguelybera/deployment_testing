@@ -24,6 +24,12 @@ const Register = ( { history } ) => {
 
     const { isAuthenticated, error, loading, success } = useSelector(state => state.auth);
 
+    const [isChecked, setChecked] = useState('false')
+
+    const checkboxCheck = () => {
+        setChecked(!isChecked)
+    }
+
     useEffect(() => {
         if(isAuthenticated) {
             history.push('/')
@@ -65,6 +71,7 @@ const Register = ( { history } ) => {
             else{
                 setUseDefaultImage("False")
             }
+
         } else {
             if(e.target.name === 'avatar') {
 
@@ -92,7 +99,7 @@ const Register = ( { history } ) => {
     return (
         <Fragment>
             <MetaData title={'Register'}/>
-            <div className="login-clean">
+            <div className="login-clean" style={{paddingTop: '65px'}}>
                 <form method="post" onSubmit={submitHandler} encType='multipart/form-data'>
                     <h2 className="sr-only">Register New User</h2>
                     <div className="div-forgot-password">
@@ -155,7 +162,8 @@ const Register = ( { history } ) => {
                             id='useDefaultImage'
                             name='useDefaultImage'
                             value={useDefaultImage}
-                            onChange={onChange}/>
+                            onChange={onChange}
+                            onClick={checkboxCheck}/>
                             &nbsp;Use default image
                         <h6>Avatar</h6>
                         <figure className='mr-3 item-rtl'>
@@ -171,7 +179,7 @@ const Register = ( { history } ) => {
                             name="avatar" 
                             accept="images/*"
                             onChange={onChange}
-                            disabled={useDefaultImage ? true : false}
+                            disabled={isChecked ? false : true}
                         />
                     </div>
                     <div className="form-group">

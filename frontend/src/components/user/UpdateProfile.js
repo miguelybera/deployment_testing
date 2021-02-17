@@ -74,7 +74,7 @@ const UpdateProfile = ({ history }) => {
     return (
         <Fragment>
             <MetaData title={'Update Profile'}/>
-            <div className="login-clean">
+            <div className="login-clean" style={{paddingTop: '65px'}}>
                 <form method="post" onSubmit={submitHandler}>
                     <h2 className="sr-only">Update Profile</h2>
                     <div className="div-forgot-password">

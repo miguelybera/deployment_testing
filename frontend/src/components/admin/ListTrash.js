@@ -133,22 +133,24 @@ const ListTrash = ( { history} ) => {
     }
 
     const emptyTrash = () => {
-        deleteAll = true 
+        if(window.confirm("Are you sure you want to delete ALL messages? This cannot be undone.")){
+            deleteAll = true 
 
-        let deletedInquiryCount = 0
+            let deletedInquiryCount = 0
 
-        inquiries.forEach(inquiry => {
+            inquiries.forEach(inquiry => {
 
-            if(inquiry.inquiryStatus === 'Deleted') {
-                deletedInquiryCount += 1
-                dispatch(deleteInquiry(inquiry._id))
-                deletedInquiryCount -= 1
+                if(inquiry.inquiryStatus === 'Deleted') {
+                    deletedInquiryCount += 1
+                    dispatch(deleteInquiry(inquiry._id))
+                    deletedInquiryCount -= 1
+                }
+            })
+
+            if(deletedInquiryCount == 0){
+                alert.success('Trash has been emptied.'); //this is working
             }
-        })
-
-        if(deletedInquiryCount == 0){
-            alert.success('Trash has been emptied.'); //this is working
-        }
+        }   
     }
 
     return (

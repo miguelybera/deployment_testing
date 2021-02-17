@@ -14,7 +14,7 @@ const Profile = () => {
             {loading ? <Loader /> : (
                 <Fragment>
                     <MetaData title={'My Profile'} />
-                    <section className="profile-section">
+                    <section className="profile-section" style={{paddingTop: '65px'}}>
                         <h1>My Profile</h1>
                         <div className="profile-container">
                             <div className="image-container small-width">

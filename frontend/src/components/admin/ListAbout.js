@@ -4,6 +4,7 @@ import { MDBDataTable } from 'mdbreact'
 import MetaData from '../layout/MetaData'
 import Loader from '../layout/Loader'
 import '../../css/Sidebar-Menu.css'
+import '../../css/Sidebar-Menu-1.css'
 import '../../css/bootstrap.min.css'
 import '../../css/dashboard.css'
 import { useAlert } from 'react-alert'
@@ -18,6 +19,12 @@ const ListAbout = ({history}) => {
 
     const { loading, error, abouts } = useSelector(state => state.abouts)
     const { isUpdated } = useSelector(state => state.website)
+
+    const [isToggled, setToggled] = useState('false')
+
+    const handleToggle = () => {
+        setToggled(!isToggled)
+    }
 
     useEffect(() => {
         dispatch(getAboutDetails());
@@ -77,7 +84,7 @@ const ListAbout = ({history}) => {
     return (
         <Fragment>
             <MetaData title={'All About Us'}/>
-            <div id="wrapper"style={{paddingTop: '65px'}}>
+            <div id="wrapper" className={isToggled ? "toggled" : null} style={{paddingTop: '65px'}}>
                 <div id="sidebar-wrapper" style={{"background": "var(--gray-dark)", "color": "var(--white)"}}>
                     <ul className="sidebar-nav">
                         <li className="sidebar-brand">Agile Technodynamics</li>
@@ -93,8 +100,11 @@ const ListAbout = ({history}) => {
                 </div>
                 <div className="page-content-wrapper">
                     <div className="container-fluid">
+                        <a className="btn btn-link" role="button" id="menu-toggle" onClick={handleToggle}>
+                            <i className="fa fa-bars" style={{"color": "var(--gray-dark)"}}></i>
+                        </a>
                         <Fragment>
-                        <h1 className='mt-5'>Update About Us</h1>
+                        <h1 className='mt-3 mb-3'>Update About Us</h1>
                         {loading? <Loader/> : (
                             <MDBDataTable
                                 data={setAboutData()}

@@ -48,6 +48,12 @@ const UpdateHome = ({history}) => {
         var_productImageRight = homePage.productImageRight.url
     }
     
+    const [isToggled, setToggled] = useState('false')
+    
+    const handleToggle = () => {
+        setToggled(!isToggled)
+    }
+
     useEffect(() => {
 
         dispatch(getHomeDetails())
@@ -153,7 +159,7 @@ const UpdateHome = ({history}) => {
     return (
         <Fragment>
             <MetaData title={'Update Home'}/>
-            <div id="wrapper" style={{paddingTop: '65px'}}>
+            <div id="wrapper" className={isToggled ? "toggled" : null} style={{paddingTop: '65px'}}>
                 <div id="sidebar-wrapper" style={{"background": "var(--gray-dark)", "color": "var(--white)"}}>
                     <ul className="sidebar-nav">
                         <li className="sidebar-brand">Agile Technodynamics</li>
@@ -172,6 +178,9 @@ const UpdateHome = ({history}) => {
                     {loading ? <Loader/> : (
                         <Fragment>
                             <div className="login-clean">
+                                <a className="btn btn-link" role="button" id="menu-toggle" onClick={handleToggle} style={{marginTop: '-150px'}}>
+                                    <i className="fa fa-bars" style={{"color": "var(--gray-dark)"}}></i>
+                                </a>
                                 <form method="put" onSubmit={submitHandler} encType='multipart/form-data'  style={{maxWidth: '500px'}}>
                                     <h2 className="sr-only">Update Homepage</h2>
                                     <div className="div-forgot-password">

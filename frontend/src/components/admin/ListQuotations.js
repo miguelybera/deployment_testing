@@ -4,6 +4,9 @@ import { MDBDataTable } from 'mdbreact'
 import MetaData from '../layout/MetaData'
 import Loader from '../layout/Loader'
 import { useAlert } from 'react-alert'
+import '../../css/Sidebar-Menu.css'
+import '../../css/Sidebar-Menu-1.css'
+import '../../css/bootstrap.min.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateInquiry, listInquiry, clearErrors } from '../../actions/inquiryActions'
 import { UPDATE_INQUIRY_RESET } from '../../constants/inquiryConstants'
@@ -15,6 +18,12 @@ const ListOrders = ({history}) => {
 
     const { loading, error, inquiries } = useSelector(state => state.listInquiry)
     const { isUpdated } = useSelector(state => state.inquiry)
+
+    const [isToggled, setToggled] = useState('false')
+
+    const handleToggle = () => {
+        setToggled(!isToggled)
+    }
 
     useEffect(() => {
         dispatch(listInquiry());
@@ -104,7 +113,7 @@ const ListOrders = ({history}) => {
     return (
         <Fragment>
             <MetaData title={'Appointments'}/>
-            <div id="wrapper"style={{paddingTop: '65px'}}>
+            <div id="wrapper" className={isToggled ? "toggled" : null} style={{paddingTop: '65px'}}>
                 <div id="sidebar-wrapper" style={{"background": "var(--gray-dark)", "color": "var(--white)"}}>
                     <ul className="sidebar-nav">
                         <li className="sidebar-brand">Agile Technodynamics</li>
@@ -120,8 +129,11 @@ const ListOrders = ({history}) => {
                 </div>
                 <div className="page-content-wrapper">
                     <div className="container-fluid">
+                        <a className="btn btn-link" role="button" id="menu-toggle" onClick={handleToggle}>
+                            <i className="fa fa-bars" style={{"color": "var(--gray-dark)"}}></i>
+                        </a>
                         <Fragment>
-                        <h1 className='mt-5'>Inbox - Appointments</h1>
+                        <h1 className='mt-3 mb-3'>Inbox - Appointments</h1>
                         {loading? <Loader/> : (
                             <MDBDataTable
                                 data={setInquiries()}

@@ -1,9 +1,12 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { MDBDataTable } from 'mdbreact'
 import MetaData from '../layout/MetaData'
 import Loader from '../layout/Loader'
 import { useAlert } from 'react-alert'
+import '../../css/Sidebar-Menu.css'
+import '../../css/Sidebar-Menu-1.css'
+import '../../css/bootstrap.min.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteInquiry, updateInquiry, listInquiry, clearErrors } from '../../actions/inquiryActions'
 import { DELETE_INQUIRY_RESET, UPDATE_INQUIRY_RESET } from '../../constants/inquiryConstants'
@@ -17,6 +20,12 @@ const ListTrash = ( { history} ) => {
     const { deleteError, isUpdated, isDeleted } = useSelector(state => state.inquiry)
 
     let deleteAll = false
+
+    const [isToggled, setToggled] = useState('false')
+
+    const handleToggle = () => {
+        setToggled(!isToggled)
+    }
 
     useEffect(() => {
         dispatch(listInquiry());
@@ -145,7 +154,7 @@ const ListTrash = ( { history} ) => {
     return (
         <Fragment>
             <MetaData title={'Trash'}/>
-            <div id="wrapper" style={{paddingTop: '65px'}}>
+            <div id="wrapper" className={isToggled ? "toggled" : null} style={{paddingTop: '65px'}}>
                 <div id="sidebar-wrapper" style={{"background": "var(--gray-dark)", "color": "var(--white)"}}>
                     <ul className="sidebar-nav">
                         <li className="sidebar-brand">Agile Technodynamics</li>
@@ -161,11 +170,16 @@ const ListTrash = ( { history} ) => {
                 </div>
                 <div className="page-content-wrapper">
                     <div className="container-fluid">
+                        <a className="btn btn-link" role="button" id="menu-toggle" onClick={handleToggle}>
+                            <i className="fa fa-bars" style={{"color": "var(--gray-dark)"}}></i>
+                        </a>
                         <Fragment>
-                        <h1 className='mt-5'>Trash</h1>
-                        <button className='btn btn-dark btn-sm text-capitalize' onClick={emptyTrash}>
-                            Empty Tash
-                        </button>
+                        <h1 className='mt-3 mb-3'>Trash</h1>
+                        <Link>
+                            <button className='btn btn-dark btn-sm text-capitalize mb-5' onClick={emptyTrash}>
+                                Empty Trash
+                            </button>
+                        </Link>
                         {loading? <Loader/> : (
                             <MDBDataTable
                                 data={setInquiries()}

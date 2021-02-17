@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import MetaData from '../layout/MetaData'
 import '../../css/Sidebar-Menu.css'
+import '../../css/Sidebar-Menu-1.css'
 import '../../css/bootstrap.min.css'
 import { Link } from 'react-router-dom'
 import { useAlert } from 'react-alert'
@@ -20,6 +21,12 @@ const UpdateAbout = ({ match, history }) => {
     const { loading, error: updateError, isUpdated } = useSelector(state => state.website);
 
     const aboutId = match.params.id
+
+    const [isToggled, setToggled] = useState('false')
+    
+    const handleToggle = () => {
+        setToggled(!isToggled)
+    }
 
     useEffect(() => {
 
@@ -82,6 +89,9 @@ const UpdateAbout = ({ match, history }) => {
                     <div className="container-fluid">
                     <Fragment>
                         <div className="login-clean">
+                            <a className="btn btn-link" role="button" id="menu-toggle" onClick={handleToggle} style={{marginTop: '-150px'}}>
+                                <i className="fa fa-bars" style={{"color": "var(--gray-dark)"}}></i>
+                            </a>
                             <form method="put" onSubmit={submitHandler} encType='multipart/form-data' style={{maxWidth: '500px'}}>
                                 <h2 className="sr-only">Update About "{about.title}"</h2>
                                 <div className="div-forgot-password">

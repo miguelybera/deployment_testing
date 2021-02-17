@@ -19,6 +19,7 @@ const Header = () => {
 
         alert.success('Logged out successfully')
     }
+    
 
     return (
         <Fragment>

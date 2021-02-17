@@ -19,7 +19,7 @@ exports.getHomePage = catchAsyncErrors (async(req, res,next) =>{
     })
 })
 
-  // update homepage details => /api/v1/updatehome
+  // update homepage details => /api/v1/admin/updatehome
   exports.updateHomePage = catchAsyncErrors (async(req,res,next)=>{
     // if(!homePage){
     //     return res.status(404).json({

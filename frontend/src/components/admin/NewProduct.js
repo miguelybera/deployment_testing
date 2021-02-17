@@ -1,6 +1,8 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import MetaData from '../layout/MetaData'
-import Sidebar from './Sidebar'
+import '../../css/Sidebar-Menu.css'
+import '../../css/bootstrap.min.css'
+import { Link } from 'react-router-dom'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { newProduct, clearErrors } from '../../actions/productActions'
@@ -85,25 +87,37 @@ const NewProduct = ( { history } ) => {
     return (
         <Fragment>
             <MetaData title={'New Product'}/>
-            <div className="row">
-                <div className="col-4 col-md-2">
-                    <Sidebar/>
+            <div id="wrapper" style={{paddingTop: '65px'}}>
+                <div id="sidebar-wrapper" style={{"background": "var(--gray-dark)", "color": "var(--white)"}}>
+                    <ul className="sidebar-nav">
+                        <li className="sidebar-brand">Agile Technodynamics</li>
+                        <li> <Link to="/admin/dashboard">Dashboard</Link></li>
+                        <li> <Link to="/admin/inquiries">Inquiries</Link></li>
+                        <li> <Link to="/admin/quotations">Appointment</Link></li>
+                        <li> <Link to="/admin/others">Other Concerns</Link></li>
+                        <li> <Link to="/admin/archives">Archives</Link></li>
+                        <li> <Link to="/admin/trash">Trash</Link></li>
+                        <li> <Link to="/admin/products">Products</Link></li>
+                        <li> <Link to="/admin/settings">Settings</Link></li>
+                    </ul>
                 </div>
-                <div className="col-12 col-md-10">
+                <div className="page-content-wrapper">
+                    <div className="container-fluid">
                     <Fragment>
                     <div className="login-clean">
-                        <form method="post" onSubmit={submitHandler} encType='multipart/form-data'>
+                        <form method="post" onSubmit={submitHandler} encType='multipart/form-data' style={{maxWidth: '500px'}}>
                             <h2 className="sr-only">New Product</h2>
                             <div className="div-forgot-password">
                                 <h3 className="forgot-password-heading">New Product</h3>
                             </div>
                             <div className="form-group">
                                 <h6>Name</h6>
-                                <input 
+                                <textarea 
                                     type="text" 
                                     className="form-control" 
                                     name="product_name"
                                     value={name}
+                                    style={{width: '100%'}}
                                     onChange={(e) => setName(e.target.value)}
                                 />
                             </div>
@@ -113,6 +127,7 @@ const NewProduct = ( { history } ) => {
                                     type="text" 
                                     className="form-control" 
                                     name="product_name"
+                                    style={{width: '100%', height: '150px'}}
                                     value={description}
                                     onChange={(e) => setDescription(e.target.value)}
                                 />
@@ -166,6 +181,7 @@ const NewProduct = ( { history } ) => {
                         </form>
                     </div>
                     </Fragment>
+                    </div>
                 </div>
             </div>
         </Fragment>

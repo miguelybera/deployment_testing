@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route } from 'react-router-dom' 
-// import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
@@ -28,6 +28,7 @@ import NewPassword from './components/user/NewPassword'
 import EmailSent from './components/EmailSent'
 
 import Dashboard from './components/admin/Dashboard'
+import Settings from './components/admin/Settings'
 import ListInquiries from './components/admin/ListInquiries'
 import ListQuotations from './components/admin/ListQuotations'
 import ListOthers from './components/admin/ListOthers'
@@ -50,7 +51,7 @@ function App() {
     store.dispatch(loadUser());
   }, [])
 
-  // const { loading, user } = useSelector(state => state.auth);
+  const { loading, isAuthenticated, user } = useSelector(state => state.auth);
 
   return (
     <Router>
@@ -81,7 +82,8 @@ function App() {
                 <Route path='/login' component={Login} exact/>
                 <Route path='/register' component={Register} exact/>
 
-                <ProtectedRoute path="/dashboard" isAdmin={true} component={Dashboard} exact/>
+                <ProtectedRoute path="/admin/dashboard" isAdmin={true} component={Dashboard} exact/>
+                <ProtectedRoute path="/admin/settings" isAdmin={true} component={Settings} exact/>
                 <ProtectedRoute path="/admin/inquiries" isAdmin={true} component={ListInquiries} exact/>
                 <ProtectedRoute path="/admin/quotations" isAdmin={true} component={ListQuotations} exact/>
                 <ProtectedRoute path="/admin/others" isAdmin={true} component={ListOthers} exact/>
@@ -97,7 +99,9 @@ function App() {
                 <ProtectedRoute path="/admin/product/:id" isAdmin={true} component={UpdateProduct} exact/>
                 <ProtectedRoute path="/admin/inquiry/:id" isAdmin={true} component={UpdateInquiry} exact/>
                 
-                <Footer/>
+                {!loading && (!isAuthenticated || user.role !== 'admin') && (
+                  <Footer/>
+                )}
         </div>
     </Router>
   );

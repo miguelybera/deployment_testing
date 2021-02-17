@@ -8,6 +8,7 @@ import { useAlert } from 'react-alert'
 import { useSelector, useDispatch } from 'react-redux'
 import { getProducts } from '../actions/productActions'
 import { getAboutObjectivesDetails, clearErrors } from '../actions/websiteActions'
+import { Markup } from 'interweave'
 
 const AboutObjectives = () => {
 
@@ -30,7 +31,7 @@ const AboutObjectives = () => {
     return (
             <Fragment>
                 <MetaData title={'The Objectives'}/>
-                <div className="product-section">
+                <div className="product-section" style={{paddingTop: '65px'}}>
                     <div className="container">
                         <div className="row about-us">
                             <div className="col-md-4 about-us-menu">
@@ -46,7 +47,9 @@ const AboutObjectives = () => {
                             <div className="col-md-8">
                                 <h1>{about.title}</h1>
                                 <hr />
-                                <p className="text-justify">{about.description}</p>
+                                <p className="text-justify">
+                                    <Markup content={about.description} />
+                                </p>
                             <br />
                             </div>
                         </div>

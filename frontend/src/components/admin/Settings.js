@@ -11,30 +11,19 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAdminProducts } from '../../actions/productActions'
 import { listInquiry } from '../../actions/inquiryActions'
 
-const Dashboard = () => {
+const Settings = () => {
 
     const dispatch = useDispatch();
 
-    const { loading, products } = useSelector(state => state.products)
-    const { inquiries } = useSelector(state => state.listInquiry)
-
-    useEffect(() => {
-        dispatch(getAdminProducts())
-        dispatch(listInquiry())
-    }, [dispatch])
-
     return (
         <Fragment>
-            <MetaData title={'Dashboard'}/>
+            <MetaData title={'Settings'}/>
             <Fragment>
-                {loading ? <Loader/> : (
-                    <Fragment>
-                        <MetaData title={'Admin Dashboard'}/>
-                        <div id="wrapper" style={{paddingTop: '65px'}}>
+            <div id="wrapper" style={{paddingTop: '65px'}}>
                             <div id="sidebar-wrapper" style={{"background": "var(--gray-dark)", "color": "var(--white)"}}>
                                 <ul className="sidebar-nav">
                                     <li className="sidebar-brand">Agile Technodynamics</li>
-                                    <li> <Link to="/dashboard">Dashboard</Link></li>
+                                    <li> <Link to="/admin/dashboard">Dashboard</Link></li>
                                     <li> <Link to="/admin/inquiries">Inquiries</Link></li>
                                     <li> <Link to="/admin/quotations">Appointment</Link></li>
                                     <li> <Link to="/admin/others">Other Concerns</Link></li>
@@ -53,19 +42,16 @@ const Dashboard = () => {
                                             <section className="dashboard-section">
                                                 <div className="dashboard-container">
                                                     <div className="inbox-container small-width">
-                                                        <h3>Inbox</h3>
-                                                        <h5>{inquiries && inquiries.length}</h5>
-                                                        <hr /><Link to="/admin/inquiries">View messages <i className="fa fa-angle-right"></i></Link>
+                                                        <h3>Update Home</h3>
+                                                        <hr /><Link to="/admin/update-home">Go to Update Home<i className="fa fa-angle-right"></i></Link>
                                                     </div>
                                                     <div className="products-container small-width">
-                                                        <h3>Products</h3>
-                                                        <h5>{products && products.length}</h5>
-                                                        <hr /><Link to="/admin/products">View products<i className="fa fa-angle-right"></i></Link>
+                                                        <h3>Update About Page</h3>
+                                                        <hr /><Link to="/admin/about">Go to Update About<i className="fa fa-angle-right"></i></Link>
                                                     </div>
                                                     <div className="users-container small-width">
-                                                        <h3>Settings</h3>
-                                                        <h6>Update your website content</h6>
-                                                        <hr /><Link to="/admin/settings">View details <i className="fa fa-angle-right"></i></Link>
+                                                        <h3>Update Footer</h3>
+                                                        <hr /><Link to="/admin/update-footer">Go to Update Footer<i className="fa fa-angle-right"></i></Link>
                                                     </div>
                                                 </div>
                                             </section>
@@ -74,11 +60,9 @@ const Dashboard = () => {
                                 </div>
                             </div>
                         </div>
-                    </Fragment>
-                )}
             </Fragment>
         </Fragment>
     )
 }
 
-export default Dashboard
+export default Settings

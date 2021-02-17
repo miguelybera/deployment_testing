@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import { Markup } from 'interweave'
 
 const MissionVision = ({ about }) => {
     return (
@@ -7,7 +8,9 @@ const MissionVision = ({ about }) => {
             <Fragment>
                 <h1>{about.title}</h1>
                 <hr />
-                <p className="text-justify">{about.description}<br/><br/><br/></p>
+                <p className="text-justify">
+                    <Markup content={about.description} />
+                </p>
             </Fragment>) :
             (<Fragment></Fragment>)}
         </div>

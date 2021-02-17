@@ -31,7 +31,7 @@ const AboutMissionVision = () => {
     return (
             <Fragment>
                 <MetaData title={'Mission and Vision'}/>
-                <div className="product-section">
+                <div className="product-section" style={{paddingTop: '65px'}}>
                     <div className="container">
                         <div className="row about-us">
                             <div className="col-xs-12 col-md-4 about-us-menu">

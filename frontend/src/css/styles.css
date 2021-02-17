@@ -1,6 +1,7 @@
 .navbar.navbar-dark.navbar-expand-md.fixed-top {
   background-color: #fff!important;
   justify-content: center;
+  margin-bottom: 65px
 }
 
 .agile-logo {
@@ -117,9 +118,6 @@ body, html {
   }
 }
 
-body {
-  padding-top: 65px;
-}
 
 .our-services {
   color: white;

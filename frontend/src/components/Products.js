@@ -42,6 +42,7 @@ const Products = () => {
     }
 
     let count = productsCount;
+    
     if(category) {
         count = filteredProductsCount
     }
@@ -52,7 +53,7 @@ const Products = () => {
                 (
                     <Fragment>
                         <MetaData title={'Our Products'}/>
-                        <section id="products" className="product-section">
+                        <section id="products" className="product-section" style={{paddingTop: '65px'}}>
                             <div className="our-products">
                                 <div className="row">
                                     <div className="col-12">
@@ -70,7 +71,7 @@ const Products = () => {
                                                     </li>
                                                 ))}
                                             </ul>
-                                            {resPerPage >= count && (
+                                            {category && (
                                                 <a href='/our-products'>View All Products</a>
                                             )}
                                         </div>

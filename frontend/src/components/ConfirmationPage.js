@@ -11,7 +11,7 @@ const ConfirmationPage = () => {
         <Fragment>
             <MetaData title={'Form Sent!'}/>
             <Fragment>
-                <section className="contact-form-section">
+                <section className="contact-form-section" style={{paddingTop: '65px'}}>
                     <h1>
                         <i className="fa fa-check-circle confirm-icon"></i>
                     </h1>

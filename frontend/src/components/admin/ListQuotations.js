@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { MDBDataTable } from 'mdbreact'
 import MetaData from '../layout/MetaData'
 import Loader from '../layout/Loader'
-import Sidebar from './Sidebar'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateInquiry, listInquiry, clearErrors } from '../../actions/inquiryActions'
@@ -104,25 +103,37 @@ const ListOrders = ({history}) => {
 
     return (
         <Fragment>
-            <MetaData title={'Quotations'}/>
-            <div className="row">
-                <div className="col-4 col-md-2">
-                    <Sidebar/>
+            <MetaData title={'Appointments'}/>
+            <div id="wrapper"style={{paddingTop: '65px'}}>
+                <div id="sidebar-wrapper" style={{"background": "var(--gray-dark)", "color": "var(--white)"}}>
+                    <ul className="sidebar-nav">
+                        <li className="sidebar-brand">Agile Technodynamics</li>
+                        <li> <Link to="/admin/dashboard">Dashboard</Link></li>
+                        <li> <Link to="/admin/inquiries">Inquiries</Link></li>
+                        <li> <Link to="/admin/quotations">Appointment</Link></li>
+                        <li> <Link to="/admin/others">Other Concerns</Link></li>
+                        <li> <Link to="/admin/archives">Archives</Link></li>
+                        <li> <Link to="/admin/trash">Trash</Link></li>
+                        <li> <Link to="/admin/products">Products</Link></li>
+                        <li> <Link to="/admin/settings">Settings</Link></li>
+                    </ul>
                 </div>
-                <div className="col-12 col-md-10">
-                    <Fragment>
-                    <h1 className='mt-5'>Inbox - Quotations</h1>
-                    {loading? <Loader/> : (
-                        <MDBDataTable
-                            data={setInquiries()}
-                            className='px-3 ml-10'
-                            bordered
-                            striped
-                             hover
-                            entries={5}
-                        />
-                    )}
-                    </Fragment>
+                <div className="page-content-wrapper">
+                    <div className="container-fluid">
+                        <Fragment>
+                        <h1 className='mt-5'>Inbox - Appointments</h1>
+                        {loading? <Loader/> : (
+                            <MDBDataTable
+                                data={setInquiries()}
+                                className='px-3 ml-10'
+                                bordered
+                                striped
+                                hover
+                                entries={5}
+                            />
+                        )}
+                        </Fragment>
+                    </div>
                 </div>
             </div>
         </Fragment>

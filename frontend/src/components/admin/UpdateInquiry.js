@@ -1,7 +1,9 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import MetaData from '../layout/MetaData'
 import Loader from '../layout/Loader'
-import Sidebar from './Sidebar'
+import '../../css/Sidebar-Menu.css'
+import '../../css/bootstrap.min.css'
+import { Link } from 'react-router-dom'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateInquiry, getInquiryDetails, clearErrors } from '../../actions/inquiryActions'
@@ -9,8 +11,6 @@ import { UPDATE_INQUIRY_RESET } from '../../constants/inquiryConstants'
 
 const UpdateInquiry = ( { match, history } ) => {
 
-    const [inquiryStatus, setInquiryStatus] = useState('');
-    
     const dispatch = useDispatch();
     const alert = useAlert();
 
@@ -44,7 +44,7 @@ const UpdateInquiry = ( { match, history } ) => {
         }
     }, [dispatch, error, alert, isUpdated, updateError, inquiry, inquiryId, history])
 
-    const updateInquiryHandler = (id) => { 
+    const updateInquiryHandler = (id, inquiryStatus) => { 
         const formData = new FormData();
         formData.set('inquiryStatus', inquiryStatus);
 
@@ -54,64 +54,65 @@ const UpdateInquiry = ( { match, history } ) => {
     return (
         <Fragment>
             <MetaData title={'View Message'}/>
-            <div className="row">
-                 <div className="col-4 col-md-2">
-                    <Sidebar/>
+            <div id="wrapper" style={{paddingTop: '65px'}}>
+                <div id="sidebar-wrapper" style={{"background": "var(--gray-dark)", "color": "var(--white)"}}>
+                    <ul className="sidebar-nav">
+                        <li className="sidebar-brand">Agile Technodynamics</li>
+                        <li> <Link to="/admin/dashboard">Dashboard</Link></li>
+                        <li> <Link to="/admin/inquiries">Inquiries</Link></li>
+                        <li> <Link to="/admin/quotations">Appointment</Link></li>
+                        <li> <Link to="/admin/others">Other Concerns</Link></li>
+                        <li> <Link to="/admin/archives">Archives</Link></li>
+                        <li> <Link to="/admin/trash">Trash</Link></li>
+                        <li> <Link to="/admin/products">Products</Link></li>
+                        <li> <Link to="/admin/settings">Settings</Link></li>
+                    </ul>
                 </div>
-
-                <div className="col-12 col-md-10">
+                <div className="page-content-wrapper">
+                    <div className="container-fluid">
                     <Fragment>
                         {loading ? <Loader/> : (
                             <section className="process-section">
-                                <div className="row concern-row">
-                                    <div className="col-sm-12 col-md-8 col-lg-8 col-xl-8">
-                                        <h1 className="concern-id">Concern ID: {inquiry._id}</h1>
-                                    </div>
-                                    <div className="col-sm-12 col-md-4 col-lg-4 col-xl-4 status-column">
-                                        <h4>Status</h4>
-                                        <div className="status-div">
-                                            <select 
-                                                className="status-dropdown"
-                                                name='status'
-                                                value={inquiryStatus}
-                                                onChange={(e) => setInquiryStatus(e.target.value)}
-                                            >
-                                                <optgroup>
-                                                    <option value=""> - </option>
-                                                    <option value="Unresolved">Unresolved</option>
-                                                    <option value="Resolved">Resolved</option>
-                                                </optgroup>
-                                            </select>
-                                            <br/>
+                                <div className="m-5 concern-info-container">
+                                    <h3>{inquiry.concernType} sent on {inquiry.createdAt}</h3>
+                                    <hr/>
+                                    <p style={{fontSize: '25px'}}><strong>Sender Information</strong></p>
+                                    <p><strong>From: </strong>{inquiry.firstName} {inquiry.lastName}, {inquiry.position} at {inquiry.companyName} </p>
+                                    <p><strong>Email: </strong>{inquiry.customerEmail}</p>
+                                    <p><strong>Contact No.: </strong>{inquiry.contactNumber}</p>
+                                    <hr/>
+                                    <p style={{fontSize: '20px'}}>{inquiry.customerMessage}</p>
+                                </div>
+                                <div className="m-5">
+                                    {(inquiry.inquiryStatus === 'Resolved') ? (
+                                        <Fragment>
                                             <button 
                                                 className="btn btn-primary update-status-button" 
                                                 type="button"
-                                                onClick={() => updateInquiryHandler(inquiry._id)}>
-                                                Update Status
+                                                onClick={() => updateInquiryHandler(inquiry._id, 'Unresolved')}
+                                                style={{marginBottom: '65px'}}>
+                                                Restore message back to {inquiry.concernType}
                                             </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="m-5 concern-div"></div>
-                                <div className="m-5 concern-info-container">
-                                    <h3>Message Information</h3>
-                                    <p><strong>Name / Position: </strong>{inquiry.firstName} {inquiry.lastName} / {inquiry.position} </p>
-                                    <p><strong>Company Name: </strong>{inquiry.companyName}</p>
-                                    <p><strong>Email: </strong>{inquiry.customerEmail}</p>
-                                    <p><strong>Contact No.:</strong>{inquiry.contactNumber}</p>
-                                    <p><strong>Concern Type: </strong>{inquiry.concernType}</p>
-                                    <p><strong>Message: </strong></p>
-                                    <p>{inquiry.customerMessage}</p>
-                                </div>
-                                <div className="m-5">
-                                    <h3>Message status:</h3>
-                                    <p className="message-status">{inquiry.inquiryStatus}</p>
+                                        </Fragment>
+                                    ) : (
+                                        <Fragment>
+                                            <button 
+                                                className="btn btn-primary update-status-button" 
+                                                type="button"
+                                                onClick={() => updateInquiryHandler(inquiry._id, 'Resolved')}
+                                                style={{marginBottom: '65px'}}>
+                                                Mark this message as 'Resolved'
+                                            </button>
+                                        </Fragment>
+                                    )}
                                 </div>
                             </section>
                         )}
                     </Fragment>
+                    </div>
                 </div>
             </div>
+
         </Fragment>
     )
 }

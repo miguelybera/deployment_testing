@@ -8,6 +8,7 @@ import { useAlert } from 'react-alert'
 import { useSelector, useDispatch } from 'react-redux'
 import { getProducts } from '../actions/productActions'
 import { getAboutScopeDetails, clearErrors } from '../actions/websiteActions'
+import { Markup } from 'interweave'
 
 const AboutScope = () => {
 
@@ -30,7 +31,7 @@ const AboutScope = () => {
     return (
             <Fragment>
                 <MetaData title={'Scope of Activities'}/>
-                <div class="product-section">
+                <div class="product-section" style={{paddingTop: '65px'}}>
                     <div class="container">
                         <div class="row about-us">
                             <div class="col-md-4 about-us-menu">
@@ -46,7 +47,9 @@ const AboutScope = () => {
                             <div class="col-md-8">
                                 <h1>{about.title}</h1>
                                 <hr />
-                                <p class="text-justify">{about.description}</p>
+                                <p class="text-justify">
+                                    <Markup content={about.description} />
+                                </p>
                                 <br />
                             </div>
                         </div>

@@ -5,6 +5,7 @@ import Loader from './layout/Loader'
 import { useAlert } from 'react-alert'
 import { useSelector, useDispatch } from 'react-redux'
 import { getHomeDetails, clearErrors } from '../actions/websiteActions'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
 
@@ -64,7 +65,7 @@ const Home = () => {
                                     <h1 className="font-weight-bold">Our Products</h1>
                                     <h6 className="product-description">{homePage.productDescription}&nbsp;</h6>
                                 </div>
-                                <a href="product.html">See Products&nbsp;<i className="fa fa-angle-right"></i></a>
+                                <Link to="/our-products">See Products&nbsp;<i className="fa fa-angle-right"></i></Link>
                             </div>
                             <div className="col-md-6">
                                 <div className="product" style={{background: "url("+`${productImageLeft}`+") center / auto no-repeat"}}></div>
@@ -84,7 +85,8 @@ const Home = () => {
                             <div className="col">
                                 <div className="div-our-services">
                                     <h1 className="our-services font-weight-bold">Our Services</h1>
-                                    <h6 className="description">{homePage.servicesDescription}&nbsp;</h6><a className="services-link" href="services.html">See Services&nbsp;<i className="fa fa-angle-right"></i></a>
+                                    <h6 className="description">{homePage.servicesDescription}&nbsp;</h6>
+                                    <Link className="services-link" to="/our-services">See Services&nbsp;<i className="fa fa-angle-right"></i></Link>
                                 </div>
                             </div>
                         </div>

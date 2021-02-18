@@ -1,4 +1,4 @@
-import React, { Fragment, useState} from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import MetaData from './../layout/MetaData'
@@ -8,9 +8,9 @@ import '../../css/dashboard.css'
 import '../../css/Sidebar-Menu.css'
 import '../../css/Sidebar-Menu-1.css'
 
-import { useDispatch, useSelector } from 'react-redux'
-import { getAdminProducts } from '../../actions/productActions'
-import { listInquiry } from '../../actions/inquiryActions'
+import { useDispatch } from 'react-redux'
+import { INSIDE_DASHBOARD_TRUE } from '../../constants/dashboardConstants'
+
 
 const Settings = () => {
 
@@ -22,6 +22,11 @@ const Settings = () => {
         setToggled(!isToggled)
     }
 
+    useEffect(() => {
+        dispatch({
+            type: INSIDE_DASHBOARD_TRUE
+        })
+    })
     return (
         <Fragment>
             <MetaData title={'Settings'}/>

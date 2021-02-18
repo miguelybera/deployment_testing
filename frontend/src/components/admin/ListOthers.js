@@ -10,6 +10,7 @@ import '../../css/bootstrap.min.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateInquiry, listInquiry, clearErrors } from '../../actions/inquiryActions'
 import { UPDATE_INQUIRY_RESET } from '../../constants/inquiryConstants'
+import { INSIDE_DASHBOARD_TRUE } from '../../constants/dashboardConstants'
 
 const ListOrders = ({history}) => {
 
@@ -35,6 +36,10 @@ const ListOrders = ({history}) => {
                 type: UPDATE_INQUIRY_RESET
             })
         }
+
+        dispatch({
+            type: INSIDE_DASHBOARD_TRUE
+        })
     }, [dispatch, alert, error, isUpdated, history])
 
     const [isToggled, setToggled] = useState('false')

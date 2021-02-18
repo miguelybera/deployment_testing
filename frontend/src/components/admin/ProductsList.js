@@ -11,6 +11,8 @@ import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAdminProducts, deleteProduct, clearErrors } from '../../actions/productActions'
 import { DELETE_PRODUCT_RESET } from '../../constants/productConstants'
+import { INSIDE_DASHBOARD_TRUE } from '../../constants/dashboardConstants'
+
 
 const ProductsList = ( {history} ) => {
     
@@ -47,6 +49,10 @@ const ProductsList = ( {history} ) => {
                 type: DELETE_PRODUCT_RESET
             })
         }
+
+        dispatch({
+            type: INSIDE_DASHBOARD_TRUE
+        })
     }, [dispatch, alert, error, history, isDeleted, deleteError])
 
     const setProducts = () => {

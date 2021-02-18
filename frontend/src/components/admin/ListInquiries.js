@@ -10,6 +10,7 @@ import '../../css/bootstrap.min.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateInquiry, listInquiry, clearErrors } from '../../actions/inquiryActions'
 import { UPDATE_INQUIRY_RESET } from '../../constants/inquiryConstants'
+import { INSIDE_DASHBOARD_TRUE } from '../../constants/dashboardConstants'
 // import "mdbreact/dist/css/mdb.css";
 // import "@fortawesome/fontawesome-free/css/all.min.css";
 // import "bootstrap-css-only/css/bootstrap.min.css";
@@ -45,6 +46,10 @@ const ListOrders = ({history}) => {
                 type: UPDATE_INQUIRY_RESET
             })
         }
+
+        dispatch({
+            type: INSIDE_DASHBOARD_TRUE
+        })
     }, [dispatch, alert, error, isUpdated, history])
 
     const updateInquiryHandler = (id, inquiryStatus) => { 

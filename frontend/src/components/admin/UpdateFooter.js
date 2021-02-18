@@ -8,6 +8,7 @@ import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateFooter, getFooterDetails, clearErrors } from '../../actions/websiteActions'
 import { UPDATE_FOOTER_RESET } from '../../constants/websiteConstants'
+import { INSIDE_DASHBOARD_TRUE } from '../../constants/dashboardConstants'
 
 const UpdateFooter = ({history}) => {
 
@@ -54,6 +55,10 @@ const UpdateFooter = ({history}) => {
                 type: UPDATE_FOOTER_RESET
             })
         }
+
+        dispatch({
+            type: INSIDE_DASHBOARD_TRUE
+        })
     }, [dispatch, alert, error, history, updateError, isUpdated])
     
     const handleToggle = () => {

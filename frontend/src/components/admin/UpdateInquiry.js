@@ -9,6 +9,7 @@ import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateInquiry, getInquiryDetails, clearErrors } from '../../actions/inquiryActions'
 import { UPDATE_INQUIRY_RESET } from '../../constants/inquiryConstants'
+import { INSIDE_DASHBOARD_TRUE } from '../../constants/dashboardConstants'
 
 const UpdateInquiry = ( { match, history } ) => {
 
@@ -48,6 +49,10 @@ const UpdateInquiry = ( { match, history } ) => {
                 type: UPDATE_INQUIRY_RESET
             })
         }
+
+        dispatch({
+            type: INSIDE_DASHBOARD_TRUE
+        })
     }, [dispatch, error, alert, isUpdated, updateError, inquiry, inquiryId, history])
 
     const updateInquiryHandler = (id, inquiryStatus) => { 

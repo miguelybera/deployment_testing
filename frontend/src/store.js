@@ -6,6 +6,7 @@ import { productReducers, productReducer, productDetailsReducer, newProductReduc
 import { authReducer, userReducer, forgotPasswordReducer } from './reducers/userReducers'
 import { newInquiryReducer, listInquiryReducer, inquiryDetailsReducer, inquiryReducer } from './reducers/inquiryReducers'
 import { homeDetailsReducer, websiteUpdateReducer, aboutDetailsReducer, allAboutDetailsReducer, footerDetailsReducer } from './reducers/websiteReducers'
+import { dashboardReducer } from './reducers/dashboardReducers'
 
 const reducer = combineReducers({
     products: productReducers,
@@ -28,7 +29,9 @@ const reducer = combineReducers({
     aboutDetails: aboutDetailsReducer,
     abouts: allAboutDetailsReducer,
 
-    footerDetails: footerDetailsReducer
+    footerDetails: footerDetailsReducer,
+    
+    dashboard: dashboardReducer
 })
 
 let initialState = {} //contains all the data we want to put in this state just before loading the application

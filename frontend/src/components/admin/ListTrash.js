@@ -10,6 +10,8 @@ import '../../css/bootstrap.min.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteInquiry, updateInquiry, listInquiry, clearErrors } from '../../actions/inquiryActions'
 import { DELETE_INQUIRY_RESET, UPDATE_INQUIRY_RESET } from '../../constants/inquiryConstants'
+import { INSIDE_DASHBOARD_TRUE } from '../../constants/dashboardConstants'
+
 
 const ListTrash = ( { history} ) => {
 
@@ -57,6 +59,10 @@ const ListTrash = ( { history} ) => {
                 type: DELETE_INQUIRY_RESET
             })
         }
+        
+        dispatch({
+            type: INSIDE_DASHBOARD_TRUE
+        })
     }, [dispatch, alert, error, history, isDeleted, isUpdated, deleteError])
 
     const setInquiries = () => {

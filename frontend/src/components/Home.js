@@ -5,6 +5,7 @@ import Loader from './layout/Loader'
 import { useAlert } from 'react-alert'
 import { useSelector, useDispatch } from 'react-redux'
 import { getHomeDetails, clearErrors } from '../actions/websiteActions'
+import { INSIDE_DASHBOARD_FALSE } from '../constants/dashboardConstants'
 import { Link } from 'react-router-dom'
 
 const Home = () => {
@@ -35,6 +36,10 @@ const Home = () => {
     useEffect(() => {
         dispatch(getHomeDetails())
         
+        dispatch({
+            type: INSIDE_DASHBOARD_FALSE
+        })
+
         if(error){
             alert.error(error)
             dispatch(clearErrors())

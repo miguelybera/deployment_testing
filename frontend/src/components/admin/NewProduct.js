@@ -8,6 +8,8 @@ import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { newProduct, clearErrors } from '../../actions/productActions'
 import { NEW_PRODUCT_RESET } from '../../constants/productConstants'
+import { INSIDE_DASHBOARD_TRUE } from '../../constants/dashboardConstants'
+
 
 const NewProduct = ( { history } ) => {
     
@@ -53,6 +55,10 @@ const NewProduct = ( { history } ) => {
                 type: NEW_PRODUCT_RESET
             })
         }
+
+        dispatch({
+            type: INSIDE_DASHBOARD_TRUE
+        })
     }, [dispatch, error, alert, success, history])
 
     const submitHandler = (e) => {

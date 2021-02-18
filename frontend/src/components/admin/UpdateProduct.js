@@ -8,6 +8,7 @@ import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateProduct, getProductDetails, clearErrors } from '../../actions/productActions'
 import { UPDATE_PRODUCT_RESET } from '../../constants/productConstants'
+import { INSIDE_DASHBOARD_TRUE } from '../../constants/dashboardConstants'
 
 const UpdateProduct = ( { match, history } ) => {
 
@@ -72,6 +73,10 @@ const UpdateProduct = ( { match, history } ) => {
                 type: UPDATE_PRODUCT_RESET
             })
         }
+
+        dispatch({
+            type: INSIDE_DASHBOARD_TRUE
+        })
     }, [dispatch, error, alert, isUpdated, updateError, product, productId, history])
 
     const submitHandler = (e) => {

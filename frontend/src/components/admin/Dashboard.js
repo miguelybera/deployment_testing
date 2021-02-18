@@ -11,6 +11,7 @@ import '../../css/Sidebar-Menu-1.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAdminProducts } from '../../actions/productActions'
 import { listInquiry } from '../../actions/inquiryActions'
+import { INSIDE_DASHBOARD_TRUE } from '../../constants/dashboardConstants'
 
 const Dashboard = () => {
 
@@ -28,6 +29,12 @@ const Dashboard = () => {
     useEffect(() => {
         dispatch(getAdminProducts())
         dispatch(listInquiry())
+
+        dispatch({
+            type: INSIDE_DASHBOARD_TRUE
+        })
+
+
     }, [dispatch])
 
     return (

@@ -11,6 +11,8 @@ import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAboutDetails, clearErrors } from '../../actions/websiteActions'
 import { UPDATE_ABOUT_RESET } from '../../constants/websiteConstants'
+import { INSIDE_DASHBOARD_TRUE } from '../../constants/dashboardConstants'
+
 
 const ListAbout = ({history}) => {
 
@@ -42,6 +44,10 @@ const ListAbout = ({history}) => {
                 type: UPDATE_ABOUT_RESET
             })
         }
+
+        dispatch({
+            type: INSIDE_DASHBOARD_TRUE
+        })
     }, [dispatch, alert, error, isUpdated, history])
 
     const setAboutData = () => {

@@ -9,6 +9,7 @@ import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateHome, getHomeDetails, clearErrors } from '../../actions/websiteActions'
 import { UPDATE_HOME_RESET } from '../../constants/websiteConstants'
+import { INSIDE_DASHBOARD_TRUE } from '../../constants/dashboardConstants'
 
 const UpdateHome = ({history}) => {
     
@@ -88,6 +89,10 @@ const UpdateHome = ({history}) => {
                 type: UPDATE_HOME_RESET
             })
         }
+        
+        dispatch({
+            type: INSIDE_DASHBOARD_TRUE
+        })
 
     }, [dispatch, alert, error, history, updateError, isUpdated])
 

@@ -5,7 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import { productReducers, productReducer, productDetailsReducer, newProductReducer } from './reducers/productReducers'
 import { authReducer, userReducer, forgotPasswordReducer } from './reducers/userReducers'
 import { newInquiryReducer, listInquiryReducer, inquiryDetailsReducer, inquiryReducer } from './reducers/inquiryReducers'
-import { homeDetailsReducer, websiteUpdateReducer, aboutDetailsReducer, allAboutDetailsReducer } from './reducers/websiteReducers'
+import { homeDetailsReducer, websiteUpdateReducer, aboutDetailsReducer, allAboutDetailsReducer, footerDetailsReducer } from './reducers/websiteReducers'
 
 const reducer = combineReducers({
     products: productReducers,
@@ -26,7 +26,9 @@ const reducer = combineReducers({
     website: websiteUpdateReducer,
 
     aboutDetails: aboutDetailsReducer,
-    abouts: allAboutDetailsReducer
+    abouts: allAboutDetailsReducer,
+
+    footerDetails: footerDetailsReducer
 })
 
 let initialState = {} //contains all the data we want to put in this state just before loading the application
@@ -35,4 +37,4 @@ let initialState = {} //contains all the data we want to put in this state just 
 const middleware = [thunk];
 const store = createStore(reducer, initialState, composeWithDevTools(applyMiddleware(...middleware)));
 
-export default store;
+export default store;  

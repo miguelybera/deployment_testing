@@ -16,6 +16,13 @@ import {
     UPDATE_ABOUT_SUCCESS,
     UPDATE_ABOUT_FAIL,
     UPDATE_ABOUT_RESET,
+    FOOTER_DETAILS_REQUEST,
+    FOOTER_DETAILS_SUCCESS,
+    FOOTER_DETAILS_FAIL,
+    UPDATE_FOOTER_REQUEST,
+    UPDATE_FOOTER_SUCCESS,
+    UPDATE_FOOTER_FAIL,
+    UPDATE_FOOTER_RESET,
     CLEAR_ERRORS
 } from '../constants/websiteConstants'
 
@@ -36,6 +43,39 @@ export const homeDetailsReducer = (state = { homePage: {} }, action) => {
             }
 
         case HOME_DETAILS_FAIL:
+            return {
+                ...state,
+                error: action.payload
+            }
+
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+            
+        default:
+            return state
+    }
+}
+
+//get footer details
+export const footerDetailsReducer = (state = { footerInfo: {} }, action) => {
+    switch(action.type){
+
+        case FOOTER_DETAILS_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+        
+        case FOOTER_DETAILS_SUCCESS:
+            return {
+                loading: false,
+                footerInfo: action.payload
+            }
+
+        case FOOTER_DETAILS_FAIL:
             return {
                 ...state,
                 error: action.payload
@@ -123,6 +163,7 @@ export const websiteUpdateReducer = (state = {}, action) => {
 
         case UPDATE_HOME_REQUEST:
         case UPDATE_ABOUT_REQUEST:
+        case UPDATE_FOOTER_REQUEST:
             return {
                 ...state,
                 loading: true
@@ -130,6 +171,7 @@ export const websiteUpdateReducer = (state = {}, action) => {
         
         case UPDATE_HOME_SUCCESS:
         case UPDATE_ABOUT_SUCCESS:
+        case UPDATE_FOOTER_SUCCESS:
             return {
                 ...state,
                 loading: false,
@@ -138,6 +180,7 @@ export const websiteUpdateReducer = (state = {}, action) => {
 
         case UPDATE_HOME_FAIL:
         case UPDATE_ABOUT_FAIL:
+        case UPDATE_FOOTER_FAIL:
             return {
                 ...state,
                 error: action.payload
@@ -145,6 +188,7 @@ export const websiteUpdateReducer = (state = {}, action) => {
 
         case UPDATE_HOME_RESET:
         case UPDATE_ABOUT_RESET:
+        case UPDATE_FOOTER_RESET:
             return {
                 ...state,
                 isUpdated: false

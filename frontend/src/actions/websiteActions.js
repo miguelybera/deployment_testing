@@ -20,6 +20,14 @@ import {
     ALL_ABOUT_DETAILS_SUCCESS,
     ALL_ABOUT_DETAILS_FAIL,
 
+    FOOTER_DETAILS_REQUEST,
+    FOOTER_DETAILS_SUCCESS,
+    FOOTER_DETAILS_FAIL,
+
+    UPDATE_FOOTER_REQUEST,
+    UPDATE_FOOTER_SUCCESS,
+    UPDATE_FOOTER_FAIL,
+
     CLEAR_ERRORS
 } from '../constants/websiteConstants'
 
@@ -42,6 +50,31 @@ export const getHomeDetails = () => async(dispatch) => {
         dispatch(
             {
                 type: HOME_DETAILS_FAIL,
+                payload: error.response.data.message
+            }
+        )
+    }
+}
+
+// Get home details
+export const getFooterDetails = () => async(dispatch) => {
+    try{
+        dispatch({
+            type: FOOTER_DETAILS_REQUEST
+        })
+
+        const { data } = await axios.get('/api/v1/footerinfo')
+
+        dispatch({
+            type: FOOTER_DETAILS_SUCCESS,
+            payload: data.footerInfo
+        })
+
+    }
+    catch(error){
+        dispatch(
+            {
+                type: FOOTER_DETAILS_FAIL,
                 payload: error.response.data.message
             }
         )
@@ -246,6 +279,34 @@ export const updateAbout = (id, aboutData) => async(dispatch) => {
     catch(error){
         dispatch({
             type: UPDATE_ABOUT_FAIL,
+            payload: error.response.data.message
+            }
+        )
+    }
+}
+
+// Update footer (ADMIN)
+export const updateFooter = (footerData) => async(dispatch) => {
+    try{
+        dispatch({
+            type: UPDATE_FOOTER_REQUEST
+        })
+
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }
+        const { data } = await axios.put(`/api/v1/admin/updatefooterinfo`, footerData, config)
+
+        dispatch({
+            type: UPDATE_FOOTER_SUCCESS,
+            payload: data.success
+        })
+    }
+    catch(error){
+        dispatch({
+            type: UPDATE_FOOTER_FAIL,
             payload: error.response.data.message
             }
         )

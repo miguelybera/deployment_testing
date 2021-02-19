@@ -30,6 +30,8 @@ const Dashboard = () => {
         dispatch(getAdminProducts())
         dispatch(listInquiry())
 
+        // countLength()
+
         dispatch({
             type: INSIDE_DASHBOARD_TRUE
         })
@@ -37,6 +39,28 @@ const Dashboard = () => {
 
     }, [dispatch])
 
+    // var inquiryLength, appointmentLength, otherConcernsLength = 0
+
+    // const countLength = () => {
+    //        inquiries.forEach(inquiry => {
+    //             if(inquiry.concernType === 'Inquiry'){
+    //                 inquiryLength += 1
+    //             }
+
+    //             if(inquiry.concernType === 'Appointment'){
+    //                 appointmentLength += 1
+    //             }
+
+    //             if(inquiry.concernType === 'Others'){
+    //                 otherConcernsLength += 1
+    //             }
+    //        })
+    //        // && (inquiry.inquiryStatus !== "Deleted" && inquiry.inquiryStatus !== "Resolved")
+    //        console.log('inq length', inquiryLength) //NaN
+    //        console.log('app length', appointmentLength) //undefined
+    //        console.log('oth length', otherConcernsLength) //0, didnt iterate
+    // }
+    
     return (
         <Fragment>
             <MetaData title={'Dashboard'}/>
@@ -63,27 +87,63 @@ const Dashboard = () => {
                                     <a className="btn btn-link" role="button" id="menu-toggle" onClick={handleToggle}>
                                         <i className="fa fa-bars" style={{"color": "var(--gray-dark)"}}></i>
                                     </a>
-                                    <div className="row">
-                                        <div className="col-md-12">
-                                            <section className="dashboard-section">
-                                                <div className="dashboard-container">
-                                                    <div className="inbox-container small-width">
-                                                        <h3>Inbox</h3>
-                                                        <h5>{inquiries && inquiries.length}</h5>
-                                                        <hr /><Link to="/admin/inquiries">View messages <i className="fa fa-angle-right"></i></Link>
-                                                    </div>
-                                                    <div className="products-container small-width">
-                                                        <h3>Products</h3>
-                                                        <h5>{products && products.length}</h5>
-                                                        <hr /><Link to="/admin/products">View products<i className="fa fa-angle-right"></i></Link>
-                                                    </div>
-                                                    <div className="users-container small-width">
-                                                        <h3>Settings</h3>
-                                                        <h6>Update your website content</h6>
-                                                        <hr /><Link to="/admin/settings">View details <i className="fa fa-angle-right"></i></Link>
-                                                    </div>
-                                                </div>
-                                            </section>
+                                    <div className="main-section">
+                                        <div className="dashbord">
+                                            <div className="icon-section">
+                                                <i className="fa fa-inbox" aria-hidden="true"></i><br/>
+                                                <small>Inquiries</small>
+                                                <p>{inquiries && inquiries.length} messages</p>
+                                            </div>
+                                            <div className="detail-section">
+                                                <a href="#">More Info </a>
+                                            </div>
+                                        </div>
+                                        <div className="dashbord dashbord-green">
+                                            <div className="icon-section">
+                                                <i className="fa fa-inbox" aria-hidden="true"></i><br/>
+                                                <small>Appointments</small>
+                                                <p>{inquiries && inquiries.length} messages</p>
+                                            </div>
+                                            <div className="detail-section">
+                                                <Link to="#">More Info </Link>
+                                            </div>
+                                        </div>
+                                        <div className="dashbord dashbord-orange">
+                                            <div className="icon-section">
+                                                <i className="fa fa-inbox" aria-hidden="true"></i><br/>
+                                                <small>Other Concerns</small>
+                                                <p>{inquiries && inquiries.length} messages</p>
+                                            </div>
+                                            <div className="detail-section">
+                                                <a href="#">More Info </a>
+                                            </div>
+                                        </div>
+                                        <div className="dashbord dashbord-blue">
+                                            <div className="icon-section">
+                                                <i className="fa fa-inbox" aria-hidden="true"></i><br/>
+                                                <p>Update Home</p>
+                                            </div>
+                                            <div className="detail-section">
+                                                <Link to="/admin/update-home">Go to Update Home <i className="fa fa-angle-right"></i></Link>
+                                            </div>
+                                        </div>
+                                        <div className="dashbord dashbord-red">
+                                            <div className="icon-section">
+                                                <i className="fa fa-inbox" aria-hidden="true"></i><br/>
+                                                <p>Update About Page</p>
+                                            </div>
+                                            <div className="detail-section">
+                                                <Link to="/admin/about">Go to Update About <i className="fa fa-angle-right"></i></Link>
+                                            </div>
+                                        </div>
+                                        <div className="dashbord dashbord-skyblue">
+                                            <div className="icon-section">
+                                                <i className="fa fa-inbox" aria-hidden="true"></i><br/>
+                                                <p>Update Footer</p>
+                                            </div>
+                                            <div className="detail-section">
+                                                <Link to="/admin/update-footer">Go to Update Footer <i className="fa fa-angle-right"></i></Link>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

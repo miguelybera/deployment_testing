@@ -1,112 +1,90 @@
-.dashboard-section {
-  width: 100%;
-  height: 100%;
-  margin-left: auto;
-  margin-right: auto;
+body {
+  font-family: 'Raleway', sans-serif;
+}
+
+.main-section {
+  width: 80%;
+  margin: 0 auto;
   text-align: center;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding: 0px 5px;
 }
 
-.dashboard-container {
-  width: 500px;
-  height: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  display: grid;
-  grid-template-columns: repeat(2, 50%);
-  grid-template-rows: repeat(3, 150px);
-  grid-row-gap: 10px;
-  grid-template-areas: "inbox inbox" "products users";
-  justify-content: center;
-  margin-bottom: 50px;
-  grid-column-gap: 20px;
-  padding-top: 40px;
+.dashbord {
+  width: 32%;
+  display: inline-block;
+  background-color: #34495E;
+  color: #fff;
+  margin-top: 50px;
 }
 
-@media (max-width: 576px) {
-  .dashboard-container {
-    width: 100%;
-    height: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: repeat(3, 100px);
-    grid-row-gap: 10px;
-    grid-template-areas: "inbox" "products" "users";
-    justify-content: center;
-    margin-bottom: 50px;
-    grid-column-gap: 20px;
-    padding-top: 40px;
-    font-size: 13px;
-  }
-}
-
-.inbox-container {
-  border: 2px solid #B88C9E;
-  background-color: #B88C9E;
-  border-radius: 20px;
-  height: 100%;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  grid-area: inbox;
+.icon-section i {
+  font-size: 30px;
   padding: 10px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  margin-top: -25px;
+  margin-bottom: 10px;
+  background-color: #34495E;
 }
 
-.products-container {
-  border: 2px solid #FDCA40;
-  background-color: #FDCA40;
-  border-radius: 20px;
-  height: 100%;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  grid-area: products;
-  padding: 10px;
+.icon-section p {
+  margin: 0px;
+  font-size: 20px;
+  padding-bottom: 10px;
 }
 
-.users-container {
-  border: 2px solid #549F93;
-  background-color: #549F93;
-  border-radius: 20px;
-  height: 100%;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  grid-area: users;
-  padding: 10px;
+.detail-section {
+  background-color: #2F4254;
+  padding: 5px 0px;
 }
 
-.dashboard-container hr {
-  color: blue;
-  width: 90%;
+.dashbord .detail-section:hover {
+  background-color: #5a5a5a;
+  cursor: pointer;
 }
 
-@media (max-width: 576px) {
-  .dashboard-container hr {
-    display: none;
-  }
+.detail-section a {
+  color: #fff;
+  text-decoration: none;
 }
 
-@media (max-width: 576px) {
-  .dashboard-container h3 {
-    font-size: 20px;
-  }
+.dashbord-green .icon-section, .dashbord-green .icon-section i {
+  background-color: #16A085;
 }
 
-@media (max-width: 576px) {
-  .dashboard-container h5 {
-    font-size: 15px;
-  }
+.dashbord-green .detail-section {
+  background-color: #149077;
 }
 
-@media (max-width: 576px) {
-  .small-width {
-    width: 200px;
-  }
+.dashbord-orange .icon-section, .dashbord-orange .icon-section i {
+  background-color: #F39C12;
+}
+
+.dashbord-orange .detail-section {
+  background-color: #DA8C10;
+}
+
+.dashbord-blue .icon-section, .dashbord-blue .icon-section i {
+  background-color: #2980B9;
+}
+
+.dashbord-blue .detail-section {
+  background-color: #2573A6;
+}
+
+.dashbord-red .icon-section, .dashbord-red .icon-section i {
+  background-color: #E74C3C;
+}
+
+.dashbord-red .detail-section {
+  background-color: #CF4436;
+}
+
+.dashbord-skyblue .icon-section, .dashbord-skyblue .icon-section i {
+  background-color: #8E44AD;
+}
+
+.dashbord-skyblue .detail-section {
+  background-color: #803D9B;
 }
 

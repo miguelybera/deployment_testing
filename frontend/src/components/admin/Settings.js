@@ -47,27 +47,66 @@ const Settings = () => {
                             </div>
                             <div className="page-content-wrapper">
                                 <div className="container-fluid">
-                                <a className="btn btn-link" role="button" id="menu-toggle" onClick={handleToggle}>
-                                    <i className="fa fa-bars" style={{"color": "var(--gray-dark)"}}></i>
-                                </a>
-                                    <div className="row">
-                                        <div className="col-md-12">
-                                            <section className="dashboard-section">
-                                                <div className="dashboard-container">
-                                                    <div className="inbox-container small-width">
-                                                        <h3>Update Home</h3>
-                                                        <hr /><Link to="/admin/update-home">Go to Update Home<i className="fa fa-angle-right"></i></Link>
-                                                    </div>
-                                                    <div className="products-container small-width">
-                                                        <h3>Update About Page</h3>
-                                                        <hr /><Link to="/admin/about">Go to Update About<i className="fa fa-angle-right"></i></Link>
-                                                    </div>
-                                                    <div className="users-container small-width">
-                                                        <h3>Update Footer</h3>
-                                                        <hr /><Link to="/admin/update-footer">Go to Update Footer<i className="fa fa-angle-right"></i></Link>
-                                                    </div>
-                                                </div>
-                                            </section>
+                                    <a className="btn btn-link" role="button" id="menu-toggle" onClick={handleToggle}>
+                                        <i className="fa fa-bars" style={{"color": "var(--gray-dark)"}}></i>
+                                    </a>
+                                    <div className="main-section">
+                                        <div className="dashbord">
+                                            <div className="icon-section">
+                                                <i className="fa fa-inbox" aria-hidden="true"></i><br/>
+                                                <small>Update Home</small>
+                                            </div>
+                                            <div className="detail-section">
+                                                <Link to="/admin/update-home">Go to Update Home<i className="fa fa-angle-right"></i></Link>
+                                            </div>
+                                        </div>
+                                        <div className="dashbord dashbord-green">
+                                            <div className="icon-section">
+                                                <i className="fa fa-inbox" aria-hidden="true"></i><br/>
+                                                <small>Update About Page</small>
+                                            </div>
+                                            <div className="detail-section">
+                                                <Link to="/admin/about">Go to Update About<i className="fa fa-angle-right"></i></Link>
+                                            </div>
+                                        </div>
+                                        <div className="dashbord dashbord-orange">
+                                            <div className="icon-section">
+                                                <i className="fa fa-inbox" aria-hidden="true"></i><br/>
+                                                <small>Update Footer</small>
+                                            </div>
+                                            <div className="detail-section">
+                                                <Link to="/admin/update-footer">Go to Update Footer<i className="fa fa-angle-right"></i></Link>
+                                            </div>
+                                        </div>
+                                        <div className="dashbord dashbord-blue">
+                                            <div className="icon-section">
+                                                <i className="fa fa-tasks" aria-hidden="true"></i><br/>
+                                                <small>Task</small>
+                                                <p>8</p>
+                                            </div>
+                                            <div className="detail-section">
+                                                <a href="#">More Info </a>
+                                            </div>
+                                        </div>
+                                        <div className="dashbord dashbord-red">
+                                            <div className="icon-section">
+                                                <i className="fa fa-shopping-cart" aria-hidden="true"></i><br/>
+                                                <small>Cart</small>
+                                                <p>$ 24</p>
+                                            </div>
+                                            <div className="detail-section">
+                                                <a href="#">More Info </a>
+                                            </div>
+                                        </div>
+                                        <div className="dashbord dashbord-skyblue">
+                                            <div className="icon-section">
+                                                <i className="fa fa-comments" aria-hidden="true"></i><br/>
+                                                <small>Mentions</small>
+                                                <p>96</p>
+                                            </div>
+                                            <div className="detail-section">
+                                                <a href="#">More Info </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

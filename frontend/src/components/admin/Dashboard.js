@@ -90,7 +90,7 @@ const Dashboard = () => {
                                     <div className="main-section">
                                         <div className="dashbord">
                                             <div className="icon-section">
-                                                <i className="fa fa-inbox" aria-hidden="true"></i><br/>
+                                                <i className="fa fa-envelope-open" aria-hidden="true"></i><br/>
                                                 <small>Inquiries</small>
                                                 <p>{inquiries && inquiries.length} messages</p>
                                             </div>
@@ -100,7 +100,7 @@ const Dashboard = () => {
                                         </div>
                                         <div className="dashbord dashbord-green">
                                             <div className="icon-section">
-                                                <i className="fa fa-inbox" aria-hidden="true"></i><br/>
+                                                <i className="fa fa-archive" aria-hidden="true"></i><br/>
                                                 <small>Appointments</small>
                                                 <p>{inquiries && inquiries.length} messages</p>
                                             </div>
@@ -120,7 +120,7 @@ const Dashboard = () => {
                                         </div>
                                         <div className="dashbord dashbord-blue">
                                             <div className="icon-section">
-                                                <i className="fa fa-inbox" aria-hidden="true"></i><br/>
+                                                <i className="fa fa-home" aria-hidden="true"></i><br/>
                                                 <p>Update Home</p>
                                             </div>
                                             <div className="detail-section">
@@ -129,7 +129,7 @@ const Dashboard = () => {
                                         </div>
                                         <div className="dashbord dashbord-red">
                                             <div className="icon-section">
-                                                <i className="fa fa-inbox" aria-hidden="true"></i><br/>
+                                                <i className="fa fa-info-circle" aria-hidden="true"></i><br/>
                                                 <p>Update About Page</p>
                                             </div>
                                             <div className="detail-section">
@@ -138,7 +138,7 @@ const Dashboard = () => {
                                         </div>
                                         <div className="dashbord dashbord-skyblue">
                                             <div className="icon-section">
-                                                <i className="fa fa-inbox" aria-hidden="true"></i><br/>
+                                                <i className="fa fa-quote-left" aria-hidden="true"></i><br/>
                                                 <p>Update Footer</p>
                                             </div>
                                             <div className="detail-section">

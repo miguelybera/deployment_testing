@@ -238,7 +238,7 @@ exports.logout = catchAsyncErrors( async( req, res, next) => {
 
 // Admin Routes
 
-// Get all users => /api/v1/superadmin/admins
+// Get all users => /api/v1/superadmin/users
 exports.allUsers = catchAsyncErrors(async (req, res, next) => {
     const users = await User.find();
 
@@ -248,7 +248,7 @@ exports.allUsers = catchAsyncErrors(async (req, res, next) => {
     })
 })
 
-// Get user details  => /api/v1/superadmin/admin/:id
+// Get user details  => /api/v1/superadmin/user/:id
 exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
     const user = await User.findById(req.params.id);
 
@@ -262,7 +262,7 @@ exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
     })
 })
 
-//  Update user Profile => /api/v1/superadmin/admin/:id
+//  Update user Profile => /api/v1/superadmin/user/:id
 
 exports.updateUser = catchAsyncErrors(async (req, res, next) => {
     const newUserData = {
@@ -285,7 +285,7 @@ exports.updateUser = catchAsyncErrors(async (req, res, next) => {
     })
 })
 
-// Delete User  => /api/v1/superadmin/admin/:id
+// Delete User  => /api/v1/superadmin/user/:id
 exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
     const user = await User.findById(req.params.id);
 

@@ -20,9 +20,9 @@ router.route('/password/update').put(isAuthenticatedUser, updatePassword);
 router.route('/me/update').put(isAuthenticatedUser, updateProfile);
 
 // Superadmin roles
-router.route('/superadmin/admins').get(isAuthenticatedUser, authorizeRoles('superadmin'), allUsers);
-router.route('/superadmin/admin/:id').get(isAuthenticatedUser, authorizeRoles('superadmin'), getUserDetails);
-router.route('/superadmin/admin/:id').put(isAuthenticatedUser, authorizeRoles('superadmin'), updateUser);
-router.route('/superadmin/admin/:id').delete(isAuthenticatedUser, authorizeRoles('superadmin'), deleteUser);
+router.route('/superadmin/users').get(isAuthenticatedUser, authorizeRoles('superadmin'), allUsers);
+router.route('/superadmin/user/:id').get(isAuthenticatedUser, authorizeRoles('superadmin'), getUserDetails);
+router.route('/superadmin/user/:id').put(isAuthenticatedUser, authorizeRoles('superadmin'), updateUser);
+router.route('/superadmin/user/:id').delete(isAuthenticatedUser, authorizeRoles('superadmin'), deleteUser);
 
 module.exports = router;

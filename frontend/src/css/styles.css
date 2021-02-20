@@ -97,6 +97,7 @@ body, html {
 
 .description-container {
   padding: 56px;
+  margin: auto;
   text-align: center;
 }
 

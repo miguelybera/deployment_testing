@@ -6,7 +6,7 @@ const { registerUser, loginUser, logout, forgotPassword, resetPassword, getUserP
 const { isAuthenticatedUser, authorizeRoles } = require('../middlewares/auth');
 
 // To register a new user superadmin acc must be logged in
-router.route('/register').post(registerUser);
+router.route('/superadmin/register').post(isAuthenticatedUser, authorizeRoles('superadmin'),registerUser);
 
 router.route('/login').post(loginUser);
 

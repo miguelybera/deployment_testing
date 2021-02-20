@@ -11,7 +11,7 @@ const cloudinary = require('cloudinary')
 // Register a user => /api/v1/register
 
 exports.registerUser = catchAsyncErrors( async(req, res, next) => {
-    const { name, email, contactNumber, password } = req.body;
+    const { name, email, contactNumber, password, address } = req.body;
 
     if(req.body.password !== req.body.confirmPassword) {
         return next(new ErrorHandler('Password does not match', 400))
@@ -39,6 +39,7 @@ exports.registerUser = catchAsyncErrors( async(req, res, next) => {
         email,
         password,
         contactNumber,
+        address,
         avatar
     })
 

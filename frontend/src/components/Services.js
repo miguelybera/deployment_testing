@@ -8,7 +8,7 @@ const Services = () => {
     return (
         <Fragment>
             <MetaData title={'Our Services'} />
-            <section id="services" className="section2" style={{paddingTop: '65px'}}>
+            <section id="services" className="section2" style={{paddingTop: '85px'}}>
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12 text-center">

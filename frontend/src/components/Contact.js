@@ -63,7 +63,7 @@ const Contact = ( { history } ) => {
             <MetaData title={'Contact Us'}/>
             <Fragment>
                 <form method='post' onSubmit={submitHandler} encType='application/json'>
-                    <div className="contact-container" style={{paddingTop: '65px'}}>
+                    <div className="contact-container" style={{paddingTop: '30px'}}>
                         <div className="contact-header">
                             <h1 style={{textAlign: 'center'}}>Contact Us</h1>
                         </div>

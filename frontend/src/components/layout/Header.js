@@ -41,15 +41,24 @@ const Header = () => {
                         <li className="nav-item"><Link className="nav-link" to="/our-services"><strong>Services</strong></Link></li>
                         <li className="nav-item"><Link className="nav-link" to="/contact-us"><strong>Contact Us</strong></Link></li>
                         {user ? (
-                                <div className="ml-4 dropdown d-inline">
-                                <Link
+                                <div className="dropdown d-inline">
+                                    
+                                    <Link
                                     className="btn dropdown-toggle text-black mr-4"
                                     type="button"
                                     id="dropDownMenuButton"
                                     data-toggle="dropdown"
                                     aria-aria-haspopup="true"
                                     aria-expanded="false">
-                                        {user && user.name}
+                                    
+                                    <img 
+                                        className='mr-2 rounded-circle'
+                                        src={user.avatar.url}
+                                        width='30' 
+                                        height='32'
+                                    />
+                                    {user && user.name}
+
                                     </Link>
                                     <div className="dropdown-menu" aria-aria-labelledby="dropDownMenuButton">
                                         <Link className="dropdown-item" to="/admin/dashboard">

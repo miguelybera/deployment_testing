@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { updateFooter, getFooterDetails, clearErrors } from '../../actions/websiteActions'
 import { UPDATE_FOOTER_RESET } from '../../constants/websiteConstants'
 import { INSIDE_DASHBOARD_TRUE } from '../../constants/dashboardConstants'
+import { logout } from './../../actions/userActions'
 
 const UpdateFooter = ({history}) => {
 
@@ -24,6 +25,7 @@ const UpdateFooter = ({history}) => {
 
     const { error, footerInfo } = useSelector(state => state.footerDetails)
     const { loading, error: updateError, isUpdated } = useSelector(state => state.website);
+    const { user } = useSelector(state => state.auth)
 
     const [isToggled, setToggled] = useState('false')
 
@@ -65,6 +67,12 @@ const UpdateFooter = ({history}) => {
         setToggled(!isToggled)
     }
 
+    const logoutHandler = () => {
+        dispatch(logout());
+
+        alert.success('Logged out successfully')
+    }
+
     const submitHandler = (e) => {
         e.preventDefault();
 
@@ -81,18 +89,34 @@ const UpdateFooter = ({history}) => {
 
     return (<Fragment>
         <MetaData title={'Update Footer'}/>
-            <div id="wrapper" className={isToggled ? "toggled" : null} style={{paddingTop: '65px'}}>
+            <div id="wrapper" className={isToggled ? "toggled" : null} style={{paddingTop: '11px'}}>
                 <div id="sidebar-wrapper" style={{"background": "var(--gray-dark)", "color": "var(--white)"}}>
                     <ul className="sidebar-nav">
                         <li className="sidebar-brand">Agile Technodynamics</li>
-                        <li> <Link to="/admin/dashboard">Dashboard</Link></li>
-                        <li> <Link to="/admin/inquiries">Inquiries</Link></li>
-                        <li> <Link to="/admin/quotations">Appointment</Link></li>
-                        <li> <Link to="/admin/others">Other Concerns</Link></li>
-                        <li> <Link to="/admin/archives">Archives</Link></li>
-                        <li> <Link to="/admin/trash">Trash</Link></li>
-                        <li> <Link to="/admin/products">Products</Link></li>
-                        <li> <Link to="/admin/settings">Settings</Link></li>
+                        <li> <Link to="/admin/dashboard"><i className="fa fa-tachometer"></i> Dashboard</Link></li>
+                        <li> <Link to="/admin/me"><i className="fa fa-user"></i> My Profile</Link></li>
+                        <li> <Link to="/"><i className="fa fa-home"></i> Agile Homepage</Link></li>
+                        <li> <Link to="/admin/products"><i className="fa fa-shopping-bag"></i> Products</Link></li>
+                        <hr/>
+                        {user && user.role !== 'admin' ? (
+                                <Fragment>
+                                    <li> <Link to="/admin/users"><i className="fa fa-user"></i> Users</Link></li>
+                                    <li> <Link to="/register"><i className="fa fa-user"></i> Register</Link></li>
+                                </Fragment>
+                            ) : (
+                                <Fragment>
+                                    <li> <Link to="/admin/inquiries"><i className="fa fa-envelope"></i> Inquiries</Link></li>
+                                    <li> <Link to="/admin/appointments"><i className="fa fa-archive"></i> Appointment</Link></li>
+                                    <li> <Link to="/admin/others"><i className="fa fa-inbox"></i> Other Concerns</Link></li>
+                                    <hr/>
+                                    <li> <Link to="/admin/archives"><i className="fa fa-envelope-open"></i> Archives</Link></li>
+                                    <li> <Link to="/admin/trash"><i className="fa fa-trash"></i> Trash</Link></li>
+                                </Fragment>
+                            )}
+
+                        <hr/>
+                        <li className="text-danger" onClick={logoutHandler}> <Link to="/"><i className="fa fa-sign-out"></i> Log out</Link></li>
+                        <li></li>
                     </ul>
                 </div>
                 <div className="page-content-wrapper">

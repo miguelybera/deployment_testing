@@ -18,7 +18,6 @@ const UpdateUser = ({ match, history }) => {
     const [role, setRole] = useState([]);
     const [address, setAddress] = useState('');
 
-
     const dispatch = useDispatch();
     const alert = useAlert();
 
@@ -67,7 +66,7 @@ const UpdateUser = ({ match, history }) => {
         }
 
         if(isUpdated) {
-            history.push('/admin/users');
+            history.push('/');
             alert.success('User updated successfully.')
 
             dispatch({
@@ -112,7 +111,7 @@ const UpdateUser = ({ match, history }) => {
                             ) : (
                                 <Fragment>
                                     <li> <Link to="/admin/inquiries"><i className="fa fa-envelope"></i> Inquiries</Link></li>
-                                    <li> <Link to="/admin/quotations"><i className="fa fa-archive"></i> Appointment</Link></li>
+                                    <li> <Link to="/admin/appointments"><i className="fa fa-archive"></i> Appointment</Link></li>
                                     <li> <Link to="/admin/others"><i className="fa fa-inbox"></i> Other Concerns</Link></li>
                                     <hr/>
                                     <li> <Link to="/admin/archives"><i className="fa fa-envelope-open"></i> Archives</Link></li>

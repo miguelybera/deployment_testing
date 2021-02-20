@@ -29,9 +29,8 @@ import NewPassword from './components/user/NewPassword'
 import EmailSent from './components/EmailSent'
 
 import Dashboard from './components/admin/Dashboard'
-import Settings from './components/admin/Settings'
 import ListInquiries from './components/admin/ListInquiries'
-import ListQuotations from './components/admin/ListQuotations'
+import ListAppointments from './components/admin/ListAppointments'
 import ListOthers from './components/admin/ListOthers'
 import ListArchives from './components/admin/ListArchives'
 import ListTrash from './components/admin/ListTrash'
@@ -79,35 +78,34 @@ function App() {
                 <Route path='/contact-us' component={Contact} exact/>
                 <Route path='/confirmation' component={ConfirmationPage} exact/>
 
-                <ProtectedRoute path="/admin/me" component={Profile} exact/>
-                <ProtectedRoute path="/admin/edit-profile" component={UpdateProfile} exact/>
-                <ProtectedRoute path="/password/update" component={UpdatePassword} exact/>
+                <ProtectedRoute path="/admin/me" forAdmins={true} component={Profile} exact/>
+                <ProtectedRoute path="/admin/edit-profile" forAdmins={true} component={UpdateProfile} exact/>
+                <ProtectedRoute path="/password/update" forAdmins={true} component={UpdatePassword} exact/>
 
                 <Route path="/password/forgot" component={ForgotPassword} exact/>
                 <Route path="/password/reset/:token" component={NewPassword} exact/>
                 <Route path='/email-sent' component={EmailSent} exact/>
 
                 <Route path='/login' component={Login} exact/>
-                <ProtectedRoute path='/register' isAdmin={true} component={Register} exact/>
-                <ProtectedRoute path='/admin/users' isAdmin={true} component={ListUsers} exact/>
-                <ProtectedRoute path="/superadmin/user/:id" isAdmin={true} component={UpdateUser} exact/>
+                <ProtectedRoute path='/register' isSuperAdmin={true} component={Register} exact/>
+                <ProtectedRoute path='/admin/users' isSuperAdmin={true} component={ListUsers} exact/>
+                <ProtectedRoute path="/superadmin/user/:id" isSuperAdmin={true} component={UpdateUser} exact/>
                 
-                <ProtectedRoute path="/admin/dashboard" isAdmin={true} component={Dashboard} exact/>
-                <ProtectedRoute path="/admin/settings" isAdmin={true} component={Settings} exact/>
+                <ProtectedRoute path="/admin/dashboard" forAdmins={true} component={Dashboard} exact/>
                 <ProtectedRoute path="/admin/inquiries" isAdmin={true} component={ListInquiries} exact/>
-                <ProtectedRoute path="/admin/quotations" isAdmin={true} component={ListQuotations} exact/>
+                <ProtectedRoute path="/admin/appointments" isAdmin={true} component={ListAppointments} exact/>
                 <ProtectedRoute path="/admin/others" isAdmin={true} component={ListOthers} exact/>
                 <ProtectedRoute path="/admin/archives" isAdmin={true} component={ListArchives} exact/>
                 <ProtectedRoute path="/admin/trash" isAdmin={true} component={ListTrash} exact/>
                 
-                <ProtectedRoute path="/admin/about" isAdmin={true} component={ListAbout} exact/>
-                <ProtectedRoute path="/admin/about/:id" isAdmin={true} component={UpdateAbout} exact/>
-                <ProtectedRoute path="/admin/update-home" isAdmin={true} component={UpdateHome} exact/>
-                <ProtectedRoute path="/admin/update-footer" isAdmin={true} component={UpdateFooter} exact/>
+                <ProtectedRoute path="/admin/about" forAdmins={true} component={ListAbout} exact/>
+                <ProtectedRoute path="/admin/about/:id" forAdmins={true} component={UpdateAbout} exact/>
+                <ProtectedRoute path="/admin/update-home" forAdmins={true} component={UpdateHome} exact/>
+                <ProtectedRoute path="/admin/update-footer" forAdmins={true} component={UpdateFooter} exact/>
                 
-                <ProtectedRoute path="/admin/products" isAdmin={true} component={ProductsList} exact/>
-                <ProtectedRoute path="/admin/newProduct" isAdmin={true} component={NewProduct} exact/>
-                <ProtectedRoute path="/admin/product/:id" isAdmin={true} component={UpdateProduct} exact/>
+                <ProtectedRoute path="/admin/products" forAdmins={true} component={ProductsList} exact/>
+                <ProtectedRoute path="/admin/newProduct" forAdmins={true} component={NewProduct} exact/>
+                <ProtectedRoute path="/admin/product/:id" forAdmins={true} component={UpdateProduct} exact/>
                 <ProtectedRoute path="/admin/inquiry/:id" isAdmin={true} component={UpdateInquiry} exact/>
                 
                 {!loading && !isDashboard && (

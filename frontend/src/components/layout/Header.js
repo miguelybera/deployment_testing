@@ -55,13 +55,6 @@ const Header = () => {
                                         <Link className="dropdown-item" to="/admin/dashboard">
                                             Dashboard
                                         </Link>
-                                        {user && user.role !== 'admin' ? (
-                                            <Link className="dropdown-item" to="/register">
-                                                Register New Users
-                                            </Link>
-                                        ) : (
-                                            <Link></Link>
-                                        )}
                                         <Link className="dropdown-item text-danger" to="/" onClick={logoutHandler}>
                                             Log out
                                         </Link>

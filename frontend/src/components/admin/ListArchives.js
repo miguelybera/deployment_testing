@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { updateInquiry, listInquiry, clearErrors } from '../../actions/inquiryActions'
 import { UPDATE_INQUIRY_RESET } from '../../constants/inquiryConstants'
 import { INSIDE_DASHBOARD_TRUE } from '../../constants/dashboardConstants'
+import { logout } from './../../actions/userActions'
 
 const ListArchives = ({history}) => {
 
@@ -20,6 +21,7 @@ const ListArchives = ({history}) => {
 
     const { loading, error, inquiries } = useSelector(state => state.listInquiry)
     const { isUpdated } = useSelector(state => state.inquiry)
+    const { user } = useSelector(state => state.auth)
 
     const [isToggled, setToggled] = useState('false')
 
@@ -27,6 +29,11 @@ const ListArchives = ({history}) => {
         setToggled(!isToggled)
     }
 
+    const logoutHandler = () => {
+        dispatch(logout());
+
+        alert.success('Logged out successfully')
+    }
 
     useEffect(() => {
         dispatch(listInquiry());
@@ -119,18 +126,34 @@ const ListArchives = ({history}) => {
     return (
         <Fragment>
             <MetaData title={'Archives'}/>
-            <div id="wrapper" className={isToggled ? "toggled" : null} style={{paddingTop: '65px'}}>
+            <div id="wrapper" className={isToggled ? "toggled" : null} style={{paddingTop: '11px'}}>
                 <div id="sidebar-wrapper" style={{"background": "var(--gray-dark)", "color": "var(--white)"}}>
                     <ul className="sidebar-nav">
                         <li className="sidebar-brand">Agile Technodynamics</li>
-                        <li> <Link to="/admin/dashboard">Dashboard</Link></li>
-                        <li> <Link to="/admin/inquiries">Inquiries</Link></li>
-                        <li> <Link to="/admin/quotations">Appointment</Link></li>
-                        <li> <Link to="/admin/others">Other Concerns</Link></li>
-                        <li> <Link to="/admin/archives">Archives</Link></li>
-                        <li> <Link to="/admin/trash">Trash</Link></li>
-                        <li> <Link to="/admin/products">Products</Link></li>
-                        <li> <Link to="/admin/settings">Settings</Link></li>
+                        <li> <Link to="/admin/dashboard"><i className="fa fa-tachometer"></i> Dashboard</Link></li>
+                        <li> <Link to="/admin/me"><i className="fa fa-user"></i> My Profile</Link></li>
+                        <li> <Link to="/"><i className="fa fa-home"></i> Agile Homepage</Link></li>
+                        <li> <Link to="/admin/products"><i className="fa fa-shopping-bag"></i> Products</Link></li>
+                        <hr/>
+                        {user && user.role !== 'admin' ? (
+                                <Fragment>
+                                    <li> <Link to="/admin/users"><i className="fa fa-user"></i> Users</Link></li>
+                                    <li> <Link to="/register"><i className="fa fa-user"></i> Register</Link></li>
+                                </Fragment>
+                            ) : (
+                                <Fragment>
+                                    <li> <Link to="/admin/inquiries"><i className="fa fa-envelope"></i> Inquiries</Link></li>
+                                    <li> <Link to="/admin/appointments"><i className="fa fa-archive"></i> Appointment</Link></li>
+                                    <li> <Link to="/admin/others"><i className="fa fa-inbox"></i> Other Concerns</Link></li>
+                                    <hr/>
+                                    <li> <Link to="/admin/archives"><i className="fa fa-envelope-open"></i> Archives</Link></li>
+                                    <li> <Link to="/admin/trash"><i className="fa fa-trash"></i> Trash</Link></li>
+                                </Fragment>
+                            )}
+
+                        <hr/>
+                        <li className="text-danger" onClick={logoutHandler}> <Link to="/"><i className="fa fa-sign-out"></i> Log out</Link></li>
+                        <li></li>
                     </ul>
                 </div>
                 <div className="page-content-wrapper">
@@ -139,17 +162,19 @@ const ListArchives = ({history}) => {
                             <i className="fa fa-bars" style={{"color": "var(--gray-dark)"}}></i>
                         </a>
                         <Fragment>
-                        <h1 className='mt-3 mb-3'>Archives</h1>
-                        {loading? <Loader/> : (
-                            <MDBDataTable
-                                data={setInquiries()}
-                                className='px-3 ml-10'
-                                bordered
-                                striped
-                                hover
-                                entries={5}
-                            />
-                        )}
+                            <div style={{padding: '30px'}}>
+                                <h1 className='mt-3 mb-3 ml-10 mr-10'>Archives</h1>
+                                {loading? <Loader/> : (
+                                    <MDBDataTable
+                                        data={setInquiries()}
+                                        className='px-3'
+                                        bordered
+                                        striped
+                                        hover
+                                        entries={5}
+                                    />
+                                )}
+                            </div>
                         </Fragment>
                     </div>
                 </div>

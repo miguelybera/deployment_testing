@@ -136,7 +136,7 @@ const ListUsers = ({history}) => {
     return (
         <Fragment>
             <MetaData title={'Users'}/>
-            <div id="wrapper" className={isToggled ? "toggled" : null} style={{paddingTop: '65px'}}>
+            <div id="wrapper" className={isToggled ? "toggled" : null} style={{paddingTop: '11px'}}>
             <div id="sidebar-wrapper" style={{"background": "var(--gray-dark)", "color": "var(--white)"}}>
                 <ul className="sidebar-nav">
                     <li className="sidebar-brand">Agile Technodynamics</li>
@@ -153,7 +153,7 @@ const ListUsers = ({history}) => {
                         ) : (
                             <Fragment>
                                 <li> <Link to="/admin/inquiries"><i className="fa fa-envelope"></i> Inquiries</Link></li>
-                                <li> <Link to="/admin/quotations"><i className="fa fa-archive"></i> Appointment</Link></li>
+                                <li> <Link to="/admin/appointments"><i className="fa fa-archive"></i> Appointment</Link></li>
                                 <li> <Link to="/admin/others"><i className="fa fa-inbox"></i> Other Concerns</Link></li>
                                 <hr/>
                                 <li> <Link to="/admin/archives"><i className="fa fa-envelope-open"></i> Archives</Link></li>
@@ -172,17 +172,19 @@ const ListUsers = ({history}) => {
                             <i className="fa fa-bars" style={{"color": "var(--gray-dark)"}}></i>
                         </a>
                         <Fragment>
-                        <h1 className='mt-3 mb-3'>Users</h1>
-                        {loading? <Loader/> : (
-                            <MDBDataTable
-                                data={setUsersData()}
-                                className='px-3 ml-10'
-                                bordered
-                                striped
-                                hover
-                                entries={5}
-                            />
-                        )}
+                        <div style={{padding: '30px'}}>
+                            <h1 className='mt-3 mb-3 ml-10 mr-10'>Users</h1>
+                            {loading? <Loader/> : (
+                                <MDBDataTable
+                                    data={setUsersData()}
+                                    className='px-3'
+                                    bordered
+                                    striped
+                                    hover
+                                    entries={5}
+                                />
+                            )}
+                        </div>
                         </Fragment>
                     </div>
                 </div>

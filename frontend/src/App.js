@@ -41,6 +41,8 @@ import NewProduct from './components/admin/NewProduct'
 import UpdateProduct from './components/admin/UpdateProduct'
 import UpdateInquiry from './components/admin/UpdateInquiry'
 
+import ListUsers from './components/admin/ListUsers'
+
 import ProtectedRoute from './components/route/ProtectedRoute'
 import { loadUser } from './actions/userActions'
 import store from './store'
@@ -85,8 +87,9 @@ function App() {
                 <Route path='/email-sent' component={EmailSent} exact/>
 
                 <Route path='/login' component={Login} exact/>
-                <Route path='/register' component={Register} exact/>
-
+                <ProtectedRoute path='/register' isAdmin={true} component={Register} exact/>
+                <ProtectedRoute path='/admin/users' isAdmin={true} component={ListUsers} exact/>
+                
                 <ProtectedRoute path="/admin/dashboard" isAdmin={true} component={Dashboard} exact/>
                 <ProtectedRoute path="/admin/settings" isAdmin={true} component={Settings} exact/>
                 <ProtectedRoute path="/admin/inquiries" isAdmin={true} component={ListInquiries} exact/>

@@ -24,14 +24,83 @@ import {
     NEW_PASSWORD_REQUEST,
     NEW_PASSWORD_SUCCESS,
     NEW_PASSWORD_FAIL,
+    ALL_USERS_REQUEST,
+    ALL_USERS_SUCCESS,
+    ALL_USERS_FAIL,
     CLEAR_ERRORS
 } from '../constants/userConstants'
 
+export const getUsersReducer = (state = { users: []}, action) => {
+    switch(action.type){
+        case ALL_USERS_REQUEST:
+            return {
+                loading: true,
+                users: []
+            }
 
+        case ALL_USERS_SUCCESS:
+            return {
+                loading: false,
+                users: action.payload.users
+            }
+
+        case ALL_USERS_FAIL:
+            return {
+                loading: false,
+                error: action.payload
+            }
+
+
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+
+        default:
+            return state
+    }
+}
+
+export const registerReducer = ( state = { user: {} }, action ) => {
+    switch(action.type){
+        case REGISTER_USER_REQUEST:
+            return {
+                ...state,
+                loading: true,
+                isCreated: false
+            }
+
+        case REGISTER_USER_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                success: action.payload,
+                user: action.payload.user,
+                isCreated: true
+            }
+
+        case REGISTER_USER_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+
+
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+
+        default:
+            return state
+    }
+}
 export const authReducer = ( state = { user: {} }, action) => {
     switch(action.type){
         case LOGIN_REQUEST:
-        case REGISTER_USER_REQUEST:
         case LOAD_USER_REQUEST:
             return {
                 loading: true, 
@@ -39,7 +108,6 @@ export const authReducer = ( state = { user: {} }, action) => {
             }
 
         case LOGIN_SUCCESS:
-        case REGISTER_USER_SUCCESS:
         case LOAD_USER_SUCCESS:
             return {
                 ...state,

@@ -16,7 +16,7 @@ const NewPassword = ({ history, match }) => {
     
     useEffect(() => {
         if(success){
-            history.push('/me')
+            history.push('/admin/me')
             alert.success('Password updated successfully');
         }
         else{

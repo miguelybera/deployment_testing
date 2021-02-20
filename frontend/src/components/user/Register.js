@@ -14,7 +14,7 @@ const Register = ( { history } ) => {
         confirmPassword: ''
     })
 
-    const { name, email, contactNumber, password, confirmPassword, } = user;
+    const { name, email, contactNumber, address, password, confirmPassword, } = user;
     const [avatar, setAvatar] = useState('');
     const [avatarPreview, setAvatarPreview] = useState('images/default_avatar.png');
     const [useDefaultImage, setUseDefaultImage] = useState('')
@@ -22,7 +22,7 @@ const Register = ( { history } ) => {
     const alert = useAlert();
     const dispatch = useDispatch();
 
-    const { isAuthenticated, error, loading, success } = useSelector(state => state.auth);
+    const { isCreated, error, loading, success } = useSelector(state => state.register);
 
     const [isChecked, setChecked] = useState('false')
 
@@ -31,19 +31,15 @@ const Register = ( { history } ) => {
     }
 
     useEffect(() => {
-        if(isAuthenticated) {
-            history.push('/')
-        }
-
         if(error){
             alert.error(error);
             dispatch(clearErrors());
         }
-
         if(success){
             alert.success('Account has been created successfully.')
+            history.push('/admin/dashboard')
         }
-    }, [dispatch, alert, isAuthenticated, error, success, history])
+    }, [dispatch, alert, isCreated, error, success, history])
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -134,6 +130,17 @@ const Register = ( { history } ) => {
                             value={contactNumber}
                             pattern="^\d{4}-\d{3}-\d{4}$"
                             onChange={onChange}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <h6>Address</h6>
+                        <textarea 
+                            type="text"
+                            className="form-control"
+                            name="address"
+                            value={address}
+                            onChange={onChange}
+                            style={{height: '150px'}}
                         />
                     </div>
                     <div className="form-group">

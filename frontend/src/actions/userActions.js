@@ -22,9 +22,33 @@ import {
     NEW_PASSWORD_REQUEST,
     NEW_PASSWORD_SUCCESS,
     NEW_PASSWORD_FAIL,
+    ALL_USERS_REQUEST,
+    ALL_USERS_SUCCESS,
+    ALL_USERS_FAIL,
     LOGOUT_FAIL,
     CLEAR_ERRORS
 } from '../constants/userConstants'
+
+export const getUsers = () => async (dispatch) => {
+    try{
+        dispatch({
+            type: ALL_USERS_REQUEST
+        })
+
+        const { data } = await axios.get('/api/v1/superadmin/users')
+
+        dispatch({
+            type: ALL_USERS_SUCCESS,
+            payload: data
+        })
+    }
+    catch(error){
+        dispatch({
+            type: ALL_USERS_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
 
 // Login
 export const login = ( email, password ) => async (dispatch) => {
@@ -67,11 +91,11 @@ export const register = ( userData ) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.post('/api/v1/register', userData, config)
+        const { data } = await axios.post('/api/v1/superadmin/register', userData, config)
 
         dispatch({
             type: REGISTER_USER_SUCCESS,
-            payload: data.user
+            payload: data
         })
 
     } catch (error) {

@@ -89,7 +89,7 @@ const Dashboard = () => {
                                     <hr/>
                                     {user && user.role !== 'admin' ? (
                                             <Fragment>
-                                                <li> <Link to="/register"><i className="fa fa-user"></i> Users</Link></li>
+                                                <li> <Link to="/admin/users"><i className="fa fa-user"></i> Users</Link></li>
                                                 <li> <Link to="/register"><i className="fa fa-user"></i> Register</Link></li>
                                             </Fragment>
                                         ) : (
@@ -100,9 +100,10 @@ const Dashboard = () => {
                                                 <hr/>
                                                 <li> <Link to="/admin/archives"><i className="fa fa-envelope-open"></i> Archives</Link></li>
                                                 <li> <Link to="/admin/trash"><i className="fa fa-trash"></i> Trash</Link></li>
-                                                <hr/>
                                             </Fragment>
                                         )}
+
+                                    <hr/>
                                     <li className="text-danger" onClick={logoutHandler}> <Link to="/"><i className="fa fa-sign-out"></i> Log out</Link></li>
                                     <li></li>
                                 </ul>

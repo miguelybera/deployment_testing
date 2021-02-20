@@ -21,9 +21,9 @@ import UpdateFooter from './components/admin/UpdateFooter'
 
 import Login from './components/user/Login'
 import Register from './components/user/Register'
-import Profile from './components/user/Profile'
-import UpdateProfile from './components/user/UpdateProfile'
-import UpdatePassword from './components/user/UpdatePassword'
+import Profile from './components/admin/Profile'
+import UpdateProfile from './components/admin/UpdateProfile'
+import UpdatePassword from './components/admin/UpdatePassword'
 import ForgotPassword from './components/user/ForgotPassword'
 import NewPassword from './components/user/NewPassword'
 import EmailSent from './components/EmailSent'
@@ -73,8 +73,8 @@ function App() {
                 <Route path='/contact-us' component={Contact} exact/>
                 <Route path='/confirmation' component={ConfirmationPage} exact/>
 
-                <ProtectedRoute path="/me" component={Profile} exact/>
-                <ProtectedRoute path="/me/edit-profile" component={UpdateProfile} exact/>
+                <ProtectedRoute path="/admin/me" component={Profile} exact/>
+                <ProtectedRoute path="/admin/edit-profile" component={UpdateProfile} exact/>
                 <ProtectedRoute path="/password/update" component={UpdatePassword} exact/>
 
                 <Route path="/password/forgot" component={ForgotPassword} exact/>

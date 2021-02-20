@@ -8,14 +8,17 @@ import '../../css/dashboard.css'
 import '../../css/Sidebar-Menu.css'
 import '../../css/Sidebar-Menu-1.css'
 
+import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAdminProducts } from '../../actions/productActions'
 import { listInquiry } from '../../actions/inquiryActions'
 import { INSIDE_DASHBOARD_TRUE } from '../../constants/dashboardConstants'
+import { logout } from './../../actions/userActions'
 
 const Dashboard = () => {
 
     const dispatch = useDispatch();
+    const alert = useAlert();
 
     const { loading, products } = useSelector(state => state.products)
     const { inquiries } = useSelector(state => state.listInquiry)
@@ -26,6 +29,12 @@ const Dashboard = () => {
         setToggled(!isToggled)
     }
     
+    const logoutHandler = () => {
+        dispatch(logout());
+
+        alert.success('Logged out successfully')
+    }
+
     useEffect(() => {
         dispatch(getAdminProducts())
         dispatch(listInquiry())
@@ -72,14 +81,19 @@ const Dashboard = () => {
                             <div id="sidebar-wrapper" style={{"background": "var(--gray-dark)", "color": "var(--white)"}}>
                                 <ul className="sidebar-nav">
                                     <li className="sidebar-brand">Agile Technodynamics</li>
-                                    <li> <Link to="/admin/dashboard">Dashboard</Link></li>
-                                    <li> <Link to="/admin/inquiries">Inquiries</Link></li>
-                                    <li> <Link to="/admin/quotations">Appointment</Link></li>
-                                    <li> <Link to="/admin/others">Other Concerns</Link></li>
-                                    <li> <Link to="/admin/archives">Archives</Link></li>
-                                    <li> <Link to="/admin/trash">Trash</Link></li>
-                                    <li> <Link to="/admin/products">Products</Link></li>
-                                    <li> <Link to="/admin/settings">Settings</Link></li>
+                                    <li> <Link to="/admin/dashboard"><i className="fa fa-tachometer"></i> Dashboard</Link></li>
+                                    <li> <Link to="/admin/me"><i className="fa fa-user"></i> My Profile</Link></li>
+                                    <li> <Link to="/admin/products"><i className="fa fa-shopping-bag"></i> Products</Link></li>
+                                    <hr/>
+                                    <li> <Link to="/admin/inquiries"><i className="fa fa-envelope"></i> Inquiries</Link></li>
+                                    <li> <Link to="/admin/quotations"><i className="fa fa-archive"></i> Appointment</Link></li>
+                                    <li> <Link to="/admin/others"><i className="fa fa-inbox"></i> Other Concerns</Link></li>
+                                    <hr/>
+                                    <li> <Link to="/admin/archives"><i className="fa fa-envelope-open"></i> Archives</Link></li>
+                                    <li> <Link to="/admin/trash"><i className="fa fa-trash"></i> Trash</Link></li>
+                                    <hr/>
+                                    <li className="text-danger" onClick={logoutHandler} style={{color: 'red'}}> <Link to="/"><i className="fa fa-sign-out"></i> Log out</Link></li>
+                                    <li></li>
                                 </ul>
                             </div>
                             <div className="page-content-wrapper">
@@ -88,9 +102,10 @@ const Dashboard = () => {
                                         <i className="fa fa-bars" style={{"color": "var(--gray-dark)"}}></i>
                                     </a>
                                     <div className="main-section">
+                                        <h3>Inbox</h3>
                                         <div className="dashbord">
                                             <div className="icon-section">
-                                                <i className="fa fa-envelope-open" aria-hidden="true"></i><br/>
+                                                <i className="fa fa-envelope" aria-hidden="true"></i><br/>
                                                 <small>Inquiries</small>
                                                 <p>{inquiries && inquiries.length} messages</p>
                                             </div>
@@ -118,13 +133,16 @@ const Dashboard = () => {
                                                 <a href="#">More Info </a>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div className="main-section" style={{paddingTop: '65px'}}>
+                                        <h3>Settings</h3>
                                         <div className="dashbord dashbord-blue">
                                             <div className="icon-section">
                                                 <i className="fa fa-home" aria-hidden="true"></i><br/>
                                                 <p>Update Home</p>
                                             </div>
                                             <div className="detail-section">
-                                                <Link to="/admin/update-home">Go to Update Home <i className="fa fa-angle-right"></i></Link>
+                                                <Link to="/admin/update-home">Update <i className="fa fa-angle-right"></i></Link>
                                             </div>
                                         </div>
                                         <div className="dashbord dashbord-red">
@@ -133,7 +151,7 @@ const Dashboard = () => {
                                                 <p>Update About Page</p>
                                             </div>
                                             <div className="detail-section">
-                                                <Link to="/admin/about">Go to Update About <i className="fa fa-angle-right"></i></Link>
+                                                <Link to="/admin/about">Update <i className="fa fa-angle-right"></i></Link>
                                             </div>
                                         </div>
                                         <div className="dashbord dashbord-skyblue">
@@ -142,7 +160,7 @@ const Dashboard = () => {
                                                 <p>Update Footer</p>
                                             </div>
                                             <div className="detail-section">
-                                                <Link to="/admin/update-footer">Go to Update Footer <i className="fa fa-angle-right"></i></Link>
+                                                <Link to="/admin/update-footer">Update <i className="fa fa-angle-right"></i></Link>
                                             </div>
                                         </div>
                                     </div>

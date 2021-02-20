@@ -22,6 +22,7 @@ const Dashboard = () => {
 
     const { loading, products } = useSelector(state => state.products)
     const { inquiries } = useSelector(state => state.listInquiry)
+    const { user } = useSelector(state => state.auth)
 
     const [isToggled, setToggled] = useState('false')
 
@@ -77,22 +78,32 @@ const Dashboard = () => {
                 {loading ? <Loader/> : (
                     <Fragment>
                         <MetaData title={'Admin Dashboard'}/>
-                        <div id="wrapper" className={isToggled ? "toggled" : null} style={{paddingTop: '65px'}}>
+                        <div id="wrapper" className={isToggled ? "toggled" : null} style={{paddingTop: '11px'}}>
                             <div id="sidebar-wrapper" style={{"background": "var(--gray-dark)", "color": "var(--white)"}}>
                                 <ul className="sidebar-nav">
                                     <li className="sidebar-brand">Agile Technodynamics</li>
                                     <li> <Link to="/admin/dashboard"><i className="fa fa-tachometer"></i> Dashboard</Link></li>
                                     <li> <Link to="/admin/me"><i className="fa fa-user"></i> My Profile</Link></li>
+                                    <li> <Link to="/"><i className="fa fa-home"></i> Agile Homepage</Link></li>
                                     <li> <Link to="/admin/products"><i className="fa fa-shopping-bag"></i> Products</Link></li>
                                     <hr/>
-                                    <li> <Link to="/admin/inquiries"><i className="fa fa-envelope"></i> Inquiries</Link></li>
-                                    <li> <Link to="/admin/quotations"><i className="fa fa-archive"></i> Appointment</Link></li>
-                                    <li> <Link to="/admin/others"><i className="fa fa-inbox"></i> Other Concerns</Link></li>
-                                    <hr/>
-                                    <li> <Link to="/admin/archives"><i className="fa fa-envelope-open"></i> Archives</Link></li>
-                                    <li> <Link to="/admin/trash"><i className="fa fa-trash"></i> Trash</Link></li>
-                                    <hr/>
-                                    <li className="text-danger" onClick={logoutHandler} style={{color: 'red'}}> <Link to="/"><i className="fa fa-sign-out"></i> Log out</Link></li>
+                                    {user && user.role !== 'admin' ? (
+                                            <Fragment>
+                                                <li> <Link to="/register"><i className="fa fa-user"></i> Users</Link></li>
+                                                <li> <Link to="/register"><i className="fa fa-user"></i> Register</Link></li>
+                                            </Fragment>
+                                        ) : (
+                                            <Fragment>
+                                                <li> <Link to="/admin/inquiries"><i className="fa fa-envelope"></i> Inquiries</Link></li>
+                                                <li> <Link to="/admin/quotations"><i className="fa fa-archive"></i> Appointment</Link></li>
+                                                <li> <Link to="/admin/others"><i className="fa fa-inbox"></i> Other Concerns</Link></li>
+                                                <hr/>
+                                                <li> <Link to="/admin/archives"><i className="fa fa-envelope-open"></i> Archives</Link></li>
+                                                <li> <Link to="/admin/trash"><i className="fa fa-trash"></i> Trash</Link></li>
+                                                <hr/>
+                                            </Fragment>
+                                        )}
+                                    <li className="text-danger" onClick={logoutHandler}> <Link to="/"><i className="fa fa-sign-out"></i> Log out</Link></li>
                                     <li></li>
                                 </ul>
                             </div>

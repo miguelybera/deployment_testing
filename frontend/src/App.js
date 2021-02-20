@@ -58,7 +58,10 @@ function App() {
   return (
     <Router>
         <div className="App">
-            <Header/>
+                {!loading && !isDashboard && (
+                    <Header/>
+
+                )}
                 <Route path='/' component={Home} exact/>
 
                 <Route path='/our-products' component={Products} exact/>

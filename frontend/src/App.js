@@ -42,6 +42,7 @@ import UpdateProduct from './components/admin/UpdateProduct'
 import UpdateInquiry from './components/admin/UpdateInquiry'
 
 import ListUsers from './components/admin/ListUsers'
+import UpdateUser from './components/admin/UpdateUser'
 
 import ProtectedRoute from './components/route/ProtectedRoute'
 import { loadUser } from './actions/userActions'
@@ -89,6 +90,7 @@ function App() {
                 <Route path='/login' component={Login} exact/>
                 <ProtectedRoute path='/register' isAdmin={true} component={Register} exact/>
                 <ProtectedRoute path='/admin/users' isAdmin={true} component={ListUsers} exact/>
+                <ProtectedRoute path="/superadmin/user/:id" isAdmin={true} component={UpdateUser} exact/>
                 
                 <ProtectedRoute path="/admin/dashboard" isAdmin={true} component={Dashboard} exact/>
                 <ProtectedRoute path="/admin/settings" isAdmin={true} component={Settings} exact/>

@@ -5,7 +5,7 @@ const{getHomePage, updateHomePage} = require('../controllers/homePageController'
 const { isAuthenticatedUser, authorizeRoles } = require('../middlewares/auth');
 
 router.route('/homepage').get(getHomePage);
-router.route('/admin/updatehome').put(isAuthenticatedUser,authorizeRoles('admin'),updateHomePage);
+router.route('/admin/updatehome').put(isAuthenticatedUser,authorizeRoles('admin', 'superadmin'),updateHomePage);
 
 
 

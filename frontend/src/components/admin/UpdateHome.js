@@ -82,7 +82,7 @@ const UpdateHome = ({history}) => {
         }
 
         if(isUpdated) {
-            history.push('/dashboard')
+            history.push('/admin/dashboard')
             alert.success('Home updated successfully.');
 
             dispatch({

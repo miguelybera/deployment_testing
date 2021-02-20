@@ -27,8 +27,107 @@ import {
     ALL_USERS_REQUEST,
     ALL_USERS_SUCCESS,
     ALL_USERS_FAIL,
+    GET_USER_REQUEST,
+    GET_USER_SUCCESS,
+    GET_USER_FAIL,
+    UPDATE_USER_REQUEST,
+    UPDATE_USER_SUCCESS,
+    UPDATE_USER_FAIL,
+    UPDATE_USER_RESET,
+    DELETE_USER_REQUEST,
+    DELETE_USER_SUCCESS,
+    DELETE_USER_RESET,
+    DELETE_USER_FAIL,
     CLEAR_ERRORS
 } from '../constants/userConstants'
+
+//get single user details
+export const userDetailsReducer = (state = { user: {} }, action ) => {
+    switch(action.type) {
+        
+        case GET_USER_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+
+        case GET_USER_SUCCESS:
+            return {
+                loading: false,
+                user: action.payload
+            }
+
+        case GET_USER_FAIL:
+            return {
+                ...state,
+                error: action.payload
+            }
+
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+
+        default:
+            return state
+    }
+}
+
+// update delete user
+export const updateUserReducer = (state = {}, action) => {
+    switch(action.type){
+
+        case DELETE_USER_REQUEST:
+        case UPDATE_USER_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+
+        case DELETE_USER_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                isDeleted: action.payload
+            }
+        
+        case UPDATE_USER_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                isUpdated: action.payload
+            }
+
+        case DELETE_USER_FAIL:
+        case UPDATE_USER_FAIL:
+            return {
+                ...state,
+                error: action.payload
+            }
+
+        case DELETE_USER_RESET:
+            return {
+                ...state,
+                isDeleted: false
+            }
+
+        case UPDATE_USER_RESET:
+            return {
+                ...state,
+                isUpdated: false
+            }
+            
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+            
+        default:
+            return state
+    }
+}
 
 export const getUsersReducer = (state = { users: []}, action) => {
     switch(action.type){

@@ -268,12 +268,10 @@ exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
 exports.updateUser = catchAsyncErrors(async (req, res, next) => {
     const newUserData = {
         name: req.body.name,
-        email: req.body.email,
         contactNumber: req.body.contactNumber,
+        address: req.body.address,
         role: req.body.role
     }
-
-    // Update avatar: TODO
 
     const user = await User.findByIdAndUpdate(req.params.id, newUserData , {
         new: true,

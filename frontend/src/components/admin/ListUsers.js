@@ -9,8 +9,8 @@ import '../../css/bootstrap.min.css'
 import '../../css/dashboard.css'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUsers, clearErrors } from '../../actions/userActions'
-import { UPDATE_ABOUT_RESET } from '../../constants/websiteConstants'
+import { getUsers, deleteUser, clearErrors } from '../../actions/userActions'
+import { DELETE_USER_RESET, UPDATE_USER_RESET } from '../../constants/userConstants'
 import { INSIDE_DASHBOARD_TRUE } from '../../constants/dashboardConstants'
 import { logout } from './../../actions/userActions'
 
@@ -21,6 +21,7 @@ const ListUsers = ({history}) => {
 
     const { loading, error, users } = useSelector(state => state.users)
     const { user } = useSelector(state => state.auth)
+    const { deleteError, isUpdated, isDeleted } = useSelector(state => state.updateUser)
 
     const [isToggled, setToggled] = useState('false')
 
@@ -36,11 +37,33 @@ const ListUsers = ({history}) => {
             dispatch(clearErrors())
         }
         
+        if(deleteError){
+            alert.error(deleteError)
+            dispatch(clearErrors())
+        }
+
+        if(isUpdated){
+            alert.success('User has been updated successfully.');
+            history.push('/admin/users')
+
+            dispatch({
+                type: UPDATE_USER_RESET
+            })
+        }
+
+        if(isDeleted){
+            alert.success('User has been deleted successfully.');
+            history.push('/admin/users')
+
+            dispatch({
+                type: DELETE_USER_RESET
+            })
+        }
 
         dispatch({
             type: INSIDE_DASHBOARD_TRUE
         })
-    }, [dispatch, alert, error, history])
+    }, [dispatch, alert, error, isDeleted, isUpdated, deleteError, history])
 
     const logoutHandler = () => {
         dispatch(logout());
@@ -90,7 +113,10 @@ const ListUsers = ({history}) => {
                     <Link to={`/superadmin/user/${user._id}`} className='btn btn-primary py-1 px-2 ml-2'>
                         <i className='fa fa-pencil'></i>
                     </Link>
-                    <button className="btn btn-danger py-1 px-2 ml-2" disabled={user.role === 'superadmin' ? true : false}>
+                    <button className="btn btn-danger py-1 px-2 ml-2"
+                            disabled={user.role === 'superadmin' ? true : false}
+                            onClick={() => deleteUserHandler(user._id)}
+                    >
                         <i className='fa fa-trash'></i>
                     </button>
                 </Fragment>
@@ -100,6 +126,13 @@ const ListUsers = ({history}) => {
          return data
     }
 
+    const deleteUserHandler = (id) => {
+
+        if(window.confirm("Are you sure you want to delete this user? This cannot be undone.")){
+            dispatch(deleteUser(id))
+        }
+    }
+    
     return (
         <Fragment>
             <MetaData title={'Users'}/>

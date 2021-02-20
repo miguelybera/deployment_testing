@@ -8,7 +8,7 @@ const { isAuthenticatedUser, authorizeRoles } = require('../middlewares/auth');
 router.route('/newabout').post(newAbout);
 router.route('/allaboutus').get(getAllAbout);
 router.route('/about/:id').get(getSingleAbout);
-router.route('/admin/about/:id').put(isAuthenticatedUser,authorizeRoles('admin'),updateAbout);
+router.route('/admin/about/:id').put(isAuthenticatedUser,authorizeRoles('admin', 'superadmin'),updateAbout);
 
 // get single parts of about us
 router.route('/aboutcompany').get(getAboutCompany);

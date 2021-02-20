@@ -155,7 +155,6 @@ const UpdateUser = ({ match, history }) => {
                                         className="form-control" 
                                         name="contactNumber"
                                         value={contactNumber}
-                                        style={{width: '100%', height: '150px'}}
                                         onChange={(e) => setContactNumber(e.target.value)}
                                         height='55px'
                                     />

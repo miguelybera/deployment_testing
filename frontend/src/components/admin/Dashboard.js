@@ -112,8 +112,8 @@ const Dashboard = () => {
                                     <a className="btn btn-link" role="button" id="menu-toggle" onClick={handleToggle}>
                                         <i className="fa fa-bars" style={{"color": "var(--gray-dark)"}}></i>
                                     </a>
-                                    <div className="main-section">
-                                        <h3>Inbox</h3>
+                                    <div className="main-section" style={{paddingTop: '65px'}}>
+                                        <h3><strong>Inbox</strong></h3>
                                         <div className="dashbord">
                                             <div className="icon-section">
                                                 <i className="fa fa-envelope" aria-hidden="true"></i><br/>
@@ -121,7 +121,7 @@ const Dashboard = () => {
                                                 <p>{inquiries && inquiries.length} messages</p>
                                             </div>
                                             <div className="detail-section">
-                                                <a href="#">More Info </a>
+                                                <Link to="/admin/inquiries">More Info </Link>
                                             </div>
                                         </div>
                                         <div className="dashbord dashbord-green">
@@ -131,7 +131,7 @@ const Dashboard = () => {
                                                 <p>{inquiries && inquiries.length} messages</p>
                                             </div>
                                             <div className="detail-section">
-                                                <Link to="#">More Info </Link>
+                                                <Link to="/admin/quotations">More Info </Link>
                                             </div>
                                         </div>
                                         <div className="dashbord dashbord-orange">
@@ -141,12 +141,12 @@ const Dashboard = () => {
                                                 <p>{inquiries && inquiries.length} messages</p>
                                             </div>
                                             <div className="detail-section">
-                                                <a href="#">More Info </a>
+                                                <Link to="/admin/others">More Info </Link>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="main-section" style={{paddingTop: '65px'}}>
-                                        <h3>Settings</h3>
+                                        <h3><strong>Settings</strong></h3>
                                         <div className="dashbord dashbord-blue">
                                             <div className="icon-section">
                                                 <i className="fa fa-home" aria-hidden="true"></i><br/>

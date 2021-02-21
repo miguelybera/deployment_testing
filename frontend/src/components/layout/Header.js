@@ -20,6 +20,13 @@ const Header = () => {
         alert.success('Logged out successfully')
     }
     
+    let userAvatar = ""
+
+    if(user && user.avatar) {
+        userAvatar = user.avatar.url
+    } else {
+        userAvatar = ""
+    }
 
     return (
         <Fragment>
@@ -53,7 +60,7 @@ const Header = () => {
                                     
                                     <img 
                                         className='mr-2 rounded-circle'
-                                        src={user.avatar.url}
+                                        src={userAvatar}
                                         width='30' 
                                         height='32'
                                     />

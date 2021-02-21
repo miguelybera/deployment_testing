@@ -111,40 +111,72 @@ const UpdateInquiry = ( { match, history } ) => {
                     </a>
                     <Fragment>
                         {loading ? <Loader/> : (
-                            <section className="process-section">
-                                <div className="m-5 concern-info-container">
-                                    <h3>{inquiry.concernType} sent on {inquiry.createdAt}</h3>
-                                    <hr/>
-                                    <p style={{fontSize: '25px'}}><strong>Sender Information</strong></p>
-                                    <p><strong>From: </strong>{inquiry.firstName} {inquiry.lastName}, {inquiry.position} at {inquiry.companyName} </p>
-                                    <p><strong>Email: </strong>{inquiry.customerEmail}</p>
-                                    <p><strong>Contact No.: </strong>{inquiry.contactNumber}</p>
-                                    <hr/>
-                                    <p style={{fontSize: '20px'}}>{inquiry.customerMessage}</p>
-                                </div>
-                                <div className="m-5">
-                                    {(inquiry.inquiryStatus === 'Resolved') ? (
-                                        <Fragment>
-                                            <button 
-                                                className="btn btn-primary update-status-button" 
-                                                type="button"
-                                                onClick={() => updateInquiryHandler(inquiry._id, 'Unresolved')}
-                                                style={{marginBottom: '65px'}}>
-                                                Restore message back to {inquiry.concernType}
-                                            </button>
-                                        </Fragment>
-                                    ) : (
-                                        <Fragment>
-                                            <button 
-                                                className="btn btn-primary update-status-button" 
-                                                type="button"
-                                                onClick={() => updateInquiryHandler(inquiry._id, 'Resolved')}
-                                                style={{marginBottom: '65px'}}>
-                                                Mark this message as 'Resolved'
-                                            </button>
-                                        </Fragment>
-                                    )}
-                                </div>
+                            <section className="process-section" style={{backgroundColor: '#f1f7fc', fontSize: '100%', fontWeight: '400', lineHeight: '1.4', color: '#000'}}>
+                                <table style={{maxWidth: '670px', margin: '0 auto 20px auto', backgroundColor: '#fff', padding: '30px', WebkitBorderRadius: '3px', MozBorderRadius: '3px', borderRadius: '3px', WebkitBoxShadow: '0 1px 3px rgba(0,0,0.12), 0 1px 2px rgba(0,0,0,.24)', MozBoxShadow: '0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24)', boxShadow: '0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24)', borderTop: 'solid 10px #1b1449'}}>
+                                    <thead>
+                                        <tr>
+                                        <th style={{textAlign: 'left'}}><img style={{maxWidth: '300px'}} src="https://res.cloudinary.com/agiletech3itf/image/upload/v1610472388/agile-tech-big-blue-logo_cej4nt.png" alt="logo"/></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        <td style={{height: '35px'}}></td>
+                                        </tr>
+                                        <tr>
+                                        <td colspan="2" style={{border: 'solid 1px #ddd', padding:'10px 20px'}}>
+                                            <p style={{fontSize:'14px', margin:'0 0 6px 0'}}><span style={{fontWeight: 'bold', display: 'inline-block', minWidth: '150px'}}>Concern Type</span><b style={{color: 'green', fontWeight: 'normal', margin: '0'}}>{inquiry.concernType}</b></p>
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                        <td style={{height: '35px'}}></td>
+                                        </tr>
+                                        <tr>
+                                        <td style={{width: '100%', padding: '20px', verticalAlign: 'top'}}>
+                                            <h2 style={{margin: '0 0 10px 0', padding: '0'}}>Sender Details</h2>
+                                            <p style={{margin: '0 0 10[x 0', padding: '0', fontSize: '14px'}}><span style={{display: 'block', fontWeight: 'bold', fontSize: '13px'}}>Name</span> {inquiry.firstName} {inquiry.lastName}</p>
+                                            <p style={{margin: '0 0 10[x 0', padding: '0', fontSize: '14px'}}><span style={{display: 'block', fontWeight: 'bold', fontSize: '13px'}}>Company and Position</span> {inquiry.companyName}, {inquiry.position}</p>
+                                            <p style={{margin: '0 0 10[x 0', padding: '0', fontSize: '14px'}}><span style={{display: 'block', fontWeight: 'bold', fontSize: '13px'}}>Email</span> {inquiry.customerEmail}</p>
+                                            <p style={{margin: '0 0 10[x 0', padding: '0', fontSize: '14px'}}><span style={{display: 'block', fontWeight: 'bold', fontSize: '13px'}}>Phone</span> {inquiry.contactNumber}</p>
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                        <td colspan="2" style={{padding: '30px 15px 0 15px'}}>
+                                            <h2 style={{margin: '0 0 10px 0', padding: '0'}}>Message Content</h2>
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                        <td colspan="2" style={{padding:'15px'}}>
+                                            <p style={{fontSize: '14px', margin: '0', padding: '10px', textAlign: 'justify'}}>
+                                            {inquiry.customerMessage}
+                                            </p>
+                                        </td>
+                                        </tr>
+                                        <tr style={{ width: '100%'}}>
+                                            {(inquiry.inquiryStatus === 'Resolved') ? (
+                                                <Fragment>
+                                                    <button 
+                                                        className="btn btn-primary update-status-button" 
+                                                        type="button"
+                                                        onClick={() => updateInquiryHandler(inquiry._id, 'Unresolved')}
+                                                        style={{margin: '50px auto 50px auto', display: 'block'}}>
+                                                        Mark this message as 'Resolved'
+                                                        Restore message back to {inquiry.concernType}
+                                                    </button>
+                                                </Fragment>
+                                            ) : (
+                                                <Fragment>
+                                                    <button 
+                                                        className="btn btn-primary update-status-button align-center" 
+                                                        type="button"
+                                                        onClick={() => updateInquiryHandler(inquiry._id, 'Resolved')}
+                                                        style={{margin: '50px auto 50px auto', display: 'block'}}>
+                                                        Mark this message as 'Resolved'
+                                                    </button>
+                                                </Fragment>
+                                            )}
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </section>
                         )}
                     </Fragment>

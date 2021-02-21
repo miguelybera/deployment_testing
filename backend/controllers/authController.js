@@ -121,7 +121,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
     try {
         await sendEmail({
             email: user.email,
-            subject: 'Agile Technodynamics Account Password Recovery',
+            subject: 'Account Password Recovery',
             message
         })
 

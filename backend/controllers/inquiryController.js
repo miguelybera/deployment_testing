@@ -51,18 +51,17 @@ exports.newInquiry = catchAsyncErrors( async (req, res, next) => {
          employeeEmail = 'josemiguel.ybera.iics@ust.edu.ph';
     }
     
-    
-    
-    const newMessage = `Message: \n
-                        Full Name: ${lastName}, ${firstName}\n
-                        Customer Email: ${customerEmail}\n
-                        Company Name: ${companyName}\n
-                        Contact Number: ${contactNumber}\n
-                        Position: ${position}\n
-                        Concern: ${concernType}\n
-                        Message: ${customerMessage}\n
-                        Date Sent: ${todayDate}\n
-                        Time Sent: ${todayTime}`
+    const newMessage = 
+    `Message Sent from Agile Technology's Website on ${todayDate} ${todayTime}\n\n
+    Sent by: ${lastName}, ${firstName}\n
+    Company: ${position} at ${companyName}\n\n
+    Contact Information\n
+    ${customerEmail}\n
+    ${contactNumber}\n
+    Concern: ${concernType}\n
+    Message:\n
+    ${customerMessage}\n`
+
     const messageToSender = `Your message has been sent to our company with the details:\n
                             ${newMessage}`
         await sendEmailInquiry({

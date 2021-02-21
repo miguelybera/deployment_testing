@@ -12,10 +12,10 @@ const sendEmailToSender = async options => {
       });
   
       const messageToSender ={
-          from: `${process.env.SMTP_FROM_NAME}<${process.env.SMTP_FROM_EMAIL}>`,
+          from: `"${process.env.SMTP_FROM_NAME}" <${process.env.SMTP_FROM_EMAIL}>`,
           to: options.email,
           subject: options.subject,
-          text: options.messageToSender
+          html: options.messageToSender
       }
   
       await transport.sendMail(messageToSender)

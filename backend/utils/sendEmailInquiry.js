@@ -12,10 +12,10 @@ const sendEmailInquiry = async options => {
       });
   
       const newMessage ={
-          from: `${process.env.SMTP_FROM_NAME}<${process.env.SMTP_FROM_EMAIL}>`,
+          from: `"${process.env.SMTP_FROM_NAME}" <${process.env.SMTP_FROM_EMAIL}>`,
           to: options.email,
           subject: options.subject,
-          text: options.newMessage
+          html: options.newMessage
       }
   
       await transport.sendMail(newMessage)

@@ -92,8 +92,31 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
     // Create reset password url
     const resetUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
 
-    const message = `Your password reset token is as follow:\n\n${resetUrl}\n\nIf you have not requested this 
-    email, then ignore it.`
+    const message = `<body style="background-color:#e2e1e0;font-family: Open Sans, sans-serif;font-size:100%;font-weight:400;line-height:1.4;color:#000;">
+    <table style="max-width:670px;margin:50px auto 10px;background-color:#fff;padding:50px;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);-moz-box-shadow:0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);box-shadow:0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24); border-top: solid 10px #1b1449;">
+      <thead>
+        <tr>
+          <th style="text-align:left;"><img style="max-width: 300px;" src="https://res.cloudinary.com/agiletech3itf/image/upload/v1610472388/agile-tech-big-blue-logo_cej4nt.png" alt="agile logo"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="height:35px;"></td>
+        </tr>
+        <tr>
+          <td colspan="2" style="padding:10px 20px;">
+            <p >You have requested to reset your password.</p>
+            <p>Click on the link below to reset password.</p>
+            <p style="font-size:14px;margin:0 0 6px 0;"><b style="font-weight:normal;margin:0">${resetUrl}</p>
+              <br/>
+              <hr/>
+              <br/>
+              <p style="font-size:12px;margin:0 0 6px 0;">If you have not requested to reset your password, ignore this email.</b></p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>`
 
     try {
         await sendEmail({

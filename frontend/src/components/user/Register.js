@@ -13,6 +13,7 @@ const Register = ( { history } ) => {
         name: '',
         email: '',
         contactNumber: '',
+        address: '',
         password: '',
         confirmPassword: ''
     })
@@ -51,9 +52,9 @@ const Register = ( { history } ) => {
             dispatch(clearErrors());
         }
         if(success){
-            alert.success('Account has been created successfully. User has been signed in.')
-            history.push('/admin/me')
+            history.push('/register-success')
         }
+        
         dispatch({
             type: INSIDE_DASHBOARD_TRUE
         })
@@ -69,6 +70,7 @@ const Register = ( { history } ) => {
         formData.set('password', password);
         formData.set('confirmPassword', confirmPassword);
         formData.set('contactNumber', contactNumber);
+        formData.set('address', address);
         formData.set('avatar', avatar);
         formData.set('useDefaultImage', useDefaultImage)
 
@@ -146,7 +148,7 @@ const Register = ( { history } ) => {
                 </div>
                 <div className="page-content-wrapper">
                     <div className="container-fluid">
-                        <a className="btn btn-link" role="button" id="menu-toggle" onClick={handleToggle}>
+                        <a className="btn btn-link" role="button" id="menu-toggle" onClick={handleToggle} style={{position: 'fixed'}}>
                             <i className="fa fa-bars" style={{"color": "var(--gray-dark)"}}></i>
                         </a>
                         <div className="container">

@@ -36,9 +36,9 @@ const Header = () => {
                     <span className="sr-only">Toggle navigation</span>
                     <span className="navbar-toggler-icon"></span>
                 </button>
-            <Link to="/">
-                <img className="agile-logo" src="https://res.cloudinary.com/agiletech3itf/image/upload/v1610472388/agile-tech-big-blue-logo_cej4nt.png"/>
-            </Link>
+                <a href="/">
+                    <img className="agile-logo" src="https://res.cloudinary.com/agiletech3itf/image/upload/v1610472388/agile-tech-big-blue-logo_cej4nt.png"/>
+                </a>
                 <div className="collapse navbar-collapse" id="navcol-1">
                     <ul className="nav navbar-nav flex-grow-1 justify-content-between">
                         <li className="nav-item"><Link className="nav-link" to="#"></Link></li>

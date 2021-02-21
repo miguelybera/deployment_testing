@@ -103,7 +103,7 @@ const UpdatePassword = ( { history }) => {
                 </div>
                 <div className="page-content-wrapper">
                     <div className="container-fluid">
-                        <a className="btn btn-link" role="button" id="menu-toggle" onClick={handleToggle}>
+                        <a className="btn btn-link" role="button" id="menu-toggle" onClick={handleToggle} style={{position: 'fixed'}}>
                             <i className="fa fa-bars" style={{"color": "var(--gray-dark)"}}></i>
                         </a>
                         <div className="login-clean" style={{paddingTop: '65px'}}>

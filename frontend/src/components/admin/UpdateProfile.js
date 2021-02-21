@@ -142,7 +142,7 @@ const UpdateProfile = ({ history }) => {
                                         <div className="card">
                                             <div className="card-body">
                                                 <div className="d-flex flex-column align-items-center text-center">
-                                                    <img src={user.avatar.url} alt="Admin" className="rounded-circle" width="100%" style={{minWidth: '100px', maxWidth: '150px'}}/>
+                                                    <img src={avatarPreview} alt="Admin" className="rounded-circle" width="100%" style={{minWidth: '100px', maxWidth: '150px'}}/>
                                                     <div className="mt-3">
                                                     <hr/>
                                                     <input 

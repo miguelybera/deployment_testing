@@ -161,7 +161,7 @@ const UpdateProduct = ( { match, history } ) => {
                     <div className="container-fluid">
                         <Fragment>
                         <div className="login-clean">
-                            <a className="btn btn-link" role="button" id="menu-toggle" onClick={handleToggle} style={{marginTop: '-150px'}}>
+                            <a className="btn btn-link" role="button" id="menu-toggle" onClick={handleToggle} style={{marginTop: '-150px', position: 'fixed'}}>
                                 <i className="fa fa-bars" style={{"color": "var(--gray-dark)"}}></i>
                             </a>
                             <form method="put" onSubmit={submitHandler} encType='multipart/form-data' style={{maxWidth: '500px'}}>

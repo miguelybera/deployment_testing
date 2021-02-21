@@ -17,6 +17,7 @@ const UpdateProfile = ({ history }) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [contactNumber, setContactNumber] = useState('');
+    const [address, setAddress] = useState('');
     const [avatar, setAvatar] = useState('');
     const [avatarPreview, setAvatarPreview] = useState('images/default_avatar.png');
 
@@ -43,6 +44,7 @@ const UpdateProfile = ({ history }) => {
             setName(user.name);
             setEmail(user.email);
             setContactNumber(user.contactNumber);
+            setAddress(user.address);
             setAvatarPreview(user.avatar.url);
         }
 
@@ -56,7 +58,7 @@ const UpdateProfile = ({ history }) => {
             alert.success('User updated successfully');
             dispatch(loadUser());
 
-            history.push('/me')
+            history.push('/admin/me')
 
             dispatch({
                 type: UPDATE_PROFILE_RESET
@@ -76,6 +78,7 @@ const UpdateProfile = ({ history }) => {
         formData.set('name', name);
         formData.set('email', email);
         formData.set('contactNumber', contactNumber);
+        formData.set('address', address);
         formData.set('avatar', avatar);
 
         dispatch(updateProfile(formData));
@@ -139,7 +142,7 @@ const UpdateProfile = ({ history }) => {
                                         <div className="card">
                                             <div className="card-body">
                                                 <div className="d-flex flex-column align-items-center text-center">
-                                                    <img src={avatarPreview} alt="Admin" className="rounded-circle" width="150"/>
+                                                    <img src={user.avatar.url} alt="Admin" className="rounded-circle" width="100%" style={{minWidth: '100px', maxWidth: '150px'}}/>
                                                     <div className="mt-3">
                                                     <hr/>
                                                     <input 
@@ -210,7 +213,14 @@ const UpdateProfile = ({ history }) => {
                                                         <h6 className="mb-0">Address</h6>
                                                         </div>
                                                         <div className="col-sm-9 text-secondary">
-                                                        Bay Area, San Francisco, CA
+                                                            <textarea 
+                                                                type="text"
+                                                                className="form-control"
+                                                                name="address"
+                                                                value={address}
+                                                                onChange={(e) => setAddress(e.target.value)}
+                                                                style={{height: '150px'}}
+                                                            />
                                                         </div>
                                                     </div>
                                                     <div className="row">

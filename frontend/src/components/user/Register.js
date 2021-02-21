@@ -51,8 +51,8 @@ const Register = ( { history } ) => {
             dispatch(clearErrors());
         }
         if(success){
-            alert.success('Account has been created successfully.')
-            history.push('/admin/dashboard')
+            alert.success('Account has been created successfully. User has been signed in.')
+            history.push('/admin/me')
         }
         dispatch({
             type: INSIDE_DASHBOARD_TRUE

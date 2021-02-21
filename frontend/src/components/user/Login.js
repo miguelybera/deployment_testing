@@ -41,7 +41,7 @@ const Login = ( { history }) => {
             {loading ? <Loader/> : (
                 <Fragment>
                     <MetaData title={'Login'}/>
-                    <div className="login-clean" style={{paddingTop: '65px'}}>
+                    <div className="login-clean" style={{paddingTop: '150px'}}>
                         <form onSubmit={submitHandler}>
                             <h2 className="sr-only">Login Form</h2>
                             <div className="illustration">
@@ -57,7 +57,6 @@ const Login = ( { history }) => {
                                 <button className="btn btn-primary btn-block" type="submit">Log In</button>
                             </div>
                             <Link className="forgot" to="/password/forgot">Forgot your password?</Link>
-                            <Link className="forgot" to="/register">Register</Link>
                         </form>
                     </div>
                 </Fragment>

@@ -165,7 +165,7 @@ const Dashboard = () => {
                                                 <div className="dashbord dashbord-red">
                                                     <div className="icon-section">
                                                         <i className="fa fa-info-circle" aria-hidden="true"></i><br/>
-                                                        <p>Update About Page</p>
+                                                        <p>Update About</p>
                                                     </div>
                                                     <div className="detail-section">
                                                         <Link to="/admin/about">Update <i className="fa fa-angle-right"></i></Link>
@@ -231,7 +231,7 @@ const Dashboard = () => {
                                                 <div className="dashbord dashbord-red">
                                                     <div className="icon-section">
                                                         <i className="fa fa-info-circle" aria-hidden="true"></i><br/>
-                                                        <p>Update About Page</p>
+                                                        <p>Update About</p>
                                                     </div>
                                                     <div className="detail-section">
                                                         <Link to="/admin/about">Update <i className="fa fa-angle-right"></i></Link>

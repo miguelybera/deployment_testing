@@ -12,6 +12,7 @@ body {
 .dashbord {
   width: 32%;
   display: inline-block;
+  min-width: 110px;
   background-color: #34495E;
   color: #fff;
   margin-top: 50px;
